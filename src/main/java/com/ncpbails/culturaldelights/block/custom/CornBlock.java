@@ -152,7 +152,7 @@ public class CornBlock extends BushBlock implements BonemealableBlock {
             level.setBlockAndUpdate(pos, (BlockState)state.setValue(AGE, ageGrowth));
         } else {
             BlockState top = level.getBlockState(pos.above());
-            if (top.getBlock() == vectorwing.farmersdelight.common.registry.ModBlocks.RICE_CROP_PANICLES.get()) {
+            if (top.getBlock() == ModBlocks.CORN_UPPER.get()) {
                 BonemealableBlock growable = (BonemealableBlock)level.getBlockState(pos.above()).getBlock();
                 if (growable.isValidBonemealTarget(level, pos.above(), top, false)) {
                     growable.performBonemeal(level, level.random, pos.above(), top);
