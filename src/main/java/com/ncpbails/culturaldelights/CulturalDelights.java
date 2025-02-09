@@ -15,6 +15,7 @@ import net.minecraft.world.entity.animal.Pig;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ComposterBlock;
+import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.crafting.CompoundIngredient;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -76,9 +77,15 @@ public class CulturalDelights
     {
         event.enqueueWork(() -> {
             registerCompostables();
+            registerPottables();
             //registerAnimalFeeds();
         });
     }
+
+    public static void registerPottables() {
+        FlowerPotBlock pot = (FlowerPotBlock) Blocks.FLOWER_POT;
+        pot.addPlant(ModBlocks.AVOCADO_SAPLING.getId(), ModBlocks.POTTED_AVOCADO_SAPLING);
+}
 
     public static void registerCompostables() {
         // 30% chance
