@@ -1,7 +1,7 @@
-package com.ncpbails.culturaldelights.item;
+package com.baisylia.culturaldelights.item;
 
-import com.ncpbails.culturaldelights.CulturalDelights;
-import com.ncpbails.culturaldelights.block.ModBlocks;
+import com.baisylia.culturaldelights.CulturalDelights;
+import com.baisylia.culturaldelights.block.ModBlocks;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;

@@ -1,4 +1,4 @@
-package com.ncpbails.culturaldelights.item;
+package com.baisylia.culturaldelights.item;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
