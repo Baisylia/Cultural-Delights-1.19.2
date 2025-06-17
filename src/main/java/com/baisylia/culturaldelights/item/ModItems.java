@@ -116,8 +116,8 @@ public class ModItems {
     public static final RegistryObject<Item> MUTTON_SANDWICH = ITEMS.register("mutton_sandwich",
             () -> new Item(new Item.Properties().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.MUTTON_SANDWICH)));
 
-    public static final RegistryObject<Item> FRIED_EGGPLANT_PASTA = ITEMS.register("fried_eggplant_pasta",
-            () -> new BowlFoodItem(new Item.Properties().stacksTo(16).tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.FRIED_EGGPLANT_PASTA)));
+    public static final RegistryObject<Item> EGGPLANT_PARMESAN = ITEMS.register("eggplant_parmesan",
+            () -> new BowlFoodItem(new Item.Properties().tab(FarmersDelight.CREATIVE_TAB).stacksTo(16).food(ModFoods.EGGPLANT_PARMESAN)));
 
     public static final RegistryObject<Item> POACHED_EGGPLANTS = ITEMS.register("poached_eggplants",
             () -> new BowlFoodItem(new Item.Properties().stacksTo(16).tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.POACHED_EGGPLANTS)));

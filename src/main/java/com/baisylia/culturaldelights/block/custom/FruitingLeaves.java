@@ -69,7 +69,7 @@ public class FruitingLeaves extends LeavesBlock implements BonemealableBlock {
         boolean flag = i == MAX_AGE;
         if (!flag && player.getItemInHand(hand).is(Items.BONE_MEAL)) {
             return InteractionResult.PASS;
-        } else if (i > 1) {
+        } else if (i > 1 && flag) {
             int j = 1 + world.random.nextInt(2);
             popResource(world, pos, new ItemStack(ModItems.AVOCADO.get(), j + (flag ? 1 : 0)));
             world.playSound((Player)null, pos, SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES, SoundSource.BLOCKS, 1.0F, 0.8F + world.random.nextFloat() * 0.4F);

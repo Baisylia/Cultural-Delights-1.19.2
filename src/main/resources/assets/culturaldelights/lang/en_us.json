@@ -36,7 +36,7 @@
   "item.culturaldelights.beef_burrito": "Beef Burrito",
   "item.culturaldelights.mutton_sandwich": "Mutton Sandwich",
   "item.culturaldelights.eggplant_burger": "Eggplant Burger",
-  "item.culturaldelights.fried_eggplant_pasta": "Fried Eggplant Pasta",
+  "item.culturaldelights.eggplant_parmesan": "Plate of Eggplant Parmesan",
   "item.culturaldelights.avocado_toast": "Avocado Toast",
   "item.culturaldelights.creamed_corn": "Creamed Corn",
   "item.culturaldelights.chicken_taco": "Chicken Taco",
@@ -75,5 +75,6 @@
   "block.culturaldelights.pickle_crate": "Pickle Crate",
   "block.culturaldelights.corn_cob_crate": "Corn Cob Crate",
   "block.culturaldelights.eggplant_crate": "Eggplant Crate",
-  "block.culturaldelights.white_eggplant_crate": "White Eggplant Crate"
+  "block.culturaldelights.white_eggplant_crate": "White Eggplant Crate",
+  "block.culturaldelights.eggplant_parmesan_block": "Eggplant Parmesan"
 }

@@ -61,7 +61,7 @@ public class ModFoods {
     public static final FoodProperties FISH_TACO = (new FoodProperties.Builder()).nutrition(10).saturationMod(0.8F).build();
     public static final FoodProperties HEARTY_SALAD = (new FoodProperties.Builder()).nutrition(7).saturationMod(0.7F)
             .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT.get(), FoodValues.LONG_DURATION, 0), 1.0F).build();
-    public static final FoodProperties FRIED_EGGPLANT_PASTA = (new FoodProperties.Builder()).nutrition(12).saturationMod(0.9F)
+    public static final FoodProperties EGGPLANT_PARMESAN = (new FoodProperties.Builder()).nutrition(12).saturationMod(0.9F)
             .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT.get(), FoodValues.LONG_DURATION, 0), 1.0F).build();
     public static final FoodProperties EGGPLANT_BURGER = (new FoodProperties.Builder()).nutrition(12).saturationMod(0.7F).build();
     public static final FoodProperties SPICY_CURRY = (new FoodProperties.Builder()).nutrition(12).saturationMod(1.3F)

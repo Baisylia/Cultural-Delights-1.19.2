@@ -36,7 +36,7 @@ public class ModConfiguredFeatures {
                             BlockStateProvider.simple(ModBlocks.AVOCADO_LOG.get()),
                             new StraightTrunkPlacer(3, 2, 0),
                             new WeightedStateProvider(SimpleWeightedRandomList.<BlockState>builder().add(ModBlocks.AVOCADO_LEAVES.get().defaultBlockState(),
-                                    4).add(ModBlocks.FRUITING_AVOCADO_LEAVES.get().defaultBlockState().setValue(FruitingLeaves.AGE, 4), 1)),
+                                    8).add(ModBlocks.FRUITING_AVOCADO_LEAVES.get().defaultBlockState().setValue(FruitingLeaves.AGE, 4), 1)),
                             new AcaciaFoliagePlacer(ConstantInt.of(3), ConstantInt.of(0)),
                             new TwoLayersFeatureSize(1, 0, 1)).ignoreVines().build()));
     public static final RegistryObject<ConfiguredFeature<?, ?>> AVOCADO_SPAWN =

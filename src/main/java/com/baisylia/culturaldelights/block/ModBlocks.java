@@ -128,6 +128,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> EXOTIC_ROLL_MEDLEY = registerBlock("exotic_roll_medley",
             () -> new ExoticRollMedleyBlock(BlockBehaviour.Properties.copy(vectorwing.farmersdelight.common.registry.ModBlocks.RICE_ROLL_MEDLEY_BLOCK.get()).noOcclusion()), FarmersDelight.CREATIVE_TAB, false, 0);
 
+    public static final RegistryObject<Block> EGGPLANT_PARMESAN_BLOCK = registerBlock("eggplant_parmesan_block",
+            () -> new EggplantFeastBlock(BlockBehaviour.Properties.copy(vectorwing.farmersdelight.common.registry.ModBlocks.ROAST_CHICKEN_BLOCK.get()).noOcclusion(), ModItems.EGGPLANT_PARMESAN, true), FarmersDelight.CREATIVE_TAB, false, 0);
+
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab, Boolean isFuel, Integer fuelAmount) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
