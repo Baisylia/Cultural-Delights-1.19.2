@@ -33,10 +33,16 @@ public class FermenterScreen extends AbstractContainerScreen<FermenterMenu> {
         this.blit(pPoseStack, x, y, 0, 0, imageWidth, imageHeight);
 
         if(menu.isCrafting()) {
-            blit(pPoseStack, x + 81, y + 24, 176, 14,  menu.getScaledProgress(), 17);
+            blit(pPoseStack, x + 88, y + 24, 176, 14,  menu.getScaledProgress(), 17);
         }
-        if(menu.getTemperature() == FermenterTemperature.HOT) {
-            blit(pPoseStack, x + 84, y + 55, 176, 32, 17, 15);
+        if(menu.getTemperature() == FermenterTemperature.COLD) {
+            blit(pPoseStack, x + 31, y + 20, 176, 32, 12, 46);
+        }
+        else if(menu.getTemperature() == FermenterTemperature.NORMAL) {
+            blit(pPoseStack, x + 31, y + 20, 189, 32, 12, 46);
+        }
+        else if(menu.getTemperature() == FermenterTemperature.HOT) {
+            blit(pPoseStack, x + 31, y + 20, 202, 32, 12, 46);
         }
 
     }
@@ -46,7 +52,7 @@ public class FermenterScreen extends AbstractContainerScreen<FermenterMenu> {
         renderBackground(pPoseStack);
         super.render(pPoseStack, mouseX, mouseY, delta);
         renderTooltip(pPoseStack, mouseX, mouseY);
-        if (this.isHovering(93, 55, 17, 15, mouseX, mouseY)) {
+        if (this.isHovering(31, 20, 12, 46, mouseX, mouseY)) {
             List<Component> tooltip = new ArrayList<>();
 
             FermenterTemperature temp = this.menu.getTemperature();

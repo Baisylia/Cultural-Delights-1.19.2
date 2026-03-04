@@ -37,14 +37,14 @@ public class FermenterMenu extends AbstractContainerMenu {
         addPlayerHotbar(inv);
 
         this.blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-            this.addSlot(new SlotItemHandler(handler, 0, 39, 17));
-            this.addSlot(new SlotItemHandler(handler, 1, 57, 17));
-            this.addSlot(new SlotItemHandler(handler, 2, 39, 35));
-            this.addSlot(new SlotItemHandler(handler, 3, 57, 35));
-            this.addSlot(new SlotItemHandler(handler, 4, 39, 53));
-            this.addSlot(new SlotItemHandler(handler, 5, 57, 53));
-            this.addSlot(new SlotItemHandler(handler, 6, 115, 53));
-            this.addSlot(new ModResultSlot(handler, 7, 115, 24));
+            this.addSlot(new SlotItemHandler(handler, 0, 46, 17));
+            this.addSlot(new SlotItemHandler(handler, 1, 64, 17));
+            this.addSlot(new SlotItemHandler(handler, 2, 46, 35));
+            this.addSlot(new SlotItemHandler(handler, 3, 64, 35));
+            this.addSlot(new SlotItemHandler(handler, 4, 46, 53));
+            this.addSlot(new SlotItemHandler(handler, 5, 64, 53));
+            this.addSlot(new SlotItemHandler(handler, 6, 122, 53));
+            this.addSlot(new ModResultSlot(handler, 7, 122, 24));
         });
 
         addDataSlots(data);
