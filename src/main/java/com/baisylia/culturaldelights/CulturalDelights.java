@@ -1,10 +1,15 @@
 package com.baisylia.culturaldelights;
 
+import com.baisylia.culturaldelights.block.entity.ModBlockEntities;
+import com.baisylia.culturaldelights.recipes.ModRecipes;
+import com.baisylia.culturaldelights.screens.FermenterScreen;
+import com.baisylia.culturaldelights.screens.ModMenuTypes;
 import com.mojang.logging.LogUtils;
 import com.baisylia.culturaldelights.block.ModBlocks;
 import com.baisylia.culturaldelights.item.ModItems;
 import com.baisylia.culturaldelights.world.feature.ModConfiguredFeatures;
 import com.baisylia.culturaldelights.world.feature.ModPlacedFeatures;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.Blocks;
@@ -36,8 +41,11 @@ public class CulturalDelights
 
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
+        ModBlockEntities.register(eventBus);
         ModConfiguredFeatures.register(eventBus);
         ModPlacedFeatures.register(eventBus);
+        ModMenuTypes.register(eventBus);
+        ModRecipes.register(eventBus);
 
 
         eventBus.addListener(this::setup);
@@ -58,6 +66,8 @@ public class CulturalDelights
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.EGGPLANTS.get(), RenderType.cutoutMipped());
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.CORN.get(), RenderType.cutoutMipped());
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.CORN_UPPER.get(), RenderType.cutoutMipped());
+
+            MenuScreens.register(ModMenuTypes.FERMENTER_MENU.get(), FermenterScreen::new);
         }
     }
 
