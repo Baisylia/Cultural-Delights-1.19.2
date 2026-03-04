@@ -103,8 +103,13 @@ obfuscation {
 }
 
 dependencies {
+    compileOnly("mezz.jei:jei-1.19.2-common-api:11.5.0.297")
+    compileOnly("mezz.jei:jei-1.19.2-forge-api:11.5.0.297")
+    compileOnly("dev.emi:emi-forge:1.1.22+1.19.2:api")
+
     modImplementation("maven.modrinth:farmers-delight:${farmers_delight_version}")
-    modImplementation("maven.modrinth:jei:${jei_version}")
+    //runtimeOnly("maven.modrinth:jei:${jei_version}")
+    modRuntimeOnly("dev.emi:emi-forge:1.1.22+1.19.2")
     modImplementation("maven.modrinth:appleskin:forge-${appleskin_version}")
 }
 
