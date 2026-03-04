@@ -1,6 +1,7 @@
 package com.baisylia.culturaldelights.screens;
 
 import com.baisylia.culturaldelights.CulturalDelights;
+import com.baisylia.culturaldelights.util.FermenterTemperature;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -34,7 +35,7 @@ public class FermenterScreen extends AbstractContainerScreen<FermenterMenu> {
         if(menu.isCrafting()) {
             blit(pPoseStack, x + 81, y + 24, 176, 14,  menu.getScaledProgress(), 17);
         }
-        if(menu.isFueled()) {
+        if(menu.getTemperature() == FermenterTemperature.HOT) {
             blit(pPoseStack, x + 84, y + 55, 176, 32, 17, 15);
         }
 
@@ -47,7 +48,10 @@ public class FermenterScreen extends AbstractContainerScreen<FermenterMenu> {
         renderTooltip(pPoseStack, mouseX, mouseY);
         if (this.isHovering(93, 55, 17, 15, mouseX, mouseY)) {
             List<Component> tooltip = new ArrayList<>();
-            String key = "container.culturaldelights.fermenter." + (this.menu.isFueled() ? "heated" : "not_heated");
+
+            FermenterTemperature temp = this.menu.getTemperature();
+            String key = "container.culturaldelights.fermenter." + temp.getSerializedName();
+
             tooltip.add(Component.translatable(key));
             this.renderComponentTooltip(pPoseStack, tooltip, mouseX, mouseY);
         }

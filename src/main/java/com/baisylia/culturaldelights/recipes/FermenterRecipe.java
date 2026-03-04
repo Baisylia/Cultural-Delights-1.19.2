@@ -1,5 +1,6 @@
 package com.baisylia.culturaldelights.recipes;
 
+import com.baisylia.culturaldelights.util.FermenterTemperature;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
@@ -22,15 +23,23 @@ public class FermenterRecipe implements Recipe<SimpleContainer> {
     private final ResourceLocation id;
     private final ItemStack output;
     private final NonNullList<Ingredient> recipeItems;
+    private final Ingredient containerItem;
     private final int cookTime;
+    private final FermenterTemperature temperature;
     private final boolean isSimple;
 
-    public FermenterRecipe(ResourceLocation id, ItemStack output, NonNullList<Ingredient> recipeItems, int cookTime) {
+    public FermenterRecipe(ResourceLocation id, ItemStack output, NonNullList<Ingredient> recipeItems, FermenterTemperature temperature, Ingredient containerItem, int cookTime) {
         this.id = id;
         this.output = output;
         this.recipeItems = recipeItems;
+        this.containerItem = containerItem;
         this.cookTime = cookTime;
+        this.temperature = temperature;
         this.isSimple = recipeItems.stream().allMatch(Ingredient::isSimple);
+    }
+
+    public FermenterTemperature getTemperature() {
+        return this.temperature;
     }
 
     @Override
@@ -73,7 +82,7 @@ public class FermenterRecipe implements Recipe<SimpleContainer> {
         List<ItemStack> inputs = new java.util.ArrayList<>();
         int i = 0;
 
-        for(int j = 0; j < 7; ++j) {
+        for(int j = 0; j < 6; ++j) {
             ItemStack itemstack = pContainer.getItem(j);
             if (!itemstack.isEmpty()) {
                 ++i;
@@ -81,13 +90,18 @@ public class FermenterRecipe implements Recipe<SimpleContainer> {
                     stackedcontents.accountStack(itemstack, 1);
                 else inputs.add(itemstack);
             }
-            //stackedcontents.accountStack(itemstack, 1);
         }
-            //return i >= this.recipeItems.size() && (isSimple ? stackedcontents.canCraft(this, null) :
-                //RecipeMatcher.findMatches(inputs, this.recipeItems) != null);
 
-            //return i >= this.recipeItems.size() && RecipeMatcher.findMatches(inputs, this.recipeItems) != null;
-        return i == this.recipeItems.size() && (isSimple ? stackedcontents.canCraft(this, (IntList)null) : RecipeMatcher.findMatches(inputs,  this.recipeItems) != null);
+        // Container
+        ItemStack containerSlot = pContainer.getItem(6);
+        boolean containerMatches;
+        if (containerItem.isEmpty()) {
+            containerMatches = containerSlot.isEmpty();
+        } else {
+            containerMatches = containerItem.test(containerSlot);
+        }
+
+        return containerMatches && i == this.recipeItems.size() && (isSimple ? stackedcontents.canCraft(this, (IntList)null) : RecipeMatcher.findMatches(inputs,  this.recipeItems) != null);
     }
 
     @Override
@@ -112,11 +126,24 @@ public class FermenterRecipe implements Recipe<SimpleContainer> {
     }
 
 
-   public static class Serializer implements RecipeSerializer<FermenterRecipe> {
+    public static class Serializer implements RecipeSerializer<FermenterRecipe> {
         public static final Serializer INSTANCE = new Serializer();
         private static final ResourceLocation NAME = new ResourceLocation("culturaldelights", "fermenting");
         public FermenterRecipe fromJson(ResourceLocation resourceLocation, JsonObject json) {
             NonNullList<Ingredient> inputs = itemsFromJson(GsonHelper.getAsJsonArray(json, "ingredients"));
+
+            Ingredient container = Ingredient.EMPTY;
+            if (json.has("container")) {
+                container = Ingredient.fromJson(json.get("container"));
+            }
+
+            FermenterTemperature temperature = FermenterTemperature.NORMAL;
+            if (json.has("temperature")) {
+                temperature = FermenterTemperature.valueOf(
+                        GsonHelper.getAsString(json, "temperature").toUpperCase()
+                );
+            }
+
             if (inputs.isEmpty()) {
                 throw new JsonParseException("No ingredients for FERMENTING recipe");
             } else if (inputs.size() > 7) {
@@ -124,7 +151,8 @@ public class FermenterRecipe implements Recipe<SimpleContainer> {
             } else {
                 ItemStack itemstack = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
                 int cookTimeIn = GsonHelper.getAsInt(json, "cooktime", 200);
-                return new FermenterRecipe(resourceLocation, itemstack, inputs, cookTimeIn);
+
+                return new FermenterRecipe(resourceLocation, itemstack, inputs, temperature, container, cookTimeIn);
             }
         }
 
@@ -140,31 +168,36 @@ public class FermenterRecipe implements Recipe<SimpleContainer> {
             }
             return nonnulllist;
         }
-       @Override
-       public FermenterRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
-           //String s = buf.readUtf();
-           int i = buf.readVarInt();
-           NonNullList<Ingredient> inputs = NonNullList.withSize(i, Ingredient.EMPTY);
+        @Override
+        public FermenterRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
+            //String s = buf.readUtf();
+            int i = buf.readVarInt();
+            NonNullList<Ingredient> inputs = NonNullList.withSize(i, Ingredient.EMPTY);
 
-           for(int j = 0; j < inputs.size(); ++j) {
-               inputs.set(j, Ingredient.fromNetwork(buf));
-           }
+            for(int j = 0; j < inputs.size(); ++j) {
+                inputs.set(j, Ingredient.fromNetwork(buf));
+            }
 
-           ItemStack itemstack = buf.readItem();
-           int cookTimeIn = buf.readVarInt();
-           return new FermenterRecipe(id, itemstack, inputs, cookTimeIn);
-       }
+            Ingredient container = Ingredient.fromNetwork(buf);
+            FermenterTemperature temperature = buf.readEnum(FermenterTemperature.class);
 
-       @Override
-       public void toNetwork(FriendlyByteBuf buf, FermenterRecipe recipe) {
-           buf.writeVarInt(recipe.recipeItems.size());
+            ItemStack itemstack = buf.readItem();
+            int cookTimeIn = buf.readVarInt();
+            return new FermenterRecipe(id, itemstack, inputs, temperature, container, cookTimeIn);
+        }
 
-           for(Ingredient ingredient : recipe.getIngredients()) {
-               ingredient.toNetwork(buf);
-           }
+        @Override
+        public void toNetwork(FriendlyByteBuf buf, FermenterRecipe recipe) {
+            buf.writeVarInt(recipe.recipeItems.size());
 
-           buf.writeItem(recipe.getResultItem());
-           buf.writeVarInt(recipe.cookTime);
-       }
+            for(Ingredient ingredient : recipe.getIngredients()) {
+                ingredient.toNetwork(buf);
+            }
+
+            recipe.containerItem.toNetwork(buf);
+            buf.writeEnum(recipe.temperature);
+            buf.writeItem(recipe.getResultItem());
+            buf.writeVarInt(recipe.cookTime);
+        }
     }
 }

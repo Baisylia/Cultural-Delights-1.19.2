@@ -2,6 +2,7 @@ package com.baisylia.culturaldelights.block.custom;
 
 import com.baisylia.culturaldelights.block.entity.custom.FermenterBlockEntity;
 import com.baisylia.culturaldelights.block.entity.ModBlockEntities;
+import com.baisylia.culturaldelights.util.FermenterTemperature;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Rotation;
@@ -27,6 +28,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.network.NetworkHooks;
 //import org.jetbrains.annotations.Nullable;
@@ -34,7 +36,8 @@ import javax.annotation.Nullable;
 
 public class FermenterBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
-    public static BooleanProperty LIT = BlockStateProperties.LIT;
+    public static final EnumProperty<FermenterTemperature> TEMPERATURE =
+            EnumProperty.create("temperature", FermenterTemperature.class);
     public static BooleanProperty OPEN = BlockStateProperties.OPEN;
     public FermenterBlock(Properties properties) {
         super(properties);
@@ -44,7 +47,7 @@ public class FermenterBlock extends BaseEntityBlock {
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
-        return this.defaultBlockState().setValue(FACING, pContext.getNearestLookingDirection().getOpposite()).setValue(LIT, Boolean.FALSE).setValue(OPEN, false);
+        return this.defaultBlockState().setValue(FACING, pContext.getNearestLookingDirection().getOpposite()).setValue(TEMPERATURE, FermenterTemperature.NORMAL).setValue(OPEN, false);
     }
 
     @Override
@@ -59,7 +62,7 @@ public class FermenterBlock extends BaseEntityBlock {
 
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource randomSource) {
-        if (state.getValue(LIT)) {
+        if (state.getValue(TEMPERATURE) == FermenterTemperature.HOT) {
             double x = (double)pos.getX() + (double)0.5F;
             double y = pos.getY();
             double z = (double)pos.getZ() + (double)0.5F;
@@ -69,14 +72,27 @@ public class FermenterBlock extends BaseEntityBlock {
             double r2 = axis == Direction.Axis.X ? (double)direction.getStepX() * 0.52 : r1;
             double r3 = randomSource.nextDouble() * (double)6.0F / (double)16.0F;
             double r4 = axis == Direction.Axis.Z ? (double)direction.getStepZ() * 0.52 : r1;
-            level.addParticle(ParticleTypes.BUBBLE, x + r2, y + r3, z + r4, 0.0F, 0.0F, 0.0F);
-            level.addParticle(ParticleTypes.BUBBLE_POP, x + r2, y + r3, z + r4, 0.0, 0.0F, 0.0F);
+            level.addParticle(ParticleTypes.SMOKE, x + r2, y + r3, z + r4, 0.0F, 0.0F, 0.0F);
+            level.addParticle(ParticleTypes.FLAME, x + r2, y + r3, z + r4, 0.0, 0.0F, 0.0F);
+        }
+        if (state.getValue(TEMPERATURE) == FermenterTemperature.COLD) {
+            double x = (double)pos.getX() + (double)0.5F;
+            double y = pos.getY();
+            double z = (double)pos.getZ() + (double)0.5F;
+            Direction direction = state.getValue(FACING);
+            Direction.Axis axis = direction.getAxis();
+            double r1 = randomSource.nextDouble() * 0.6 - 0.3;
+            double r2 = axis == Direction.Axis.X ? (double)direction.getStepX() * 0.52 : r1;
+            double r3 = randomSource.nextDouble() * (double)6.0F / (double)16.0F;
+            double r4 = axis == Direction.Axis.Z ? (double)direction.getStepZ() * 0.52 : r1;
+            level.addParticle(ParticleTypes.SNOWFLAKE, x + r2, y + r3, z + r4, 0.0F, 0.0F, 0.0F);
+            level.addParticle(ParticleTypes.BUBBLE, x + r2, y + r3, z + r4, 0.0, 0.0F, 0.0F);
         }
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
-        pBuilder.add(FACING, LIT, OPEN);
+        pBuilder.add(FACING, TEMPERATURE, OPEN);
     }
 
     /* BLOCK ENTITY */

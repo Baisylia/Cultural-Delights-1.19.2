@@ -20,7 +20,6 @@ public class EMICulturalDelightsPlugin implements EmiPlugin {
     static final ResourceLocation TEXTURE = new ResourceLocation(CulturalDelights.MOD_ID, "textures/gui/fermenter_gui_jei.png");
 
     public static final EmiRecipeCategory SHAPELESS_FERMENTING = new EmiRecipeCategory(new ResourceLocation(CulturalDelights.MOD_ID, "shapeless_fermenting"), EmiStack.of(ModBlocks.FERMENTER.get()), simplifiedRenderer(0, 0));
-    public static final EmiRecipeCategory SHAPED_FERMENTING = new EmiRecipeCategory(new ResourceLocation(CulturalDelights.MOD_ID, "shaped_fermenting"), EmiStack.of(ModBlocks.FERMENTER.get()), simplifiedRenderer(0, 0));
 
     private static EmiRenderable simplifiedRenderer(int u, int v) {
         return (draw, x, y, delta) -> {

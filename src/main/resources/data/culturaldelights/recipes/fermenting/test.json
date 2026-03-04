@@ -9,6 +9,9 @@
       "item": "minecraft:sugar"
     }
   ],
+  "container": {
+    "item": "minecraft:glass_bottle"
+  },
   "result": {
     "item": "minecraft:diamond"
   }

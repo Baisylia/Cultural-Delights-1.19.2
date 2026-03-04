@@ -4,6 +4,7 @@ import com.baisylia.culturaldelights.block.custom.FermenterBlock;
 import com.baisylia.culturaldelights.block.entity.ModBlockEntities;
 import com.baisylia.culturaldelights.recipes.FermenterRecipe;
 import com.baisylia.culturaldelights.screens.FermenterMenu;
+import com.baisylia.culturaldelights.util.FermenterTemperature;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Rotation;
@@ -44,7 +45,7 @@ import javax.annotation.Nullable;
 import javax.annotation.Nonnull;
 import java.util.Optional;
 
-import static com.baisylia.culturaldelights.block.custom.FermenterBlock.LIT;
+//import static com.baisylia.culturaldelights.block.custom.FermenterBlock.LIT;
 
 public class FermenterBlockEntity extends BlockEntity implements MenuProvider, WorldlyContainer {
 
@@ -194,11 +195,16 @@ public class FermenterBlockEntity extends BlockEntity implements MenuProvider, W
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, FermenterBlockEntity pBlockEntity) {
         pBlockEntity.recheckOpen();
 
-        if (isFueled(pBlockEntity, pPos, pLevel)) {
+        /*if (isFueled(pBlockEntity, pPos, pLevel)) {
             pBlockEntity.litTime = 1;
             setChanged(pLevel, pPos, pState);
         } else {
             pBlockEntity.litTime = 0;
+            setChanged(pLevel, pPos, pState);
+        }*/
+        FermenterTemperature temp = getTemperature(pPos, pLevel);
+        if (pState.getValue(FermenterBlock.TEMPERATURE) != temp) {
+            pLevel.setBlock(pPos, pState.setValue(FermenterBlock.TEMPERATURE, temp),3);
             setChanged(pLevel, pPos, pState);
         }
 
@@ -232,9 +238,7 @@ public class FermenterBlockEntity extends BlockEntity implements MenuProvider, W
         BlockPos pos = entity.getBlockPos();
 
         // Check if the Fermenter is fueled (lit)
-        if (!isFueled(entity, pos, level)) {
-            return false;
-        }
+        FermenterTemperature currentTemp = getTemperature(pos, level);
 
         SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
         for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
@@ -251,12 +255,17 @@ public class FermenterBlockEntity extends BlockEntity implements MenuProvider, W
         Optional<FermenterRecipe> recipeMatch = level.getRecipeManager()
                 .getRecipeFor(FermenterRecipe.Type.INSTANCE, inventory, level);
         if (recipeMatch.isPresent()) {
-            entity.currentRecipe = recipeMatch.get();
-            if (canInsertItemIntoOutput(inventory, recipeMatch.get().getResultItem())) {
-                entity.maxProgress = recipeMatch.get().getCookTime();
-                return true;
+            FermenterRecipe recipe = recipeMatch.get();
+
+            if (recipe.getTemperature() != currentTemp) {
+                return false;
             }
-        } else {
+
+            entity.currentRecipe = recipe;
+            entity.maxProgress = recipe.getCookTime();
+            return canInsertItemIntoOutput(inventory, recipe.getResultItem());
+        }
+        else {
             entity.currentRecipe = null;
         }
 
@@ -264,7 +273,7 @@ public class FermenterBlockEntity extends BlockEntity implements MenuProvider, W
     }
 
 
-    static boolean isFueled(FermenterBlockEntity entity, BlockPos pos, Level level) {
+    /*static boolean isFueled(FermenterBlockEntity entity, BlockPos pos, Level level) {
         BlockState stateBelow = level.getBlockState(pos.below());
         if (stateBelow.hasProperty(BlockStateProperties.LIT) ? stateBelow.getValue(BlockStateProperties.LIT) : true) {
             if (stateBelow.is(ModTags.HEAT_SOURCES) || stateBelow.is(ModTags.HEAT_CONDUCTORS)) {
@@ -275,6 +284,19 @@ public class FermenterBlockEntity extends BlockEntity implements MenuProvider, W
 
         level.setBlock(pos, entity.getBlockState().setValue(LIT, Boolean.FALSE), 3);
         return false;
+    }*/
+
+    static FermenterTemperature getTemperature(BlockPos pos, Level level) {
+        BlockState stateBelow = level.getBlockState(pos.below());
+
+        if (stateBelow.is(ModTags.HEAT_SOURCES) || stateBelow.is(ModTags.HEAT_CONDUCTORS)) {
+            return FermenterTemperature.HOT;
+        }
+        if (stateBelow.is(net.minecraft.tags.BlockTags.ICE)) {
+            return FermenterTemperature.COLD;
+        }
+
+        return FermenterTemperature.NORMAL;
     }
 
     private static void craftItem(FermenterBlockEntity entity) {

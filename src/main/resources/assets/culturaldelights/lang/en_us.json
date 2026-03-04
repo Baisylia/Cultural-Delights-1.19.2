@@ -58,8 +58,9 @@
   "block.culturaldelights.fermenter": "Fermenter",
   "recipe.culturaldelights.fermenting": "Fermenting",
   "emi.category.culturaldelights.fermenting": "Fermenting",
-  "container.culturaldelights.fermenter.heated": "Heated",
-  "container.culturaldelights.fermenter.not_heated": "Not Heated",
+  "container.culturaldelights.fermenter.hot": "Hot Temperature",
+  "container.culturaldelights.fermenter.cold": "Cold Temperature",
+  "container.culturaldelights.fermenter.normal": "Normal Temperature",
 
   "block.culturaldelights.cucumbers": "Cucumbers",
   "block.culturaldelights.eggplants": "Eggplants",

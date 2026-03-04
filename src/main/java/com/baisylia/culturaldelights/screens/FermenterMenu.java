@@ -1,8 +1,10 @@
 package com.baisylia.culturaldelights.screens;
 
 import com.baisylia.culturaldelights.block.ModBlocks;
+import com.baisylia.culturaldelights.block.custom.FermenterBlock;
 import com.baisylia.culturaldelights.block.entity.custom.FermenterBlockEntity;
 import com.baisylia.culturaldelights.screens.slot.ModResultSlot;
+import com.baisylia.culturaldelights.util.FermenterTemperature;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -52,8 +54,9 @@ public class FermenterMenu extends AbstractContainerMenu {
         return data.get(0) > 0;
     }
 
-    public boolean isFueled() {
-        return blockEntity.getBlockState().getValue(BlockStateProperties.LIT);
+    public FermenterTemperature getTemperature() {
+        return blockEntity.getBlockState()
+                .getValue(FermenterBlock.TEMPERATURE);
     }
 
     public int getScaledProgress() {
@@ -80,7 +83,7 @@ public class FermenterMenu extends AbstractContainerMenu {
     private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
 
     // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 10;  // must be the number of slots you have!
+    private static final int TE_INVENTORY_SLOT_COUNT = 8;  // must be the number of slots you have!
 
     @Override
     public ItemStack quickMoveStack(Player playerIn, int index) {
