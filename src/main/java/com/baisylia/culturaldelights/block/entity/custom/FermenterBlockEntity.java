@@ -52,7 +52,7 @@ public class FermenterBlockEntity extends BlockEntity implements MenuProvider, W
     protected final ContainerData data;
     private int progress = 0;
     private int maxProgress = 72;
-    private int litTime = 0;
+    private FermenterTemperature cachedTemperature = FermenterTemperature.NORMAL;
     private static final int[] INGREDIENT_SLOTS = new int[]{0, 1, 2, 3, 4, 5, 6};
     private static final int OUTPUT_SLOT = 7;
     private final ContainerOpenersCounter openersCounter;
@@ -78,22 +78,19 @@ public class FermenterBlockEntity extends BlockEntity implements MenuProvider, W
                 return switch (index) {
                     case 0 -> FermenterBlockEntity.this.progress;
                     case 1 -> FermenterBlockEntity.this.maxProgress;
-                    case 2 -> FermenterBlockEntity.this.litTime;
+                    case 2 -> FermenterBlockEntity.this.cachedTemperature.ordinal();
                     default -> 0;
                 };
             }
-
             public void set(int index, int value) {
                 switch(index) {
-                    case 0: FermenterBlockEntity.this.progress = value; break;
-                    case 1: FermenterBlockEntity.this.maxProgress = value; break;
-                    case 2: FermenterBlockEntity.this.litTime = value; break;
+                    case 0 -> FermenterBlockEntity.this.progress = value;
+                    case 1 -> FermenterBlockEntity.this.maxProgress = value;
+                    case 2 -> FermenterBlockEntity.this.cachedTemperature =
+                            FermenterTemperature.values()[value];
                 }
             }
-
-            public int getCount() {
-                return 3;
-            }
+            public int getCount() {return 3;}
         };
         this.openersCounter = new ContainerOpenersCounter() {
             protected void onOpen(Level level, BlockPos pos, BlockState state) {
@@ -168,7 +165,7 @@ public class FermenterBlockEntity extends BlockEntity implements MenuProvider, W
     protected void saveAdditional(@NotNull CompoundTag tag) {
         tag.put("inventory", itemHandler.serializeNBT());
         tag.putInt("fermenter.progress", progress);
-        tag.putInt("fermenter.lit_time", litTime);
+        tag.putInt("fermenter.temperature", cachedTemperature.ordinal());
         tag.putInt("fermenter.max_progress", maxProgress);
         super.saveAdditional(tag);
     }
@@ -178,7 +175,7 @@ public class FermenterBlockEntity extends BlockEntity implements MenuProvider, W
         super.load(nbt);
         itemHandler.deserializeNBT(nbt.getCompound("inventory"));
         progress = nbt.getInt("fermenter.progress");
-        litTime = nbt.getInt("fermenter.lit_time");
+        cachedTemperature = FermenterTemperature.values()[nbt.getInt("fermenter.temperature")];
         maxProgress = nbt.getInt("fermenter.max_progress");
     }
 
@@ -202,9 +199,14 @@ public class FermenterBlockEntity extends BlockEntity implements MenuProvider, W
             pBlockEntity.litTime = 0;
             setChanged(pLevel, pPos, pState);
         }*/
-        FermenterTemperature temp = getTemperature(pPos, pLevel);
-        if (pState.getValue(FermenterBlock.TEMPERATURE) != temp) {
-            pLevel.setBlock(pPos, pState.setValue(FermenterBlock.TEMPERATURE, temp),3);
+
+        FermenterTemperature newTemp = getTemperature(pPos, pLevel);
+        if (newTemp != pBlockEntity.cachedTemperature) {
+            pBlockEntity.cachedTemperature = newTemp;
+            if (pState.getValue(FermenterBlock.TEMPERATURE) != newTemp) {
+                pLevel.setBlock(pPos, pState.setValue(FermenterBlock.TEMPERATURE, newTemp), 3);
+            }
+            pBlockEntity.resetProgress();
             setChanged(pLevel, pPos, pState);
         }
 

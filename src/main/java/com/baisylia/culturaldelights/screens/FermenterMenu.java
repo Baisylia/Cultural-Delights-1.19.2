@@ -55,8 +55,7 @@ public class FermenterMenu extends AbstractContainerMenu {
     }
 
     public FermenterTemperature getTemperature() {
-        return blockEntity.getBlockState()
-                .getValue(FermenterBlock.TEMPERATURE);
+        return FermenterTemperature.values()[data.get(2)];
     }
 
     public int getScaledProgress() {
