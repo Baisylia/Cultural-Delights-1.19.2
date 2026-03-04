@@ -12,7 +12,7 @@ public class FermenterRecipeHandler implements StandardRecipeHandler<FermenterMe
 
     @Override
     public boolean supportsRecipe(EmiRecipe recipe) {
-        return recipe instanceof FermenterEmiRecipe || recipe instanceof FermenterShapedEmiRecipe;
+        return recipe instanceof FermenterEmiRecipe;
     }
 
     @Override

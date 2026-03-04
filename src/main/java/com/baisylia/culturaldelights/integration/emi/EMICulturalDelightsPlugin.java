@@ -3,7 +3,6 @@ package com.baisylia.culturaldelights.integration.emi;
 import com.baisylia.culturaldelights.CulturalDelights;
 import com.baisylia.culturaldelights.block.ModBlocks;
 import com.baisylia.culturaldelights.recipes.FermenterRecipe;
-import com.baisylia.culturaldelights.recipes.FermenterShapedRecipe;
 import com.baisylia.culturaldelights.screens.ModMenuTypes;
 import com.mojang.blaze3d.systems.RenderSystem;
 import dev.emi.emi.api.EmiEntrypoint;
@@ -35,13 +34,8 @@ public class EMICulturalDelightsPlugin implements EmiPlugin {
         var forge = EmiStack.of(ModBlocks.FERMENTER.get());
         registry.addCategory(SHAPELESS_FERMENTING);
         registry.addWorkstation(SHAPELESS_FERMENTING, forge);
-        registry.addCategory(SHAPED_FERMENTING);
-        registry.addWorkstation(SHAPED_FERMENTING, forge);
         for (FermenterRecipe recipe : registry.getRecipeManager().getAllRecipesFor(FermenterRecipe.Type.INSTANCE)) {
             registry.addRecipe(new FermenterEmiRecipe(recipe));
-        }
-        for (var recipe : registry.getRecipeManager().getAllRecipesFor(FermenterShapedRecipe.Type.INSTANCE)) {
-            registry.addRecipe(new FermenterShapedEmiRecipe(recipe));
         }
         registry.addRecipeHandler(ModMenuTypes.FERMENTER_MENU.get(), new FermenterRecipeHandler());
     }

@@ -55,6 +55,12 @@
   "item.culturaldelights.egg_roll": "Egg Roll",
   "item.culturaldelights.calamari_roll": "Calamari Roll",
 
+  "block.culturaldelights.fermenter": "Fermenter",
+  "recipe.culturaldelights.fermenting": "Fermenting",
+  "emi.category.culturaldelights.fermenting": "Fermenting",
+  "container.culturaldelights.fermenter.heated": "Heated",
+  "container.culturaldelights.fermenter.not_heated": "Not Heated",
+
   "block.culturaldelights.cucumbers": "Cucumbers",
   "block.culturaldelights.eggplants": "Eggplants",
   "block.culturaldelights.corn": "Corn",

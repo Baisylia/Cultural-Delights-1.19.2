@@ -16,9 +16,6 @@ public class ModRecipes {
     public static final RegistryObject<RecipeSerializer<FermenterRecipe>> FERMENTING_SERIALIZER =
             SERIALIZERS.register("fermenting", () -> FermenterRecipe.Serializer.INSTANCE);
 
-    public static final RegistryObject<RecipeSerializer<FermenterShapedRecipe>> FERMENTING_SHAPED_SERIALIZER =
-            SERIALIZERS.register("fermenting_shaped", () -> FermenterShapedRecipe.Serializer.INSTANCE);
-
 
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);

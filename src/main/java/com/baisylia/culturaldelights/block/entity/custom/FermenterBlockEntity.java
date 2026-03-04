@@ -3,7 +3,6 @@ package com.baisylia.culturaldelights.block.entity.custom;
 import com.baisylia.culturaldelights.block.custom.FermenterBlock;
 import com.baisylia.culturaldelights.block.entity.ModBlockEntities;
 import com.baisylia.culturaldelights.recipes.FermenterRecipe;
-import com.baisylia.culturaldelights.recipes.FermenterShapedRecipe;
 import com.baisylia.culturaldelights.screens.FermenterMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -248,21 +247,10 @@ public class FermenterBlockEntity extends BlockEntity implements MenuProvider, W
             }
         }
 
-        // Check for FermenterShapedRecipe
-        Optional<FermenterShapedRecipe> shapedMatch = level.getRecipeManager()
-                .getRecipeFor(FermenterShapedRecipe.Type.INSTANCE, inventory, level);
-
         // Check for FermenterRecipe
         Optional<FermenterRecipe> recipeMatch = level.getRecipeManager()
                 .getRecipeFor(FermenterRecipe.Type.INSTANCE, inventory, level);
-
-        if (shapedMatch.isPresent()) {
-            entity.currentRecipe = shapedMatch.get();
-            if (canInsertItemIntoOutput(inventory, shapedMatch.get().getResultItem())) {
-                entity.maxProgress = shapedMatch.get().getCookTime();
-                return true;
-            }
-        } else if (recipeMatch.isPresent()) {
+        if (recipeMatch.isPresent()) {
             entity.currentRecipe = recipeMatch.get();
             if (canInsertItemIntoOutput(inventory, recipeMatch.get().getResultItem())) {
                 entity.maxProgress = recipeMatch.get().getCookTime();
