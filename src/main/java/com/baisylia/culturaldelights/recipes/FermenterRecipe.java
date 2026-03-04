@@ -60,7 +60,7 @@ public class FermenterRecipe implements Recipe<SimpleContainer> {
     @Override
     public boolean matches(SimpleContainer pContainer, Level pLevel) {
         // Check if output slot is already occupied with a different item
-        ItemStack outputSlot = pContainer.getItem(9);
+        ItemStack outputSlot = pContainer.getItem(7);
         if (!outputSlot.isEmpty() && !ItemStack.isSame(this.getResultItem(), outputSlot)) {
             return false;
         }
@@ -73,7 +73,7 @@ public class FermenterRecipe implements Recipe<SimpleContainer> {
         List<ItemStack> inputs = new java.util.ArrayList<>();
         int i = 0;
 
-        for(int j = 0; j < 9; ++j) {
+        for(int j = 0; j < 7; ++j) {
             ItemStack itemstack = pContainer.getItem(j);
             if (!itemstack.isEmpty()) {
                 ++i;
@@ -119,8 +119,8 @@ public class FermenterRecipe implements Recipe<SimpleContainer> {
             NonNullList<Ingredient> inputs = itemsFromJson(GsonHelper.getAsJsonArray(json, "ingredients"));
             if (inputs.isEmpty()) {
                 throw new JsonParseException("No ingredients for FERMENTING recipe");
-            } else if (inputs.size() > 9) {
-                throw new JsonParseException("Too many ingredients for FERMENTING recipe. The maximum is 9");
+            } else if (inputs.size() > 7) {
+                throw new JsonParseException("Too many ingredients for FERMENTING recipe. The maximum is 7");
             } else {
                 ItemStack itemstack = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
                 int cookTimeIn = GsonHelper.getAsInt(json, "cooktime", 200);

@@ -44,11 +44,7 @@ public class FermenterEmiRecipe extends AbstractFermenterRecipe {
                             builder.addSlot(getInputs().get(5), 38, 20);
                             if (getInputs().size() > 6) {
                                 builder.addSlot(getInputs().get(6), 2, 38);
-                                if (getInputs().size() > 7) {
-                                    builder.addSlot(getInputs().get(7), 20, 38);
-                                    if (getInputs().size() > 8) {
-                                        builder.addSlot(getInputs().get(8), 38, 38);
-                                    }}}}}}}}
+                                    }}}}}}
 
         drawCookTime(cookTime, builder, 50, getDisplayWidth());
         builder.addSlot(result, 96, 20).recipeContext(this).drawBack(false);

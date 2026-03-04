@@ -52,17 +52,17 @@ public class FermenterBlockEntity extends BlockEntity implements MenuProvider, W
     private int progress = 0;
     private int maxProgress = 72;
     private int litTime = 0;
-    private static final int[] INGREDIENT_SLOTS = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8};
-    private static final int OUTPUT_SLOT = 9;
+    private static final int[] INGREDIENT_SLOTS = new int[]{0, 1, 2, 3, 4, 5, 6};
+    private static final int OUTPUT_SLOT = 7;
     private final ContainerOpenersCounter openersCounter;
 
     private Recipe<SimpleContainer> currentRecipe = null;
 
-    private final ItemStackHandler itemHandler = new ItemStackHandler(11) {
+    private final ItemStackHandler itemHandler = new ItemStackHandler(9) {
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
-            if (slot < 9) {
+            if (slot < 7) {
                 resetProgress();
             }
         }
@@ -287,7 +287,7 @@ public class FermenterBlockEntity extends BlockEntity implements MenuProvider, W
         ItemStack resultItem = recipe.getResultItem();
 
         // Handle by-products (empty buckets, etc.)
-        for(int i = 0; i < 9; ++i) {
+        for(int i = 0; i < 7; ++i) {
             ItemStack slotStack = entity.itemHandler.getStackInSlot(i);
             if (slotStack.hasCraftingRemainingItem()) {
                 Direction direction = entity.getBlockState().getValue(FermenterBlock.FACING).getCounterClockWise();
@@ -299,7 +299,7 @@ public class FermenterBlockEntity extends BlockEntity implements MenuProvider, W
         }
 
         // Consume ingredients
-        for (int i = 0; i < 9; ++i) {
+        for (int i = 0; i < 7; ++i) {
             entity.itemHandler.extractItem(i, 1, false);
         }
 
@@ -402,13 +402,13 @@ public class FermenterBlockEntity extends BlockEntity implements MenuProvider, W
     @Override
     public int[] getSlotsForFace(Direction direction) {
         if (direction == Direction.DOWN) {
-            return new int[]{9};
+            return new int[]{7};
         } else return INGREDIENT_SLOTS;
     }
 
     @Override
     public boolean canPlaceItemThroughFace(int slot, ItemStack itemStack, @Nullable Direction direction) {
-        return slot != 9;
+        return slot != 7;
     }
 
     @Override
@@ -418,7 +418,7 @@ public class FermenterBlockEntity extends BlockEntity implements MenuProvider, W
 
     @Override
     public void clearContent() {
-        for(int i = 0; i < 10; ++i) {
+        for(int i = 0; i < 8; ++i) {
             this.itemHandler.setStackInSlot(i, ItemStack.EMPTY);
         }
     }

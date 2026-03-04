@@ -18,7 +18,7 @@ public class FermenterRecipeHandler implements StandardRecipeHandler<FermenterMe
     @Override
     public List<Slot> getInputSources(FermenterMenu handler) {
         List<Slot> list = Lists.newArrayList();
-        for (int i = 0; i < 45; i++) {
+        for (int i = 0; i < 43; i++) {
             list.add(handler.getSlot(i));
         }
         return list;
@@ -27,7 +27,7 @@ public class FermenterRecipeHandler implements StandardRecipeHandler<FermenterMe
     @Override
     public List<Slot> getCraftingSlots(FermenterMenu handler) {
         List<Slot> list = Lists.newArrayList();
-        for (int i = 1; i < 10; i++) {
+        for (int i = 1; i < 8; i++) {
             list.add(handler.getSlot(35+i));
         }
         return list;

@@ -26,7 +26,7 @@ public class FermenterMenu extends AbstractContainerMenu {
 
     public FermenterMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(ModMenuTypes.FERMENTER_MENU.get(), pContainerId);
-        checkContainerSize(inv, 10);
+        checkContainerSize(inv, 8);
         blockEntity = ((FermenterBlockEntity) entity);
         this.level = inv.player.level;
         this.data = data;
@@ -42,9 +42,7 @@ public class FermenterMenu extends AbstractContainerMenu {
             this.addSlot(new SlotItemHandler(handler, 4, 39, 53));
             this.addSlot(new SlotItemHandler(handler, 5, 57, 53));
             this.addSlot(new SlotItemHandler(handler, 6, 115, 53));
-            this.addSlot(new SlotItemHandler(handler, 7, 140, 53));
-            this.addSlot(new SlotItemHandler(handler, 8, 140, 67));
-            this.addSlot(new ModResultSlot(handler, 9, 115, 24));
+            this.addSlot(new ModResultSlot(handler, 7, 115, 24));
         });
 
         addDataSlots(data);
