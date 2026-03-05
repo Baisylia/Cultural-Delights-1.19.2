@@ -55,6 +55,14 @@
   "item.culturaldelights.egg_roll": "Egg Roll",
   "item.culturaldelights.calamari_roll": "Calamari Roll",
 
+  "item.culturaldelights.butter": "Butter",
+  "item.culturaldelights.buttered_toast": "Buttered Toast",
+  "item.culturaldelights.raw_sausage": "Raw Sausage",
+  "item.culturaldelights.cooked_sausage": "Cooked Sausage",
+  "item.culturaldelights.sausages_and_mash": "Sausages and Mash",
+  "item.culturaldelights.snag": "Snag",
+  "item.culturaldelights.popcorn_bucket": "Popcorn Bucket",
+
   "block.culturaldelights.fermenter": "Fermenter",
   "recipe.culturaldelights.fermenting": "Fermenting",
   "emi.category.culturaldelights.fermenting": "Fermenting",

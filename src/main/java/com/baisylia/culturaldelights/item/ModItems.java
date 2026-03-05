@@ -88,6 +88,28 @@ public class ModItems {
             () -> new Item(new Item.Properties().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.COOKED_CALAMARI)));
 
 
+    public static final RegistryObject<Item> BUTTER = ITEMS.register("butter",
+            () -> new Item(new Item.Properties().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.BUTTER)));
+
+    public static final RegistryObject<Item> BUTTERED_TOAST = ITEMS.register("buttered_toast",
+            () -> new Item(new Item.Properties().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.BUTTERED_TOAST)));
+
+    public static final RegistryObject<Item> RAW_SAUSAGE = ITEMS.register("raw_sausage",
+            () -> new Item(new Item.Properties().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.RAW_SAUSAGE)));
+
+    public static final RegistryObject<Item> COOKED_SAUSAGE = ITEMS.register("cooked_sausage",
+            () -> new Item(new Item.Properties().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.COOKED_SAUSAGE)));
+
+    public static final RegistryObject<Item> SNAG = ITEMS.register("snag",
+            () -> new Item(new Item.Properties().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.SNAG)));
+
+    public static final RegistryObject<Item> SAUSAGES_AND_MASH = ITEMS.register("sausages_and_mash",
+            () -> new BowlFoodItem(new Item.Properties().stacksTo(16).tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.SAUSAGES_AND_MASH)));
+
+    public static final RegistryObject<Item> POPCORN_BUCKET = ITEMS.register("popcorn_bucket",
+            () -> new BucketFoodItem(new Item.Properties().stacksTo(16).tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.POPCORN_BUCKET)));
+
+
     //Meals
     public static final RegistryObject<Item> POPCORN = ITEMS.register("popcorn",
             () -> new Item(new Item.Properties().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.POPCORN)));

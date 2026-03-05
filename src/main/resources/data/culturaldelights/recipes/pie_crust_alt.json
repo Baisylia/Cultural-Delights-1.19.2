@@ -5,10 +5,13 @@
       "item": "minecraft:wheat"
     },
     {
+      "item": "minecraft:wheat"
+    },
+    {
       "item": "cookscollection:salt"
     },
     {
-      "item": "culturaldelights:butter"
+      "tag": "forge:milk"
     }
   ],
   "result": {

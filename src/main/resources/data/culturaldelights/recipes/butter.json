@@ -2,17 +2,14 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "minecraft:wheat"
+      "tag": "forge:milk"
     },
     {
       "item": "cookscollection:salt"
-    },
-    {
-      "item": "culturaldelights:butter"
     }
   ],
   "result": {
-    "item": "farmersdelight:pie_crust",
+    "item": "culturaldelights:butter",
     "count": 1
   }
 }
