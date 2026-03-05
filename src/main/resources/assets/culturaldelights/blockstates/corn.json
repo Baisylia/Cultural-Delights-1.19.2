@@ -1,12 +1,25 @@
 {
   "variants": {
-    "age=0,supporting=false":  { "model": "culturaldelights:block/corn_stage0" },
-    "age=1,supporting=false":  { "model": "culturaldelights:block/corn_stage1" },
-    "age=2,supporting=false":  { "model": "culturaldelights:block/corn_stage2" },
-    "age=3,supporting=false":  { "model": "culturaldelights:block/corn_stage3" },
-    "age=0,supporting=true":  { "model": "culturaldelights:block/corn_stage0" },
-    "age=1,supporting=true":  { "model": "culturaldelights:block/corn_stage1" },
-    "age=2,supporting=true":  { "model": "culturaldelights:block/corn_stage2" },
-    "age=3,supporting=true":  { "model": "culturaldelights:block/corn_supporting" }
+    "age=0,height=0": { "model": "culturaldelights:block/corn_bottom0" },
+    "age=1,height=0": { "model": "culturaldelights:block/corn_bottom1" },
+    "age=2,height=0": { "model": "culturaldelights:block/corn_bottom2" },
+
+    "age=3,height=0": { "model": "culturaldelights:block/corn_bottom3" },
+    "age=3,height=1": { "model": "culturaldelights:block/corn_middle3" },
+
+    "age=4,height=0": { "model": "culturaldelights:block/corn_bottom4" },
+    "age=4,height=1": { "model": "culturaldelights:block/corn_middle4" },
+
+    "age=5,height=0": { "model": "culturaldelights:block/corn_bottom5" },
+    "age=5,height=1": { "model": "culturaldelights:block/corn_middle5" },
+    "age=5,height=2": { "model": "culturaldelights:block/corn_top5" },
+
+    "age=6,height=0": { "model": "culturaldelights:block/corn_bottom6" },
+    "age=6,height=1": { "model": "culturaldelights:block/corn_middle6" },
+    "age=6,height=2": { "model": "culturaldelights:block/corn_top6" },
+
+    "age=7,height=0": { "model": "culturaldelights:block/corn_bottom7" },
+    "age=7,height=1": { "model": "culturaldelights:block/corn_middle7" },
+    "age=7,height=2": { "model": "culturaldelights:block/corn_top7" }
   }
 }

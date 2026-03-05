@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:crops/corn"
+    }
+  ],
+  "result": {
+    "item": "culturaldelights:corn_kernels",
+    "count": 1
+  }
+}

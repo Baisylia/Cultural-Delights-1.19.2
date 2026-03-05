@@ -12,17 +12,31 @@ import com.baisylia.culturaldelights.world.feature.ModPlacedFeatures;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.metadata.pack.PackMetadataSection;
+import net.minecraft.server.packs.repository.Pack;
+import net.minecraft.server.packs.repository.PackSource;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.data.loading.DatagenModLoader;
+import net.minecraftforge.event.AddPackFindersEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.forgespi.locating.IModFile;
+import net.minecraftforge.resource.PathPackResources;
+import net.minecraft.server.packs.PackType;
 import org.slf4j.Logger;
+
+import java.io.IOException;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(CulturalDelights.MOD_ID)
@@ -49,6 +63,7 @@ public class CulturalDelights
 
 
         eventBus.addListener(this::setup);
+        eventBus.addListener(this::addPackFinders);
         MinecraftForge.EVENT_BUS.register(this);
     }
 
@@ -65,7 +80,6 @@ public class CulturalDelights
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.CUCUMBERS.get(), RenderType.cutoutMipped());
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.EGGPLANTS.get(), RenderType.cutoutMipped());
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.CORN.get(), RenderType.cutoutMipped());
-            ItemBlockRenderTypes.setRenderLayer(ModBlocks.CORN_UPPER.get(), RenderType.cutoutMipped());
 
             MenuScreens.register(ModMenuTypes.FERMENTER_MENU.get(), FermenterScreen::new);
         }
@@ -113,6 +127,36 @@ public class CulturalDelights
         ComposterBlock.COMPOSTABLES.put(ModItems.POPCORN.get(), 0.85F);
     }
 
+    public void addPackFinders(AddPackFindersEvent event) {
+        if (event.getPackType() == PackType.CLIENT_RESOURCES) {
+            registerBuiltinResourcePack(event, true, Component.literal("Pastry Sheet"), "pastry_sheet");
+        }
+    }
+
+    private static void registerBuiltinResourcePack(AddPackFindersEvent event, boolean autoEnable, MutableComponent name, String folder) {
+        event.addRepositorySource((consumer, constructor) -> {
+            ResourceLocation res = new ResourceLocation(CulturalDelights.MOD_ID, folder);
+            IModFile file = ModList.get().getModFileById(CulturalDelights.MOD_ID).getFile();
+            try (PathPackResources pack = new PathPackResources(
+                    res.toString(),
+                    file.findResource("resourcepacks/" + folder))) {
+
+                consumer.accept(constructor.create(
+                        res.toString(),
+                        name,
+                        autoEnable,
+                        () -> pack,
+                        pack.getMetadataSection(PackMetadataSection.SERIALIZER),
+                        Pack.Position.TOP,
+                        PackSource.BUILT_IN,
+                        false));
+
+            } catch (IOException e) {
+                if (!DatagenModLoader.isRunningDataGen())
+                    e.printStackTrace();
+            }
+        });
+    }
     //public static void registerAnimalFeeds() {
     //    Ingredient newChickenFood = Ingredient.of(ModItems.CUCUMBER_SEEDS.get(), ModItems.CORN_KERNELS.get(),
     //            ModItems.EGGPLANT_SEEDS.get(), ModItems.WHITE_EGGPLANT_SEEDS.get());

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cross",
   "textures": {
-    "cross": "culturaldelights:block/corn_upper_stage2"
+    "cross": "culturaldelights:block/corn_top7"
   }
 }

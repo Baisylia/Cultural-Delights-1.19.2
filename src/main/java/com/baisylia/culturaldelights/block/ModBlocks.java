@@ -102,10 +102,6 @@ public class ModBlocks {
     public static final RegistryObject<Block> CORN = registerBlockWithoutBlockItem("corn",
             () -> new CornBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion()));
 
-    public static final RegistryObject<Block> CORN_UPPER = registerBlockWithoutBlockItem("corn_upper",
-            () -> new CornUpperBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion()));
-
-
     public static final RegistryObject<Block> AVOCADO_CRATE = registerBlock("avocado_crate",
             () -> new Block(BlockBehaviour.Properties.copy(vectorwing.farmersdelight.common.registry.ModBlocks.CARROT_CRATE.get()))
             , FarmersDelight.CREATIVE_TAB, false, 0);
