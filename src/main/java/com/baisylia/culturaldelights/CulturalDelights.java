@@ -1,6 +1,7 @@
 package com.baisylia.culturaldelights;
 
 import com.baisylia.culturaldelights.block.entity.ModBlockEntities;
+import com.baisylia.culturaldelights.effect.ModEffects;
 import com.baisylia.culturaldelights.recipes.ModRecipes;
 import com.baisylia.culturaldelights.screens.FermenterScreen;
 import com.baisylia.culturaldelights.screens.ModMenuTypes;
@@ -53,6 +54,7 @@ public class CulturalDelights
         // Register the setup method for modloading
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
+        ModEffects.register(eventBus);
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
         ModBlockEntities.register(eventBus);
@@ -130,6 +132,7 @@ public class CulturalDelights
     public void addPackFinders(AddPackFindersEvent event) {
         if (event.getPackType() == PackType.CLIENT_RESOURCES) {
             registerBuiltinResourcePack(event, true, Component.literal("Pastry Sheet"), "pastry_sheet");
+            registerBuiltinResourcePack(event, true, Component.literal("Apple Juice"), "apple_juice");
         }
     }
 

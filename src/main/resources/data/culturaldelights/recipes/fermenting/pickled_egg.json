@@ -3,16 +3,16 @@
   "cooktime": 200,
   "ingredients": [
     {
-      "item": "culturaldelights:cucumber"
+      "item": "minecraft:egg"
     },
     {
-      "item": "culturaldelights:cucumber"
+      "item": "minecraft:egg"
     },
     {
-      "item": "culturaldelights:cucumber"
+      "item": "minecraft:egg"
     },
     {
-      "item": "culturaldelights:cucumber"
+      "item": "minecraft:egg"
     },
     {
       "item": "culturaldelights:vinegar"
@@ -22,7 +22,7 @@
     }
   ],
   "result": {
-    "item": "culturaldelights:pickle",
+    "item": "culturaldelights:pickled_egg",
     "count": 4
   }
 }

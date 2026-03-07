@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "culturaldelights:item/all_ages_appropriate_glass_of_pure_battery_acid"
+  }
+}

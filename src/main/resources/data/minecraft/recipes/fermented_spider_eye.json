@@ -1,0 +1,22 @@
+{
+  "type": "culturaldelights:fermenting",
+  "cooktime": 200,
+  "ingredients": [
+    {
+      "item": "minecraft:spider_eye"
+    },
+    {
+      "item": "minecraft:spider_eye"
+    },
+    {
+      "item": "minecraft:spider_eye"
+    },
+    {
+      "item": "culturaldelights:vinegar"
+    }
+  ],
+  "result": {
+    "item": "minecraft:fermented_spider_eye",
+    "count": 3
+  }
+}

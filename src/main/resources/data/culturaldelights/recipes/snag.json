@@ -5,7 +5,7 @@
       "item": "culturaldelights:cooked_sausage"
     },
     {
-      "item": "farmersdelight:onion"
+      "tag": "forge:crops/onion"
     },
     {
       "item": "farmersdelight:tomato_sauce"

@@ -62,6 +62,17 @@
   "item.culturaldelights.sausages_and_mash": "Sausages and Mash",
   "item.culturaldelights.snag": "Snag",
   "item.culturaldelights.popcorn_bucket": "Popcorn Bucket",
+  "item.culturaldelights.beer": "Beer",
+  "item.culturaldelights.wine": "Wine",
+  "item.culturaldelights.glow_wine": "Glow Wine",
+  "item.culturaldelights.ginger_beer": "Ginger Beer",
+  "item.culturaldelights.mead": "Mead",
+  "item.culturaldelights.apple_cider": "Apple Cider",
+  "item.culturaldelights.acid": "Acid",
+  "item.culturaldelights.vinegar": "Vinegar",
+  "item.culturaldelights.pickled_egg": "Pickled Egg",
+  "item.culturaldelights.cheese_wheel": "Cheese Wheel",
+  "item.culturaldelights.cheese_wedge": "Cheese Wedge",
 
   "block.culturaldelights.fermenter": "Fermenter",
   "recipe.culturaldelights.fermenting": "Fermenting",
@@ -91,5 +102,9 @@
   "block.culturaldelights.corn_cob_crate": "Corn Cob Crate",
   "block.culturaldelights.eggplant_crate": "Eggplant Crate",
   "block.culturaldelights.white_eggplant_crate": "White Eggplant Crate",
-  "block.culturaldelights.eggplant_parmesan_block": "Eggplant Parmesan"
+  "block.culturaldelights.eggplant_parmesan_block": "Eggplant Parmesan",
+
+
+  "effect.culturaldelights.cheesy": "Cheesy",
+  "effect.culturaldelights.intoxication": "Intoxication"
 }

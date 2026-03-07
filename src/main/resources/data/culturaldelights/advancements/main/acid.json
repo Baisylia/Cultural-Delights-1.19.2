@@ -1,0 +1,33 @@
+{
+  "parent": "culturaldelights:main/fermenter",
+  "display": {
+    "icon": {
+      "item": "culturaldelights:acid"
+    },
+    "title": "An all-ages-appropriate glass of pure battery acid!",
+    "description": "Brew acid in the fermenter",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "acid": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "culturaldelights:acid"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "acid"
+    ]
+  ]
+}

@@ -40,8 +40,29 @@ public class ModFoods {
     public static final FoodProperties SNAG = (new FoodProperties.Builder()).nutrition(8).saturationMod(1.2F).build();
     public static final FoodProperties SAUSAGES_AND_MASH = (new FoodProperties.Builder()).nutrition(12).saturationMod(1.3F)
             .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT.get(), FoodValues.LONG_DURATION, 0), 1.0F).build();
-    public static final FoodProperties POPCORN_BUCKET = (new FoodProperties.Builder()).nutrition(6).saturationMod(1.0F).build();
+    public static final FoodProperties POPCORN_BUCKET = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.8F).build();
 
+    public static final FoodProperties BEER = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F).build();
+    public static final FoodProperties WINE = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F).build();
+    public static final FoodProperties GLOW_WINE = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F).build();
+    public static final FoodProperties GINGER_BEER = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 1200, 0), 1.0F).build();
+    public static final FoodProperties MEAD = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F).build();
+    public static final FoodProperties APPLE_CIDER = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F).build();
+    public static final FoodProperties ACID = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
+            .effect(() -> new MobEffectInstance(MobEffects.HARM, 1200, 0), 1.0F).build();
+    public static final FoodProperties VINEGAR = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F).build();
+    public static final FoodProperties PICKLED_EGG = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.5F).build();
+    public static final FoodProperties CHEESE_WHEEL = (new FoodProperties.Builder()).nutrition(8).saturationMod(0.12F)
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.CHEESY.get(), 200, 1), 1.0F).fast().build();
+    public static final FoodProperties CHEESE_WEDGE = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F)
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.CHEESY.get(), 200, 1), 1.0F).fast().build();
 
     //SUSHI
     public static final FoodProperties MIDORI_ROLL = (new FoodProperties.Builder()).nutrition(14).saturationMod(0.7F).build();

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "culturaldelights:item/elote"
+    "layer0": "culturaldelights:item/mead"
   }
 }

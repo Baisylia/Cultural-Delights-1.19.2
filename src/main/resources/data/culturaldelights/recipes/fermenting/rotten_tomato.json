@@ -1,0 +1,22 @@
+{
+  "type": "culturaldelights:fermenting",
+  "cooktime": 200,
+  "ingredients": [
+    {
+      "item": "farmersdelight:tomato"
+    },
+    {
+      "item": "farmersdelight:tomato"
+    },
+    {
+      "item": "farmersdelight:tomato"
+    },
+    {
+      "item": "farmersdelight:tomato"
+    }
+  ],
+  "result": {
+    "item": "farmersdelight:rotten_tomato",
+    "count": 4
+  }
+}

@@ -2,13 +2,17 @@ package com.baisylia.culturaldelights.item;
 
 import com.baisylia.culturaldelights.CulturalDelights;
 import com.baisylia.culturaldelights.block.ModBlocks;
+import com.baisylia.culturaldelights.item.custom.BucketFoodItem;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import vectorwing.farmersdelight.FarmersDelight;
+import vectorwing.farmersdelight.common.item.DrinkableItem;
 import vectorwing.farmersdelight.common.item.KelpRollItem;
+
+import static com.baisylia.cookscollection.item.ModItems.drinkItem;
 
 public class ModItems {
 
@@ -107,7 +111,31 @@ public class ModItems {
             () -> new BowlFoodItem(new Item.Properties().stacksTo(16).tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.SAUSAGES_AND_MASH)));
 
     public static final RegistryObject<Item> POPCORN_BUCKET = ITEMS.register("popcorn_bucket",
-            () -> new BucketFoodItem(new Item.Properties().stacksTo(16).tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.POPCORN_BUCKET)));
+            () -> new BucketFoodItem(new Item.Properties().craftRemainder(Items.BUCKET).stacksTo(16).tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.POPCORN_BUCKET)));
+
+
+    public static final RegistryObject<Item> BEER = ITEMS.register("beer",
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.BEER)));
+    public static final RegistryObject<Item> WINE = ITEMS.register("wine",
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.WINE)));
+    public static final RegistryObject<Item> GLOW_WINE = ITEMS.register("glow_wine",
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.GLOW_WINE)));
+    public static final RegistryObject<Item> GINGER_BEER = ITEMS.register("ginger_beer",
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.GINGER_BEER)));
+    public static final RegistryObject<Item> MEAD = ITEMS.register("mead",
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.MEAD)));
+    public static final RegistryObject<Item> APPLE_CIDER = ITEMS.register("apple_cider",
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.APPLE_CIDER)));
+    public static final RegistryObject<Item> ACID = ITEMS.register("acid",
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.ACID)));
+    public static final RegistryObject<Item> VINEGAR = ITEMS.register("vinegar",
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.VINEGAR)));
+    public static final RegistryObject<Item> PICKLED_EGG = ITEMS.register("pickled_egg",
+            () -> new Item(new Item.Properties().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.PICKLED_EGG)));
+    public static final RegistryObject<Item> CHEESE_WHEEL = ITEMS.register("cheese_wheel",
+            () -> new Item(new Item.Properties().stacksTo(16).tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.CHEESE_WHEEL)));
+    public static final RegistryObject<Item> CHEESE_WEDGE = ITEMS.register("cheese_wedge",
+            () -> new Item(new Item.Properties().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.CHEESE_WEDGE)));
 
 
     //Meals
