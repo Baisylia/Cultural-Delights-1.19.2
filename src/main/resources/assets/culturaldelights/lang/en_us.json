@@ -77,9 +77,11 @@
   "block.culturaldelights.vat": "Vat",
   "recipe.culturaldelights.aging": "Aging",
   "emi.category.culturaldelights.aging": "Aging",
-  "container.culturaldelights.vat.hot": "Hot Temperature for Heating",
+  "container.culturaldelights.vat.hot": "Hot Temperature for Distilling",
   "container.culturaldelights.vat.cold": "Cold Temperature for Chilling",
   "container.culturaldelights.vat.normal": "Normal Temperature for Fermenting",
+  "block.culturaldelights.agave": "Agave",
+  "block.culturaldelights.potted_agave": "Potted Agave",
 
   "block.culturaldelights.cucumbers": "Cucumbers",
   "block.culturaldelights.eggplants": "Eggplants",

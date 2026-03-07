@@ -27,6 +27,11 @@ public class ModPlacedFeatures {
             () -> new PlacedFeature(ModConfiguredFeatures.AVOCADO_SPAWN.getHolder().get(), VegetationPlacements.treePlacement(
                     PlacementUtils.countExtra(0, 0.1f, 1))));
 
+    public static final RegistryObject<PlacedFeature> AGAVE_PLACED = PLACED_FEATURES.register("agave_placed",
+            () -> new PlacedFeature(ModConfiguredFeatures.AGAVE.getHolder().get(), List.of(RarityFilter.onAverageOnceEvery(25),
+                    InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
+
+
     public static final RegistryObject<PlacedFeature> WILD_CORN_PLACED = PLACED_FEATURES.register("wild_corn_placed",
             () -> new PlacedFeature(ModConfiguredFeatures.WILD_CORN.getHolder().get(), List.of(RarityFilter.onAverageOnceEvery(25),
                     InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));

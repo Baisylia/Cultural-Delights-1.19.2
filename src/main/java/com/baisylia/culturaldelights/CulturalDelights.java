@@ -69,10 +69,12 @@ public class CulturalDelights
         MinecraftForge.EVENT_BUS.register(this);
     }
 
+
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.AGAVE.get(), RenderType.cutoutMipped());
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.WILD_CUCUMBERS.get(), RenderType.cutoutMipped());
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.WILD_CORN.get(), RenderType.cutoutMipped());
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.WILD_EGGPLANTS.get(), RenderType.cutoutMipped());
@@ -92,6 +94,7 @@ public class CulturalDelights
         event.enqueueWork(() -> {
             registerCompostables();
             registerPottables();
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.AGAVE.getId(), ModBlocks.POTTED_AGAVE);
             //registerAnimalFeeds();
         });
     }

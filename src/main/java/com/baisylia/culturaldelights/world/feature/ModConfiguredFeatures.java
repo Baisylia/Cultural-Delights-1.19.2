@@ -54,6 +54,12 @@ public class ModConfiguredFeatures {
                             new TwoLayersFeatureSize(1, 0, 1)).ignoreVines().build()));
 
 
+    public static final RegistryObject<ConfiguredFeature<?, ?>> AGAVE = CONFIGURED_FEATURES.register("agave",
+            () -> new ConfiguredFeature<>(Feature.FLOWER,
+                    new RandomPatchConfiguration(32, 6, 2, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
+                            new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.AGAVE.get()))))));
+
+
     public static final RegistryObject<ConfiguredFeature<?, ?>> WILD_CORN = CONFIGURED_FEATURES.register("wild_corn",
             () -> new ConfiguredFeature<>(Feature.FLOWER,
                     new RandomPatchConfiguration(32, 6, 2, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,

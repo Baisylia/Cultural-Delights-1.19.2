@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_savanna",
+  "features": "culturaldelights:agave_placed",
+  "step": "vegetal_decoration"
+}

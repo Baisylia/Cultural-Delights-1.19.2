@@ -35,6 +35,13 @@ public class ModBlocks {
             () -> new VatBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY)
                     .strength(5.0f, 6.0f).requiresCorrectToolForDrops()), FarmersDelight.CREATIVE_TAB, false, 0);
 
+    public static final RegistryObject<Block> AGAVE = registerBlock("agave",
+            () -> new WildCropBlock(MobEffects.CONFUSION, 6,
+                    BlockBehaviour.Properties.copy(Blocks.TALL_GRASS)), FarmersDelight.CREATIVE_TAB, true, 40);
+    public static final RegistryObject<FlowerPotBlock> POTTED_AGAVE = registerBlockWithoutBlockItem("potted_agave",
+            () -> new FlowerPotBlock(()-> (FlowerPotBlock) Blocks.FLOWER_POT, AGAVE, BlockBehaviour.Properties.copy(Blocks.POTTED_ALLIUM)));
+
+
     public static final RegistryObject<Block> WILD_CUCUMBERS = registerBlock("wild_cucumbers",
             () -> new WildCropBlock(MobEffects.FIRE_RESISTANCE, 6,
                     BlockBehaviour.Properties.copy(Blocks.TALL_GRASS)), FarmersDelight.CREATIVE_TAB, false, 0);
@@ -50,7 +57,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> AVOCADO_SAPLING = registerBlock("avocado_sapling",
             () -> new SaplingBlock(new AvocadoTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)), FarmersDelight.CREATIVE_TAB, true, 100);
     public static final RegistryObject<FlowerPotBlock> POTTED_AVOCADO_SAPLING = registerBlockWithoutBlockItem("potted_avocado_sapling",
-            () -> new FlowerPotBlock(()-> (FlowerPotBlock) Blocks.FLOWER_POT, AVOCADO_SAPLING, BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
+            () -> new FlowerPotBlock(()-> (FlowerPotBlock) Blocks.FLOWER_POT, AVOCADO_SAPLING, BlockBehaviour.Properties.copy(Blocks.POTTED_OAK_SAPLING)));
 
     public static final RegistryObject<Block> AVOCADO_LOG = registerBlock("avocado_log",
             () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.JUNGLE_LOG)) {
