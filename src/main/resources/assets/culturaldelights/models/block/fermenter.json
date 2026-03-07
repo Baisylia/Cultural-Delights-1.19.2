@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "bottom": "culturaldelights:block/fermenter_bottom",
-    "side": "culturaldelights:block/fermenter_side",
-    "top": "culturaldelights:block/fermenter_top"
-  }
-}

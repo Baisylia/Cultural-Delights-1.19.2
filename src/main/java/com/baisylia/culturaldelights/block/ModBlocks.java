@@ -31,8 +31,8 @@ import java.util.function.Supplier;
 public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, CulturalDelights.MOD_ID);
 
-    public static final RegistryObject<Block> FERMENTER = registerBlock("fermenter",
-            () -> new FermenterBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY)
+    public static final RegistryObject<Block> VAT = registerBlock("vat",
+            () -> new VatBlock(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY)
                     .strength(5.0f, 6.0f).requiresCorrectToolForDrops()), FarmersDelight.CREATIVE_TAB, false, 0);
 
     public static final RegistryObject<Block> WILD_CUCUMBERS = registerBlock("wild_cucumbers",
@@ -132,6 +132,11 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> EGGPLANT_PARMESAN_BLOCK = registerBlock("eggplant_parmesan_block",
             () -> new EggplantFeastBlock(BlockBehaviour.Properties.copy(vectorwing.farmersdelight.common.registry.ModBlocks.ROAST_CHICKEN_BLOCK.get()).noOcclusion(), ModItems.EGGPLANT_PARMESAN, true), FarmersDelight.CREATIVE_TAB, false, 0);
+
+
+    public static final RegistryObject<Block> CHEESE_BLOCK = registerBlock("cheese_block",
+            () -> new Block(BlockBehaviour.Properties.copy(Blocks.NETHER_WART_BLOCK))
+            , FarmersDelight.CREATIVE_TAB, false, 0);
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab, Boolean isFuel, Integer fuelAmount) {

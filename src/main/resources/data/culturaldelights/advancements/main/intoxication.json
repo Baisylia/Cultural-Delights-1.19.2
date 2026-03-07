@@ -1,0 +1,31 @@
+{
+  "parent": "culturaldelights:main/vat",
+  "display": {
+    "icon": {
+      "item": "culturaldelights:beer"
+    },
+    "title": "Completely smashed",
+    "description": "Reach the maximum level of intoxication",
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "max_intoxication": {
+      "trigger": "minecraft:effects_changed",
+      "conditions": {
+        "effects": {
+          "culturaldelights:intoxication": {
+            "amplifier": 9
+          }
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "max_intoxication"
+    ]
+  ]
+}

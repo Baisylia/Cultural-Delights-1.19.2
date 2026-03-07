@@ -1,0 +1,28 @@
+{
+  "type": "culturaldelights:aging",
+  "cooktime": 200,
+  "ingredients": [
+    {
+      "item": "minecraft:egg"
+    },
+    {
+      "item": "minecraft:egg"
+    },
+    {
+      "item": "minecraft:egg"
+    },
+    {
+      "item": "minecraft:egg"
+    },
+    {
+      "item": "culturaldelights:vinegar"
+    },
+    {
+      "item": "cookscollection:salt"
+    }
+  ],
+  "result": {
+    "item": "culturaldelights:pickled_egg",
+    "count": 4
+  }
+}

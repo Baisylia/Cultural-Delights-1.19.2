@@ -14,8 +14,8 @@ public class ModMenuTypes {
     public static final DeferredRegister<MenuType<?>> MENUS =
             DeferredRegister.create(ForgeRegistries.MENU_TYPES, CulturalDelights.MOD_ID);
 
-    public static final RegistryObject<MenuType<FermenterMenu>> FERMENTER_MENU =
-            registerMenuType(FermenterMenu::new, "fermenter_menu");
+    public static final RegistryObject<MenuType<VatMenu>> VAT_MENU =
+            registerMenuType(VatMenu::new, "vat_menu");
 
 
     private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(IContainerFactory<T> factory, String name) {

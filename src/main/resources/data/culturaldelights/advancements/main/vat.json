@@ -1,25 +1,25 @@
 {
-  "parent": "culturaldelights:main/vat",
+  "parent": "farmersdelight:main/root",
   "display": {
     "icon": {
-      "item": "culturaldelights:pickle"
+      "item": "culturaldelights:vat"
     },
-    "title": "Funniest thing I've ever seen!",
-    "description": "Pickle a cucumber in the vat",
+    "title": "I hardly know her!",
+    "description": "Craft a vat",
     "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false
   },
   "criteria": {
-    "pickle": {
+    "vat": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "culturaldelights:pickle"
-            ]
+	      "culturaldelights:vat"
+ 	    ]
           }
         ]
       }
@@ -27,7 +27,7 @@
   },
   "requirements": [
     [
-      "pickle"
+      "vat"
     ]
   ]
 }

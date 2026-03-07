@@ -13,8 +13,8 @@ public class ModRecipes {
             DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, CulturalDelights.MOD_ID);
 
 
-    public static final RegistryObject<RecipeSerializer<FermenterRecipe>> FERMENTING_SERIALIZER =
-            SERIALIZERS.register("fermenting", () -> FermenterRecipe.Serializer.INSTANCE);
+    public static final RegistryObject<RecipeSerializer<VatRecipe>> AGING_SERIALIZER =
+            SERIALIZERS.register("aging", () -> VatRecipe.Serializer.INSTANCE);
 
 
     public static void register(IEventBus eventBus) {

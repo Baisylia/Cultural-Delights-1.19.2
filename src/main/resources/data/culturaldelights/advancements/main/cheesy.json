@@ -1,0 +1,29 @@
+{
+  "parent": "culturaldelights:main/vat",
+  "display": {
+    "icon": {
+      "item": "culturaldelights:cheese_wedge"
+    },
+    "title": "The cheese touch",
+    "description": "Clear most of your active effects for a short time by eating cheese",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "cheesy": {
+      "trigger": "minecraft:effects_changed",
+      "conditions": {
+        "effects": {
+          "culturaldelights:cheesy": {}
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "cheesy"
+    ]
+  ]
+}

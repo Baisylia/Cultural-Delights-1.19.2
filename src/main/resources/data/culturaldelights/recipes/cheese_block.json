@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "culturaldelights:cheese_wedge"
+    },
+    {
+      "item": "culturaldelights:cheese_wedge"
+    },
+    {
+      "item": "culturaldelights:cheese_wedge"
+    },
+    {
+      "item": "culturaldelights:cheese_wedge"
+    },
+    {
+      "item": "culturaldelights:cheese_wedge"
+    },
+    {
+      "item": "culturaldelights:cheese_wedge"
+    },
+    {
+      "item": "culturaldelights:cheese_wedge"
+    },
+    {
+      "item": "culturaldelights:cheese_wedge"
+    }
+  ],
+  "result": {
+    "item": "culturaldelights:cheese_block",
+    "count": 1
+  }
+}

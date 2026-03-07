@@ -3,7 +3,7 @@ package com.baisylia.culturaldelights;
 import com.baisylia.culturaldelights.block.entity.ModBlockEntities;
 import com.baisylia.culturaldelights.effect.ModEffects;
 import com.baisylia.culturaldelights.recipes.ModRecipes;
-import com.baisylia.culturaldelights.screens.FermenterScreen;
+import com.baisylia.culturaldelights.screens.VatScreen;
 import com.baisylia.culturaldelights.screens.ModMenuTypes;
 import com.mojang.logging.LogUtils;
 import com.baisylia.culturaldelights.block.ModBlocks;
@@ -83,7 +83,7 @@ public class CulturalDelights
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.EGGPLANTS.get(), RenderType.cutoutMipped());
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.CORN.get(), RenderType.cutoutMipped());
 
-            MenuScreens.register(ModMenuTypes.FERMENTER_MENU.get(), FermenterScreen::new);
+            MenuScreens.register(ModMenuTypes.VAT_MENU.get(), VatScreen::new);
         }
     }
 

@@ -2,7 +2,7 @@ package com.baisylia.culturaldelights.integration.jei;
 
 import com.baisylia.culturaldelights.CulturalDelights;
 import com.baisylia.culturaldelights.block.ModBlocks;
-import com.baisylia.culturaldelights.recipes.FermenterRecipe;
+import com.baisylia.culturaldelights.recipes.VatRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.recipe.RecipeType;
@@ -18,8 +18,8 @@ import java.util.Objects;
 
 @JeiPlugin
 public class JEICulturalDelightsPlugin implements IModPlugin {
-    public static RecipeType<FermenterRecipe> FERMENTING_TYPE =
-            new RecipeType<>(FermenterRecipeCategory.UID, FermenterRecipe.class);
+    public static RecipeType<VatRecipe> AGING_TYPE =
+            new RecipeType<>(VatRecipeCategory.UID, VatRecipe.class);
 
     @Override
     public ResourceLocation getPluginUid() {
@@ -29,7 +29,7 @@ public class JEICulturalDelightsPlugin implements IModPlugin {
     @Override
     public void registerCategories(IRecipeCategoryRegistration registration) {
         registration.addRecipeCategories(
-                new FermenterRecipeCategory(registration.getJeiHelpers().getGuiHelper())
+                new VatRecipeCategory(registration.getJeiHelpers().getGuiHelper())
         );
     }
 
@@ -37,13 +37,13 @@ public class JEICulturalDelightsPlugin implements IModPlugin {
     public void registerRecipes(IRecipeRegistration registration) {
         RecipeManager rm = Objects.requireNonNull(Minecraft.getInstance().level).getRecipeManager();
 
-        List<FermenterRecipe> recipes = rm.getAllRecipesFor(FermenterRecipe.Type.INSTANCE);
-        registration.addRecipes(FERMENTING_TYPE, recipes);
+        List<VatRecipe> recipes = rm.getAllRecipesFor(VatRecipe.Type.INSTANCE);
+        registration.addRecipes(AGING_TYPE, recipes);
     }
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
-        var stack = ModBlocks.FERMENTER.get().asItem().getDefaultInstance();
-        registration.addRecipeCatalyst(stack, FERMENTING_TYPE);
+        var stack = ModBlocks.VAT.get().asItem().getDefaultInstance();
+        registration.addRecipeCatalyst(stack, AGING_TYPE);
     }
 }

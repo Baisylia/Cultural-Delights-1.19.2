@@ -74,12 +74,12 @@
   "item.culturaldelights.cheese_wheel": "Cheese Wheel",
   "item.culturaldelights.cheese_wedge": "Cheese Wedge",
 
-  "block.culturaldelights.fermenter": "Fermenter",
-  "recipe.culturaldelights.fermenting": "Fermenting",
-  "emi.category.culturaldelights.fermenting": "Fermenting",
-  "container.culturaldelights.fermenter.hot": "Hot Temperature",
-  "container.culturaldelights.fermenter.cold": "Cold Temperature",
-  "container.culturaldelights.fermenter.normal": "Normal Temperature",
+  "block.culturaldelights.vat": "Vat",
+  "recipe.culturaldelights.aging": "Aging",
+  "emi.category.culturaldelights.aging": "Aging",
+  "container.culturaldelights.vat.hot": "Hot Temperature for Heating",
+  "container.culturaldelights.vat.cold": "Cold Temperature for Chilling",
+  "container.culturaldelights.vat.normal": "Normal Temperature for Fermenting",
 
   "block.culturaldelights.cucumbers": "Cucumbers",
   "block.culturaldelights.eggplants": "Eggplants",
@@ -103,6 +103,7 @@
   "block.culturaldelights.eggplant_crate": "Eggplant Crate",
   "block.culturaldelights.white_eggplant_crate": "White Eggplant Crate",
   "block.culturaldelights.eggplant_parmesan_block": "Eggplant Parmesan",
+  "block.culturaldelights.cheese_block": "Block of Cheese",
 
 
   "effect.culturaldelights.cheesy": "Cheesy",
