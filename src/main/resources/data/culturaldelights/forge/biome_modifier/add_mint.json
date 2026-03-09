@@ -1,0 +1,6 @@
+{
+  "type": "forge:add_features",
+  "biomes": "#minecraft:is_mountain",
+  "features": "culturaldelights:mint_placed",
+  "step": "vegetal_decoration"
+}

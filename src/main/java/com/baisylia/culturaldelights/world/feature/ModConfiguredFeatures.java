@@ -58,6 +58,10 @@ public class ModConfiguredFeatures {
             () -> new ConfiguredFeature<>(Feature.FLOWER,
                     new RandomPatchConfiguration(32, 6, 2, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
                             new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.AGAVE.get()))))));
+    public static final RegistryObject<ConfiguredFeature<?, ?>> MINT = CONFIGURED_FEATURES.register("mint",
+            () -> new ConfiguredFeature<>(Feature.FLOWER,
+                    new RandomPatchConfiguration(32, 6, 2, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
+                            new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.MINT.get()))))));
 
 
     public static final RegistryObject<ConfiguredFeature<?, ?>> WILD_CORN = CONFIGURED_FEATURES.register("wild_corn",

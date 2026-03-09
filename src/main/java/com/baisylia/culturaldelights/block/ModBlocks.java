@@ -40,6 +40,11 @@ public class ModBlocks {
                     BlockBehaviour.Properties.copy(Blocks.TALL_GRASS)), FarmersDelight.CREATIVE_TAB, true, 40);
     public static final RegistryObject<FlowerPotBlock> POTTED_AGAVE = registerBlockWithoutBlockItem("potted_agave",
             () -> new FlowerPotBlock(()-> (FlowerPotBlock) Blocks.FLOWER_POT, AGAVE, BlockBehaviour.Properties.copy(Blocks.POTTED_ALLIUM)));
+    public static final RegistryObject<Block> MINT = registerBlock("mint",
+            () -> new WildCropBlock(MobEffects.DAMAGE_BOOST, 6,
+                    BlockBehaviour.Properties.copy(Blocks.TALL_GRASS)), FarmersDelight.CREATIVE_TAB, true, 40);
+    public static final RegistryObject<FlowerPotBlock> POTTED_MINT = registerBlockWithoutBlockItem("potted_mint",
+            () -> new FlowerPotBlock(()-> (FlowerPotBlock) Blocks.FLOWER_POT, MINT, BlockBehaviour.Properties.copy(Blocks.POTTED_ALLIUM)));
 
 
     public static final RegistryObject<Block> WILD_CUCUMBERS = registerBlock("wild_cucumbers",

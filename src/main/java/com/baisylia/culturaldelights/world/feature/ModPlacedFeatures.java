@@ -30,6 +30,9 @@ public class ModPlacedFeatures {
     public static final RegistryObject<PlacedFeature> AGAVE_PLACED = PLACED_FEATURES.register("agave_placed",
             () -> new PlacedFeature(ModConfiguredFeatures.AGAVE.getHolder().get(), List.of(RarityFilter.onAverageOnceEvery(25),
                     InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
+    public static final RegistryObject<PlacedFeature> MINT_PLACED = PLACED_FEATURES.register("mint_placed",
+            () -> new PlacedFeature(ModConfiguredFeatures.MINT.getHolder().get(), List.of(RarityFilter.onAverageOnceEvery(25),
+                    InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
 
 
     public static final RegistryObject<PlacedFeature> WILD_CORN_PLACED = PLACED_FEATURES.register("wild_corn_placed",

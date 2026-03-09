@@ -4,7 +4,7 @@
     "icon": {
       "item": "culturaldelights:pickle"
     },
-    "title": "Funniest thing I've ever seen!",
+    "title": "The Funniest Thing",
     "description": "Pickle a cucumber in the vat",
     "frame": "task",
     "show_toast": true,

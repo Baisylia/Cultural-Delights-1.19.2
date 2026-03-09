@@ -2,30 +2,28 @@
   "parent": "culturaldelights:main/vat",
   "display": {
     "icon": {
-      "item": "culturaldelights:beer"
+      "item": "culturaldelights:mead"
     },
-    "title": "Completely smashed",
-    "description": "Reach the maximum level of intoxication",
-    "frame": "challenge",
+    "title": "Drink Responsibly",
+    "description": "Get intoxication from a fermented beverage",
+    "frame": "task",
     "show_toast": true,
     "announce_to_chat": true,
     "hidden": false
   },
   "criteria": {
-    "max_intoxication": {
+    "intoxication": {
       "trigger": "minecraft:effects_changed",
       "conditions": {
         "effects": {
-          "culturaldelights:intoxication": {
-            "amplifier": 9
-          }
+          "culturaldelights:intoxication": {}
         }
       }
     }
   },
   "requirements": [
     [
-      "max_intoxication"
+      "intoxication"
     ]
   ]
 }

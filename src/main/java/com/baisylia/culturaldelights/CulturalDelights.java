@@ -75,6 +75,7 @@ public class CulturalDelights
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.AGAVE.get(), RenderType.cutoutMipped());
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.MINT.get(), RenderType.cutoutMipped());
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.WILD_CUCUMBERS.get(), RenderType.cutoutMipped());
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.WILD_CORN.get(), RenderType.cutoutMipped());
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.WILD_EGGPLANTS.get(), RenderType.cutoutMipped());
@@ -94,7 +95,6 @@ public class CulturalDelights
         event.enqueueWork(() -> {
             registerCompostables();
             registerPottables();
-            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(ModBlocks.AGAVE.getId(), ModBlocks.POTTED_AGAVE);
             //registerAnimalFeeds();
         });
     }
@@ -102,6 +102,8 @@ public class CulturalDelights
     public static void registerPottables() {
         FlowerPotBlock pot = (FlowerPotBlock) Blocks.FLOWER_POT;
         pot.addPlant(ModBlocks.AVOCADO_SAPLING.getId(), ModBlocks.POTTED_AVOCADO_SAPLING);
+        pot.addPlant(ModBlocks.AGAVE.getId(), ModBlocks.POTTED_AGAVE);
+        pot.addPlant(ModBlocks.MINT.getId(), ModBlocks.POTTED_MINT);
 }
 
     public static void registerCompostables() {

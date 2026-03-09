@@ -4,7 +4,7 @@
     "icon": {
       "item": "culturaldelights:cheese_wedge"
     },
-    "title": "The cheese touch",
+    "title": "The Cheese Touch",
     "description": "Clear most of your active effects for a short time by eating cheese",
     "frame": "task",
     "show_toast": true,
