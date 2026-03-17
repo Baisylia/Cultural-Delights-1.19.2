@@ -137,6 +137,31 @@ public class ModItems {
             () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.MEAD)));
     public static final RegistryObject<Item> APPLE_CIDER = ITEMS.register("apple_cider",
             () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.APPLE_CIDER)));
+    public static final RegistryObject<Item> MOJITO = ITEMS.register("mojito",
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.MOJITO)));
+    public static final RegistryObject<Item> MARGARITA = ITEMS.register("margarita",
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.MARGARITA)));
+    public static final RegistryObject<Item> BLOODY_MARY = ITEMS.register("bloody_mary",
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.BLOODY_MARY)));
+    public static final RegistryObject<Item> LEMON_LIQUEUR = ITEMS.register("lemon_liqueur",
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.LEMON_LIQUEUR)));
+    public static final RegistryObject<Item> BUTTERBEER = ITEMS.register("butterbeer",
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.BUTTERBEER)));
+    public static final RegistryObject<Item> COLA = ITEMS.register("cola",
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.COLA)));
+    public static final RegistryObject<Item> TEQUILA = ITEMS.register("tequila",
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.TEQUILA)));
+    public static final RegistryObject<Item> GIN = ITEMS.register("gin",
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.GIN)));
+    public static final RegistryObject<Item> BRANDY = ITEMS.register("brandy",
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.BRANDY)));
+    public static final RegistryObject<Item> VODKA = ITEMS.register("vodka",
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.VODKA)));
+    public static final RegistryObject<Item> WHISKEY = ITEMS.register("whiskey",
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.WHISKEY)));
+    public static final RegistryObject<Item> RUM = ITEMS.register("rum",
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.RUM)));
+
     public static final RegistryObject<Item> ACID = ITEMS.register("acid",
             () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.ACID)));
     public static final RegistryObject<Item> VINEGAR = ITEMS.register("vinegar",

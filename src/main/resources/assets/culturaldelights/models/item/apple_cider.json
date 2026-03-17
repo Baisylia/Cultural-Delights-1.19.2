@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:item/handheld",
+  "parent": "farmersdelight:item/mug",
   "textures": {
     "layer0": "culturaldelights:item/apple_cider"
   }

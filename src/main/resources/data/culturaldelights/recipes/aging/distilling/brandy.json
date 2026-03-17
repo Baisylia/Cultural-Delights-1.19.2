@@ -1,0 +1,31 @@
+{
+  "type": "culturaldelights:aging",
+  "cooktime": 200,
+  "ingredients": [
+    {
+      "item": "minecraft:water_bucket"
+    },
+    {
+      "item": "minecraft:sweet_berries"
+    },
+    {
+      "item": "minecraft:sweet_berries"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:brown_mushroom"
+    },
+    {
+      "item": "minecraft:apple"
+    }
+  ],
+  "temperature": "hot",
+  "container": {
+    "item": "minecraft:glass_bottle"
+  },
+  "result": {
+    "item": "culturaldelights:brandy"
+  }
+}

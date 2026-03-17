@@ -3,16 +3,17 @@
   "cooktime": 200,
   "ingredients": [
     {
-		"item": "minecraft:sugar"
+      "item": "culturaldelights:wine"
     },
     {
-      "item": "minecraft:sugar"
+      "item": "minecraft:apple"
     }
   ],
+  "temperature": "hot",
   "container": {
     "item": "minecraft:glass_bottle"
   },
   "result": {
-    "item": "minecraft:diamond"
+    "item": "culturaldelights:brandy"
   }
 }

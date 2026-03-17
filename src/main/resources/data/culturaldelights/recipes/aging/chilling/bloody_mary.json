@@ -1,0 +1,31 @@
+{
+  "type": "culturaldelights:aging",
+  "cooktime": 200,
+  "ingredients": [
+    {
+      "item": "culturaldelights:vodka"
+    },
+    {
+      "item": "farmersdelight:tomato"
+    },
+    {
+      "item": "minecraft:ice"
+    },
+    {
+      "item": "minecraft:blaze_powder"
+    },
+    {
+      "item": "culturaldelights:vinegar"
+    },
+    {
+      "item": "cookscollection:lemon"
+    }
+  ],
+  "temperature": "cold",
+  "container": {
+    "item": "minecraft:glass_bottle"
+  },
+  "result": {
+    "item": "culturaldelights:bloody_mary"
+  }
+}

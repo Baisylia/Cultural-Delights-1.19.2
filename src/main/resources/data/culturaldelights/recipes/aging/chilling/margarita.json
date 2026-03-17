@@ -1,0 +1,31 @@
+{
+  "type": "culturaldelights:aging",
+  "cooktime": 200,
+  "ingredients": [
+    {
+      "item": "culturaldelights:tequila"
+    },
+    {
+      "item": "culturaldelights:lemon_liqueur"
+    },
+    {
+      "item": "minecraft:ice"
+    },
+    {
+      "item": "cookscollection:salt"
+    },
+    {
+      "item": "cookscollection:lemon"
+    },
+    {
+      "item": "cookscollection:lemon"
+    }
+  ],
+  "temperature": "cold",
+  "container": {
+    "item": "minecraft:glass_bottle"
+  },
+  "result": {
+    "item": "culturaldelights:margarita"
+  }
+}

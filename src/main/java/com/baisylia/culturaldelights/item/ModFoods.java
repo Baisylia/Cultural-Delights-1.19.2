@@ -58,6 +58,35 @@ public class ModFoods {
             .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F).build();
     public static final FoodProperties APPLE_CIDER = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
             .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F).build();
+    public static final FoodProperties MOJITO = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 1200, 1), 1.0F).build();
+    public static final FoodProperties MARGARITA = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 1200, 1), 1.0F).build();
+    public static final FoodProperties BLOODY_MARY = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 1200, 1), 1.0F).build();
+    public static final FoodProperties LEMON_LIQUEUR = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F).build();
+    public static final FoodProperties BUTTERBEER = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(ModEffects.COMFORT.get(), FoodValues.LONG_DURATION, 0), 1.0F).build();
+    public static final FoodProperties COLA = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
+            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 1200, 1), 1.0F).build();
+    public static final FoodProperties TEQUILA = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F).build();
+    public static final FoodProperties GIN = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F).build();
+    public static final FoodProperties BRANDY = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F).build();
+    public static final FoodProperties VODKA = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F).build();
+    public static final FoodProperties WHISKEY = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F).build();
+    public static final FoodProperties RUM = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F).build();
+
     public static final FoodProperties ACID = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
             .effect(() -> new MobEffectInstance(MobEffects.HARM, 1200, 0), 1.0F).build();
     public static final FoodProperties VINEGAR = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
