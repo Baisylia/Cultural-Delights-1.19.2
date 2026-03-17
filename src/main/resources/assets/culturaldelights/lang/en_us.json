@@ -29,6 +29,10 @@
   "item.culturaldelights.cooked_squid": "Cooked Squid",
   "item.culturaldelights.raw_calamari": "Raw Calamari",
   "item.culturaldelights.cooked_calamari": "Cooked Calamari",
+  "item.culturaldelights.beans": "Beans",
+  "item.culturaldelights.bean_pod": "Bean Pod",
+  "item.culturaldelights.refried_beans": "Refried Beans",
+  "item.culturaldelights.tofu": "Tofu",
 
   "item.culturaldelights.elote": "Elote",
   "item.culturaldelights.empanada": "Empanada",
@@ -88,7 +92,8 @@
   "block.culturaldelights.cucumbers": "Cucumbers",
   "block.culturaldelights.eggplants": "Eggplants",
   "block.culturaldelights.corn": "Corn",
-  "block.culturaldelights.corn": "Corn Upper",
+  "block.culturaldelights.beans": "Beans",
+  "block.culturaldelights.budding_beans": "Budding Beans",
 
   "block.culturaldelights.avocado_bundle": "Avocado Bundle",
   "block.culturaldelights.wild_cucumbers": "Wild Cucumbers",

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "culturaldelights:block/budding_beans_stage0"
+    },
+    "age=1": {
+      "model": "culturaldelights:block/budding_beans_stage1"
+    },
+    "age=2": {
+      "model": "culturaldelights:block/budding_beans_stage2"
+    },
+    "age=3": {
+      "model": "culturaldelights:block/budding_beans_stage3"
+    },
+    "age=4": {
+      "model": "culturaldelights:block/budding_beans_stage3"
+    }
+  }
+}

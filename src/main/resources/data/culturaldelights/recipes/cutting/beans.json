@@ -1,0 +1,20 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "culturaldelights:bean_pod"
+    }
+  ],
+  "tool": {
+    "tag": "forge:tools/knives"
+  },
+  "result": [
+    {
+      "item": "culturaldelights:beans"
+    },
+    {
+      "item": "culturaldelights:beans",
+      "chance": 0.5
+    }
+  ]
+}

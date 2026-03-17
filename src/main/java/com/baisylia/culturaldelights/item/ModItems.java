@@ -32,8 +32,19 @@ public class ModItems {
             () -> new ItemNameBlockItem(ModBlocks.EGGPLANTS.get(),
                     new Item.Properties().tab(FarmersDelight.CREATIVE_TAB)));
 
+    public static final RegistryObject<Item> BEANS = ITEMS.register("beans",
+            () -> new ItemNameBlockItem(ModBlocks.BUDDING_BEANS.get(),
+                    new Item.Properties().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.BEANS)));
+
 
     //Ingredients
+    public static final RegistryObject<Item> BEAN_POD = ITEMS.register("bean_pod",
+            () -> new Item(new Item.Properties().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.BEAN_POD)));
+    public static final RegistryObject<Item> TOFU = ITEMS.register("tofu",
+            () -> new Item(new Item.Properties().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.TOFU)));
+    public static final RegistryObject<Item> REFRIED_BEANS = ITEMS.register("refried_beans",
+            () -> new BowlFoodItem(new Item.Properties().stacksTo(16).tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.REFRIED_BEANS)));
+
     public static final RegistryObject<Item> AVOCADO = ITEMS.register("avocado",
             () -> new Item(new Item.Properties().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.AVOCADO)));
 

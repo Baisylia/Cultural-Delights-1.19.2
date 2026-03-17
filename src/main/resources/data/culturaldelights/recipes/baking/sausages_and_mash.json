@@ -15,11 +15,11 @@
     {
       "item": "minecraft:potato"
     },
-	{
-      "item": "farmersdelight:cabbage"
+    {
+      "item": "minecraft:potato"
     },
     {
-      "tag": "forge:crops/onion"
+      "item": "culturaldelights:bean_pod"
     }
   ],
   "result": {

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "culturaldelights:bean_pod"
+    }
+  ],
+  "result": {
+    "item": "culturaldelights:beans",
+    "count": 1
+  }
+}

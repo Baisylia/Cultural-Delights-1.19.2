@@ -1,0 +1,26 @@
+{
+  "type": "farmersdelight:cooking",
+  "ingredients": [
+    {
+      "item": "minecraft:water_bucket"
+    },
+    {
+      "item": "culturaldelights:beans"
+    },
+    {
+      "item": "culturaldelights:beans"
+    },
+    {
+      "item": "culturaldelights:beans"
+    }
+  ],
+  "result": {
+    "item": "minecraft:milk_bucket",
+    "count": 1
+  },
+  "container": {
+    "item": "minecraft:bucket"
+  },
+  "experience": 0.2,
+  "cookingtime": 200
+}
