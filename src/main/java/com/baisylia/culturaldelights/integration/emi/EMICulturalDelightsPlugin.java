@@ -19,7 +19,7 @@ public class EMICulturalDelightsPlugin implements EmiPlugin {
 
     static final ResourceLocation TEXTURE = new ResourceLocation(CulturalDelights.MOD_ID, "textures/gui/vat_gui_jei.png");
 
-    public static final EmiRecipeCategory FERMENTING = new EmiRecipeCategory(new ResourceLocation(CulturalDelights.MOD_ID, "aging"), EmiStack.of(ModBlocks.VAT.get()), simplifiedRenderer(0, 0));
+    public static final EmiRecipeCategory AGING = new EmiRecipeCategory(new ResourceLocation(CulturalDelights.MOD_ID, "aging"), EmiStack.of(ModBlocks.VAT.get()), simplifiedRenderer(0, 0));
 
     private static EmiRenderable simplifiedRenderer(int u, int v) {
         return (draw, x, y, delta) -> {
@@ -31,8 +31,8 @@ public class EMICulturalDelightsPlugin implements EmiPlugin {
     @Override
     public void register(EmiRegistry registry) {
         var forge = EmiStack.of(ModBlocks.VAT.get());
-        registry.addCategory(FERMENTING);
-        registry.addWorkstation(FERMENTING, forge);
+        registry.addCategory(AGING);
+        registry.addWorkstation(AGING, forge);
         for (VatRecipe recipe : registry.getRecipeManager().getAllRecipesFor(VatRecipe.Type.INSTANCE)) {
             registry.addRecipe(new VatEmiRecipe(recipe));
         }

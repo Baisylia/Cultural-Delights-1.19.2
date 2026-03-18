@@ -41,7 +41,9 @@ public class VatRecipe implements Recipe<SimpleContainer> {
     public VatTemperature getTemperature() {
         return this.temperature;
     }
-
+    public Ingredient getContainer() {
+        return containerItem;
+    }
     @Override
     public ResourceLocation getId() {
         return id;

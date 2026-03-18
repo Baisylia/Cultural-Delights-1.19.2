@@ -1,6 +1,7 @@
 package com.baisylia.culturaldelights.integration.emi;
 
 import com.baisylia.culturaldelights.CulturalDelights;
+import com.baisylia.culturaldelights.util.VatTemperature;
 import dev.emi.emi.api.recipe.EmiRecipe;
 import dev.emi.emi.api.stack.EmiIngredient;
 import dev.emi.emi.api.stack.EmiStack;
@@ -20,13 +21,17 @@ public abstract class AbstractVatRecipe implements EmiRecipe {
     final int cookTime;
     final EmiStack result;
     final ResourceLocation id;
+    final EmiIngredient container;
+    final VatTemperature temperature;
 
 
-    public AbstractVatRecipe(ResourceLocation id, List<EmiIngredient> ingredients, ItemStack resultItem, int cookTime) {
+    public AbstractVatRecipe(ResourceLocation id, List<EmiIngredient> ingredients, EmiIngredient container, ItemStack resultItem, int cookTime, VatTemperature temperature) {
         this.id = id;
-        this.ingredients =ingredients;
+        this.ingredients = ingredients;
+        this.container = container;
         this.result = EmiStack.of(resultItem);
         this.cookTime = cookTime;
+        this.temperature = temperature;
     }
 
     @Override

@@ -6,6 +6,7 @@ import com.baisylia.culturaldelights.recipes.VatRecipe;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -22,6 +23,8 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+
+import static net.minecraft.client.gui.GuiComponent.blit;
 
 public class VatRecipeCategory implements IRecipeCategory<VatRecipe> {
     public final static ResourceLocation UID = new ResourceLocation(CulturalDelights.MOD_ID, "aging");
@@ -50,8 +53,26 @@ public class VatRecipeCategory implements IRecipeCategory<VatRecipe> {
     @Override
     public void draw(VatRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack poseStack, double mouseX, double mouseY) {
         IDrawableAnimated arrow = getArrow(recipe);
-        arrow.draw(poseStack, 63, 19);
+        arrow.draw(poseStack, 63, 20);
         drawCookTime(recipe, poseStack, 45);
+
+        int xOffset = switch (recipe.getTemperature()) {
+            case COLD -> 0;
+            case NORMAL -> 13;
+            case HOT -> 26;
+        };
+        Minecraft.getInstance().getTextureManager().bindForSetup(TEXTURE);
+        RenderSystem.setShaderTexture(0, TEXTURE);
+        blit(poseStack, 31, 20,176 + xOffset, 32, 12, 46, 256, 256
+        );
+        if (mouseX >= 31 && mouseX <= 43 && mouseY >= 20 && mouseY <= 66) {
+            Component text = Component.translatable(
+                    "container.culturaldelights.vat." + recipe.getTemperature().getSerializedName()
+            );
+
+            Minecraft.getInstance().screen.renderComponentTooltip(poseStack, java.util.List.of(text), (int) mouseX, (int) mouseY
+            );
+        }
     }
 
     protected void drawCookTime(VatRecipe recipe, PoseStack poseStack, int y) {
@@ -96,23 +117,15 @@ public class VatRecipeCategory implements IRecipeCategory<VatRecipe> {
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, VatRecipe recipe, IFocusGroup focuses) {
-        int start = 3;
-        int offset = 18;
-        int offset2 = offset+offset;
-        builder.addSlot(RecipeIngredientRole.INPUT, start, start).addIngredients(recipe.getIngredients().get(0));
-        if (recipe.getIngredients().size() > 1) {
-            builder.addSlot(RecipeIngredientRole.INPUT, start+offset, start).addIngredients(recipe.getIngredients().get(1));
-            if (recipe.getIngredients().size() > 2) {
-                builder.addSlot(RecipeIngredientRole.INPUT, start+offset2, start).addIngredients(recipe.getIngredients().get(2));
-                if (recipe.getIngredients().size() > 3) {
-                    builder.addSlot(RecipeIngredientRole.INPUT, start, start+offset).addIngredients(recipe.getIngredients().get(3));
-                    if (recipe.getIngredients().size() > 4) {
-                        builder.addSlot(RecipeIngredientRole.INPUT, start+offset, start+offset).addIngredients(recipe.getIngredients().get(4));
-                        if (recipe.getIngredients().size() > 5) {
-                            builder.addSlot(RecipeIngredientRole.INPUT, start+offset2, start+offset).addIngredients(recipe.getIngredients().get(5));
-                            if (recipe.getIngredients().size() > 6) {
-                                builder.addSlot(RecipeIngredientRole.INPUT, start, start+offset2).addIngredients(recipe.getIngredients().get(6));
-                                }}}}}}
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 97, 21).addItemStack(recipe.getResultItem());
+        int[][] positions = {
+                {19, 2}, {37, 2},
+                {19, 20}, {37, 20},
+                {19, 38}, {37, 38}
+        };
+        for (int i = 0; i < recipe.getIngredients().size() && i < positions.length; i++) {
+            builder.addSlot(RecipeIngredientRole.INPUT, positions[i][0], positions[i][1]).addIngredients(recipe.getIngredients().get(i));
+        }
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 95, 9).addItemStack(recipe.getResultItem());
+        builder.addSlot(RecipeIngredientRole.INPUT, 97, 39).addIngredients(recipe.getContainer());
     }
 }
