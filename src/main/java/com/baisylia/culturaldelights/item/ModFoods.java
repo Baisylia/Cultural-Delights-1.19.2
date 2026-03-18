@@ -40,8 +40,8 @@ public class ModFoods {
     public static final FoodProperties HOT_DOG = (new FoodProperties.Builder()).nutrition(10).saturationMod(0.8F).build();
     public static final FoodProperties CHEESY_CHIP_WRAP = (new FoodProperties.Builder()).nutrition(8).saturationMod(0.6F).build();
     public static final FoodProperties CHEESE_CRACKER = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).fast().build();
-    public static final FoodProperties CHIPS_WITH_CHEESE = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.8F).build();
-    public static final FoodProperties CINNAMON_MINT_CURRY = (new FoodProperties.Builder()).nutrition(11).saturationMod(1.2F).build();
+    public static final FoodProperties CHIPS_WITH_CHEESE = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.6F).build();
+    public static final FoodProperties CINNAMON_MINT_CURRY = (new FoodProperties.Builder()).nutrition(14).saturationMod(0.8F).build();
     public static final FoodProperties CINNAMON_CRACKER = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).fast().build();
 
     public static final FoodProperties BUTTER = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).build();
