@@ -1,0 +1,17 @@
+{
+  "type": "cookscollection:baking",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "item": "culturaldelights:cheese_wedge"
+    },
+    {
+      "item": "farmersdelight:wheat_dough"
+    }
+  ],
+  "result": {
+    "item": "culturaldelights:cheese_cracker",
+	"count": 4
+  }
+}

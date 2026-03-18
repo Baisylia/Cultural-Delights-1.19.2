@@ -1,0 +1,20 @@
+{
+  "type": "cookscollection:baking",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "item": "culturaldelights:cinnamon"
+    },
+    {
+      "item": "culturaldelights:cinnamon"
+    },
+    {
+      "item": "farmersdelight:wheat_dough"
+    }
+  ],
+  "result": {
+    "item": "culturaldelights:cinnamon_cracker",
+	"count": 4
+  }
+}

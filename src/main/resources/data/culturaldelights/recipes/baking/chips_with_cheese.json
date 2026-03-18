@@ -1,0 +1,23 @@
+{
+  "type": "cookscollection:baking",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "item": "minecraft:bowl"
+    },
+    {
+      "item": "culturaldelights:cheese_wedge"
+    },
+    {
+      "item": "culturaldelights:tortilla_chips"
+    },
+    {
+      "item": "culturaldelights:tortilla_chips"
+    }
+  ],
+  "result": {
+    "item": "culturaldelights:chips_with_cheese",
+	"count": 1
+  }
+}

@@ -2,16 +2,16 @@
   "type": "farmersdelight:cooking",
   "ingredients": [
     {
-      "item": "minecraft:blaze_powder"
+      "item": "culturaldelights:cinnamon"
     },
     {
-      "item": "farmersdelight:tomato_sauce"
+      "item": "culturaldelights:mint"
     },
     {
-      "item": "farmersdelight:_rice"
+      "item": "farmersdelight:rice"
     },
     {
-      "item": "culturaldelights:beans"
+      "item": "culturaldelights:corn_cob"
     },
     {
       "tag": "forge:raw_chicken"
@@ -20,11 +20,11 @@
       "tag": "forge:milk"
     }
   ],
-  "result": {
-    "item": "culturaldelights:spicy_curry"
-  },
   "container": {
     "item": "minecraft:bowl"
+  },
+  "result": {
+    "item": "culturaldelights:cinnamon_mint_curry"
   },
   "experience": 0.35,
   "cookingtime": 200

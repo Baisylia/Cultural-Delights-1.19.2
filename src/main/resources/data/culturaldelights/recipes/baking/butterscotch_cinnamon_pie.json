@@ -1,0 +1,26 @@
+{
+  "type": "cookscollection:baking",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "item": "culturaldelights:cinnamon"
+    },
+    {
+      "item": "culturaldelights:cinnamon"
+    },
+    {
+      "item": "culturaldelights:cinnamon"
+    },
+    {
+      "item": "culturaldelights:butter"
+    },
+    {
+      "item": "farmersdelight:pie_crust"
+    }
+  ],
+  "result": {
+    "item": "culturaldelights:butterscotch_cinnamon_pie",
+	"count": 1
+  }
+}

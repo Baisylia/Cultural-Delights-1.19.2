@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "culturaldelights:tortilla"
+    },
+    {
+      "item": "culturaldelights:cheese_wedge"
+    },
+    {
+      "item": "culturaldelights:tortilla_chips"
+    },
+    {
+      "item": "culturaldelights:tortilla_chips"
+    }
+  ],
+  "result": {
+    "item": "culturaldelights:cheesy_chip_wrap",
+    "count": 1
+  }
+}

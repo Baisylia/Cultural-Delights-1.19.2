@@ -5,14 +5,17 @@
       "item": "culturaldelights:cooked_sausage"
     },
     {
-      "tag": "forge:crops/onion"
+      "item": "culturaldelights:cheese_wedge"
     },
     {
-      "item": "cookscollection:rustic_loaf_slice"
+      "item": "farmersdelight:tomato_sauce"
+    },
+    {
+      "tag": "forge:bread"
     }
   ],
   "result": {
-    "item": "culturaldelights:snag",
+    "item": "culturaldelights:hot_dog",
     "count": 1
   }
 }

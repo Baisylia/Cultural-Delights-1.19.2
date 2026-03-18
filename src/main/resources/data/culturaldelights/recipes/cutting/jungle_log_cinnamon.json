@@ -1,0 +1,20 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "minecraft:jungle_log"
+    }
+  ],
+  "tool": {
+    "tag": "forge:tools/knives"
+  },
+  "result": [
+    {
+      "item": "minecraft:stripped_jungle_log",
+      "count": 1
+    },
+    {
+      "item": "culturaldelights:cinnamon"
+    }
+  ]
+}

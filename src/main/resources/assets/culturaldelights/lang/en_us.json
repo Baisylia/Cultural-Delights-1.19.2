@@ -59,6 +59,15 @@
   "item.culturaldelights.egg_roll": "Egg Roll",
   "item.culturaldelights.calamari_roll": "Calamari Roll",
 
+  "item.culturaldelights.cheesy_chip_wrap": "Cheesy Chip Wrap",
+  "item.culturaldelights.chips_with_cheese": "Chips with Cheese",
+  "item.culturaldelights.cheese_cracker": "Cheese Cracker",
+  "item.culturaldelights.hot_dog": "Hot Dog",
+  "item.culturaldelights.corn_dog": "Corn Dog",
+  "item.culturaldelights.cinnamon": "Cinnamon",
+  "item.culturaldelights.cinnamon_cracker": "Cinnamon Cracker",
+  "item.culturaldelights.cinnamon_mint_curry": "Cinnamon Mint Curry",
+  "item.culturaldelights.butterscotch_cinnamon_pie_slice": "Butterscotch Cinnamon Pie Slice",
   "item.culturaldelights.butter": "Butter",
   "item.culturaldelights.buttered_toast": "Buttered Toast",
   "item.culturaldelights.raw_sausage": "Raw Sausage",
@@ -125,6 +134,7 @@
   "block.culturaldelights.white_eggplant_crate": "White Eggplant Crate",
   "block.culturaldelights.eggplant_parmesan_block": "Eggplant Parmesan",
   "block.culturaldelights.cheese_block": "Block of Cheese",
+  "block.culturaldelights.butterscotch_cinnamon_pie": "Butterscotch Cinnamon Pie",
 
 
   "effect.culturaldelights.cheesy": "Cheesy",

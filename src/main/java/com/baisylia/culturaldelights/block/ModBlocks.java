@@ -23,6 +23,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import vectorwing.farmersdelight.FarmersDelight;
+import vectorwing.farmersdelight.common.block.PieBlock;
 import vectorwing.farmersdelight.common.block.WildCropBlock;
 
 import javax.annotation.Nullable;
@@ -153,6 +154,10 @@ public class ModBlocks {
     public static final RegistryObject<Block> CHEESE_BLOCK = registerBlock("cheese_block",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.NETHER_WART_BLOCK))
             , FarmersDelight.CREATIVE_TAB, false, 0);
+
+    public static final RegistryObject<Block> BUTTERSCOTCH_CINNAMONN_PIE = registerBlock("butterscotch_cinnamon_pie",
+            () -> new PieBlock(BlockBehaviour.Properties.copy(vectorwing.farmersdelight.common.registry.ModBlocks.CHOCOLATE_PIE.get()).noOcclusion(), ModItems.BUTTERSCOTCH_CINNAMON_PIE_SLICE), FarmersDelight.CREATIVE_TAB, false, 0);
+
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab, Boolean isFuel, Integer fuelAmount) {
