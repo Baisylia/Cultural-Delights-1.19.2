@@ -136,7 +136,9 @@
   "block.culturaldelights.cheese_block": "Block of Cheese",
   "block.culturaldelights.butterscotch_cinnamon_pie": "Butterscotch Cinnamon Pie",
 
-
   "effect.culturaldelights.cheesy": "Cheesy",
-  "effect.culturaldelights.intoxication": "Intoxication"
+  "effect.culturaldelights.intoxication": "Intoxication",
+  
+  "resourcepack.culturaldelights.pastry_sheet.description": "Replaces Pie Crust with Pastry Sheet for more versatility",
+  "resourcepack.culturaldelights.apple_juice.description": "Renames Apple Cider to Apple Juice to avoid duplicate items"
 }

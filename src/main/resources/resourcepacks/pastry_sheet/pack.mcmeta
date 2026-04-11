@@ -1,6 +1,8 @@
 {
   "pack": {
     "pack_format": 9,
-    "description": "Replaces Pie Crust with Pastry Sheet, Granting it Further Uses"
+    "description": {
+      "translate": "resourcepack.culturaldelights.pastry_sheet.description"
+    }
   }
 }
