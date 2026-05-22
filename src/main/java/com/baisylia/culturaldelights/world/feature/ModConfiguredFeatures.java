@@ -79,6 +79,11 @@ public class ModConfiguredFeatures {
                     new RandomPatchConfiguration(32, 6, 2, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
                             new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.WILD_CUCUMBERS.get()))))));
 
+    public static final RegistryObject<ConfiguredFeature<?, ?>> WILD_BEANS = CONFIGURED_FEATURES.register("wild_beans",
+            () -> new ConfiguredFeature<>(Feature.FLOWER,
+                    new RandomPatchConfiguration(32, 6, 2, PlacementUtils.onlyWhenEmpty(Feature.SIMPLE_BLOCK,
+                            new SimpleBlockConfiguration(BlockStateProvider.simple(ModBlocks.WILD_BEANS.get()))))));
+
     public static void register(IEventBus eventBus) {
         CONFIGURED_FEATURES.register(eventBus);
     }

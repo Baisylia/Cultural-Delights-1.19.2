@@ -47,6 +47,10 @@ public class ModPlacedFeatures {
             () -> new PlacedFeature(ModConfiguredFeatures.WILD_CUCUMBERS.getHolder().get(), List.of(RarityFilter.onAverageOnceEvery(25),
                     InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
 
+    public static final RegistryObject<PlacedFeature> WILD_BEANS_PLACED = PLACED_FEATURES.register("wild_beans_placed",
+            () -> new PlacedFeature(ModConfiguredFeatures.WILD_BEANS.getHolder().get(), List.of(RarityFilter.onAverageOnceEvery(25),
+                    InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome())));
+
     public static void register(IEventBus eventBus) {
         PLACED_FEATURES.register(eventBus);
     }

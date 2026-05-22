@@ -57,6 +57,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> WILD_EGGPLANTS = registerBlock("wild_eggplants",
             () -> new WildCropBlock(MobEffects.DAMAGE_BOOST, 6,
                     BlockBehaviour.Properties.copy(Blocks.TALL_GRASS)), FarmersDelight.CREATIVE_TAB, false, 0);
+    public static final RegistryObject<Block> WILD_BEANS = registerBlock("wild_beans",
+            () -> new WildCropBlock(MobEffects.ABSORPTION, 6,
+                    BlockBehaviour.Properties.copy(Blocks.TALL_GRASS)), FarmersDelight.CREATIVE_TAB, false, 0);
 
     public static final RegistryObject<Block> AVOCADO_PIT = registerBlock("avocado_pit",
             () -> new AvocadoPitBlock(new AvocadoPitGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)), FarmersDelight.CREATIVE_TAB, false, 0);
