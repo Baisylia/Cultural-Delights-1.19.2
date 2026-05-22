@@ -155,6 +155,10 @@ public class ModBlocks {
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.NETHER_WART_BLOCK))
             , FarmersDelight.CREATIVE_TAB, false, 0);
 
+    public static final RegistryObject<Block> CHEESE_WHEEL = registerBlock("cheese_wheel",
+            () -> new SlabBlock(BlockBehaviour.Properties.copy(ModBlocks.CHEESE_BLOCK.get())), CreativeModeTab.TAB_BUILDING_BLOCKS, false, 0);
+
+
     public static final RegistryObject<Block> BUTTERSCOTCH_CINNAMONN_PIE = registerBlock("butterscotch_cinnamon_pie",
             () -> new PieBlock(BlockBehaviour.Properties.copy(vectorwing.farmersdelight.common.registry.ModBlocks.CHOCOLATE_PIE.get()).noOcclusion(), ModItems.BUTTERSCOTCH_CINNAMON_PIE_SLICE), FarmersDelight.CREATIVE_TAB, false, 0);
 

@@ -1,0 +1,31 @@
+{
+  "type": "farmersdelight:cooking",
+  "ingredients": [
+    {
+      "item": "culturaldelights:cinnamon"
+    },
+    {
+      "item": "culturaldelights:mint"
+    },
+    {
+      "item": "farmersdelight:rice"
+    },
+    {
+      "item": "culturaldelights:corn_cob"
+    },
+    {
+      "item": "culturaldelights:tofu"
+    },
+    {
+      "tag": "forge:milk"
+    }
+  ],
+  "container": {
+    "item": "minecraft:bowl"
+  },
+  "result": {
+    "item": "culturaldelights:cinnamon_mint_curry"
+  },
+  "experience": 0.35,
+  "cookingtime": 200
+}
