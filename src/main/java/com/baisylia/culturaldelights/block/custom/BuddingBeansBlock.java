@@ -1,11 +1,13 @@
 package com.baisylia.culturaldelights.block.custom;
 
 import com.baisylia.culturaldelights.block.ModBlocks;
+import com.baisylia.culturaldelights.item.ModItems;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -49,5 +51,9 @@ public class BuddingBeansBlock extends BuddingTomatoBlock {
             level.setBlockAndUpdate(pos, (BlockState)((Block) ModBlocks.BEANS.get()).defaultBlockState().setValue(BeansBlock.VINE_AGE, remainingGrowth));
         }
 
+    }
+    @Override
+    protected ItemLike getBaseSeedId() {
+        return (ItemLike) ModItems.BEANS.get();
     }
 }
