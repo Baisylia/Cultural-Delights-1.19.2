@@ -36,8 +36,8 @@ public class ModFoods {
     public static final FoodProperties CUT_EGGPLANT = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).fast().build();
     public static final FoodProperties SMOKED_CUT_EGGPLANT = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.4F).fast().build();
 
-    public static final FoodProperties CORN_DOG = (new FoodProperties.Builder()).nutrition(7).saturationMod(0.7F).build();
-    public static final FoodProperties HOT_DOG = (new FoodProperties.Builder()).nutrition(10).saturationMod(0.8F).build();
+    public static final FoodProperties CORN_DOG = (new FoodProperties.Builder()).nutrition(7).saturationMod(0.5F).build();
+    public static final FoodProperties HOT_DOG = (new FoodProperties.Builder()).nutrition(10).saturationMod(0.6F).build();
     public static final FoodProperties CHEESY_CHIP_WRAP = (new FoodProperties.Builder()).nutrition(8).saturationMod(0.6F).build();
     public static final FoodProperties CHEESE_CRACKER = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).fast().build();
     public static final FoodProperties CHIPS_WITH_CHEESE = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.6F).build();
@@ -48,8 +48,8 @@ public class ModFoods {
     public static final FoodProperties BUTTERED_TOAST = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.5F).build();
     public static final FoodProperties RAW_SAUSAGE = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).build();
     public static final FoodProperties COOKED_SAUSAGE = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.4F).build();
-    public static final FoodProperties SNAG = (new FoodProperties.Builder()).nutrition(8).saturationMod(1.2F).build();
-    public static final FoodProperties SAUSAGES_AND_MASH = (new FoodProperties.Builder()).nutrition(12).saturationMod(1.3F)
+    public static final FoodProperties SNAG = (new FoodProperties.Builder()).nutrition(8).saturationMod(0.5F).build();
+    public static final FoodProperties SAUSAGES_AND_MASH = (new FoodProperties.Builder()).nutrition(12).saturationMod(0.9F)
             .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT.get(), FoodValues.LONG_DURATION, 0), 1.0F).build();
     public static final FoodProperties POPCORN_BUCKET = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.8F).build();
 
