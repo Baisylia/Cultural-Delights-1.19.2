@@ -2,6 +2,7 @@ package com.baisylia.culturaldelights.block.custom;
 
 import ca.weblite.objc.Proxy;
 import com.baisylia.culturaldelights.block.ModBlocks;
+import com.baisylia.culturaldelights.integration.supplementaries.SupplementariesCompat;
 import com.baisylia.culturaldelights.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -70,22 +71,24 @@ public class BeansBlock extends TomatoVineBlock {
         }
     }
 
-    // copy from TomatoVineBlock to prevent Supplementaries from mixining us
     @Override
     public void attemptRopeClimb(ServerLevel level, BlockPos pos, RandomSource random) {
         if (random.nextFloat() < 0.3F) {
             BlockPos posAbove = pos.above();
             BlockState stateAbove = level.getBlockState(posAbove);
-            if (ModList.get().isLoaded("supplementaries") && Objects.equals(ForgeRegistries.BLOCKS.getKey(stateAbove.getBlock()), STICK)) {
-                return;
-            }
             boolean canClimb = ENABLE_BEAN_VINE_CLIMBING_TAGGED_ROPES.get() ? stateAbove.is(ModTags.ROPES) : stateAbove.is(vectorwing.farmersdelight.common.registry.ModBlocks.ROPE.get());
             if (canClimb) {
                 int vineHeight;
-                for (vineHeight = 1; level.getBlockState(pos.below(vineHeight)).is(this); ++vineHeight) {
+                for (vineHeight = 1; level.getBlockState(pos.below(vineHeight)).getBlock() instanceof TomatoVineBlock; ++vineHeight) {
                 }
                 if (vineHeight < 3) {
-                    level.setBlockAndUpdate(posAbove, defaultBlockState().setValue(ROPELOGGED, true));
+                    BlockState toPlace;
+                    if (ModList.get().isLoaded("supplementaries")) {
+                        toPlace = SupplementariesCompat.getRopeOrStickBeansToPlace(stateAbove, defaultBlockState());
+                    } else {
+                        toPlace = defaultBlockState().setValue(ROPELOGGED, true);
+                    }
+                    level.setBlockAndUpdate(posAbove, toPlace);
                 }
             }
         }

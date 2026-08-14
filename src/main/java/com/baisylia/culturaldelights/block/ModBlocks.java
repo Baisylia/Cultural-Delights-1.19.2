@@ -22,6 +22,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.minecraftforge.fml.ModList;
 import vectorwing.farmersdelight.FarmersDelight;
 import vectorwing.farmersdelight.common.block.PieBlock;
 import vectorwing.farmersdelight.common.block.WildCropBlock;
@@ -119,6 +120,12 @@ public class ModBlocks {
             () -> new CornBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noOcclusion()));
     public static final RegistryObject<Block> BEANS = registerBlockWithoutBlockItem("beans",
             () -> new BeansBlock(BlockBehaviour.Properties.copy(vectorwing.farmersdelight.common.registry.ModBlocks.TOMATO_CROP.get()).noOcclusion()));
+    public static final RegistryObject<Block> ROPE_BEANS = registerBlockWithoutBlockItem("rope_beans",
+            () -> ModList.get().isLoaded("supplementaries") ? new RopeBeansBlock(BlockBehaviour.Properties.copy(vectorwing.farmersdelight.common.registry.ModBlocks.TOMATO_CROP.get()).noOcclusion())
+                    : new BeansBlock(BlockBehaviour.Properties.copy(vectorwing.farmersdelight.common.registry.ModBlocks.TOMATO_CROP.get()).noOcclusion()));
+    public static final RegistryObject<Block> STICK_BEANS = registerBlockWithoutBlockItem("stick_beans",
+            () -> ModList.get().isLoaded("supplementaries") ? new StickBeansBlock(BlockBehaviour.Properties.copy(vectorwing.farmersdelight.common.registry.ModBlocks.TOMATO_CROP.get()).noOcclusion())
+                    : new BeansBlock(BlockBehaviour.Properties.copy(vectorwing.farmersdelight.common.registry.ModBlocks.TOMATO_CROP.get()).noOcclusion()));
     public static final RegistryObject<Block> BUDDING_BEANS = registerBlockWithoutBlockItem("budding_beans",
             () -> new BuddingBeansBlock(BlockBehaviour.Properties.copy(vectorwing.farmersdelight.common.registry.ModBlocks.BUDDING_TOMATO_CROP.get()).noOcclusion()));
 
