@@ -4,6 +4,16 @@
     "age=1,height=0": { "model": "culturaldelights:block/corn_bottom1" },
     "age=2,height=0": { "model": "culturaldelights:block/corn_bottom2" },
 
+    "age=0,height=1": { "model": "culturaldelights:block/corn_middle3" },
+    "age=1,height=1": { "model": "culturaldelights:block/corn_middle3" },
+    "age=2,height=1": { "model": "culturaldelights:block/corn_middle3" },
+
+    "age=0,height=2": { "model": "culturaldelights:block/corn_top5" },
+    "age=1,height=2": { "model": "culturaldelights:block/corn_top5" },
+    "age=2,height=2": { "model": "culturaldelights:block/corn_top5" },
+    "age=3,height=2": { "model": "culturaldelights:block/corn_top5" },
+    "age=4,height=2": { "model": "culturaldelights:block/corn_top5" },
+
     "age=3,height=0": { "model": "culturaldelights:block/corn_bottom3" },
     "age=3,height=1": { "model": "culturaldelights:block/corn_middle3" },
 

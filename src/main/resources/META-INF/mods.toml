@@ -27,7 +27,7 @@ displayName="Cultural Delights" #mandatory
 # A URL for the "homepage" for this mod, displayed in the mod UI
 #displayURL="https://change.me.to.your.mods.homepage.example.invalid/" #optional
 # A file name (in the root of the mod JAR) containing a logo for display
-logoFile="logo.png" #optional
+logoFile="culturaldelights.png" #optional
 # A text field displayed in the mod UI
 credits="Developer: Baisylia | Contributors: Raspmary, Bagels, Cassian" #optional
 # A text field displayed in the mod UI
@@ -64,5 +64,11 @@ description="A Farmer's Delight addon that adds food systems from around the wor
     modId = "cookscollection"
     mandatory = true
     versionRange = "[0.4.12,)"
+    ordering = "AFTER"
+    side = "BOTH"
+[[dependencies.culturaldelights]]
+    modId = "supplementaries"
+    mandatory = false
+    versionRange = "*"
     ordering = "AFTER"
     side = "BOTH"

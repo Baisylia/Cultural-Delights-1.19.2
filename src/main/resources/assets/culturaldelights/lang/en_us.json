@@ -141,5 +141,6 @@
   "effect.culturaldelights.intoxication": "Intoxication",
   
   "resourcepack.culturaldelights.pastry_sheet.description": "Replaces Pie Crust with Pastry Sheet for more versatility",
-  "resourcepack.culturaldelights.apple_juice.description": "Renames Apple Cider to Apple Juice to avoid duplicate items"
+  "resourcepack.culturaldelights.apple_juice.description": "Renames Apple Cider to Apple Juice to avoid duplicate items",
+  "resourcepack.culturaldelights.supplementaries.description": "Adds rope and stick bean vine models for Supplementaries"
 }

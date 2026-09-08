@@ -1,35 +1,28 @@
 {
-  "multipart": [
-    {
-      "when": { "age": 0 },
-      "apply": { "model": "culturaldelights:block/stick_beans_stage0" }
+  "variants": {
+    "age=0,ropelogged=false": {
+      "model": "culturaldelights:block/beans_vine_stage0"
     },
-    {
-      "when": { "age": 1 },
-      "apply": { "model": "culturaldelights:block/stick_beans_stage1" }
+    "age=0,ropelogged=true": {
+      "model": "culturaldelights:block/beans_vine_stage0"
     },
-    {
-      "when": { "age": 2 },
-      "apply": { "model": "culturaldelights:block/stick_beans_stage2" }
+    "age=1,ropelogged=false": {
+      "model": "culturaldelights:block/beans_vine_stage1"
     },
-    {
-      "when": { "age": 3 },
-      "apply": { "model": "culturaldelights:block/stick_beans_stage3" }
+    "age=1,ropelogged=true": {
+      "model": "culturaldelights:block/beans_vine_stage1"
     },
-    {
-      "when": { "axis_x": true },
-      "apply": {
-        "model": "supplementaries:block/stick_y_tomatoes",
-        "x": 90,
-        "y": 90
-      }
+    "age=2,ropelogged=false": {
+      "model": "culturaldelights:block/beans_vine_stage2"
     },
-    {
-      "when": { "axis_z": true },
-      "apply": {
-        "model": "supplementaries:block/stick_y_tomatoes",
-        "x": 90
-      }
+    "age=2,ropelogged=true": {
+      "model": "culturaldelights:block/beans_vine_stage2"
+    },
+    "age=3,ropelogged=false": {
+      "model": "culturaldelights:block/beans_vine_stage3"
+    },
+    "age=3,ropelogged=true": {
+      "model": "culturaldelights:block/beans_vine_stage3"
     }
-  ]
+  }
 }

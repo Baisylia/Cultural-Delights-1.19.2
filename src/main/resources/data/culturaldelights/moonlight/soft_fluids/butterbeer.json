@@ -1,0 +1,20 @@
+{
+  "color": "#df923b",
+  "containers": [
+    {
+      "filled": [
+        "culturaldelights:butterbeer"
+      ],
+      "empty": "minecraft:glass_bottle",
+      "capacity": 1
+    }
+  ],
+  "flowing_texture": "moonlight:soft_fluids/milk_liquid",
+  "food": {
+    "divider": 1,
+    "item": "culturaldelights:butterbeer"
+  },
+  "from_mod": "culturaldelights",
+  "still_texture": "moonlight:soft_fluids/milk_liquid",
+  "translation_key": "item.culturaldelights.butterbeer"
+}

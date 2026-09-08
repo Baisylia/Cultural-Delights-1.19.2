@@ -44,6 +44,13 @@ public class BeansBlock extends TomatoVineBlock {
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
+        if (ModList.get().isLoaded("supplementaries")) {
+            InteractionResult stickResult = SupplementariesCompat.tryUseStick(state, level, pos, player, hand, hit);
+            if (stickResult != InteractionResult.PASS) {
+                return stickResult;
+            }
+        }
+
         int age = state.getValue(this.getAgeProperty());
         boolean isMature = age == this.getMaxAge();
         if (!isMature && player.getItemInHand(hand).is(Items.BONE_MEAL)) {

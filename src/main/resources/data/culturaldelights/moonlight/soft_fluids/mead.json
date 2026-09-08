@@ -1,0 +1,20 @@
+{
+  "color": "#d76f18",
+  "containers": [
+    {
+      "filled": [
+        "culturaldelights:mead"
+      ],
+      "empty": "minecraft:glass_bottle",
+      "capacity": 1
+    }
+  ],
+  "flowing_texture": "minecraft:block/water_flow",
+  "food": {
+    "divider": 1,
+    "item": "culturaldelights:mead"
+  },
+  "from_mod": "culturaldelights",
+  "still_texture": "minecraft:block/water_still",
+  "translation_key": "item.culturaldelights.mead"
+}

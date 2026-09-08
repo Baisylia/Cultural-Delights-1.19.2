@@ -11,7 +11,7 @@
               "add": false,
               "conditions": [
                 {
-                  "block": "modestmasonry:cheese_wheel",
+                  "block": "culturaldelights:cheese_wheel",
                   "condition": "minecraft:block_state_property",
                   "properties": {
                     "type": "double"
@@ -25,7 +25,7 @@
               "function": "minecraft:explosion_decay"
             }
           ],
-          "name": "modestmasonry:cheese_wheel"
+          "name": "culturaldelights:cheese_wheel"
         }
       ],
       "rolls": 1.0

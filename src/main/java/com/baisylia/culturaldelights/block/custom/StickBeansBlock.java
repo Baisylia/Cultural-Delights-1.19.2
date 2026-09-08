@@ -10,8 +10,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -44,6 +42,10 @@ public class StickBeansBlock extends BeansBlock {
                 .setValue(AXIS_Z, false));
     }
 
+    public static BlockState fromBeans(BlockState beansState) {
+        return ModBlocks.STICK_BEANS.get().withPropertiesOf(beansState).setValue(ROPELOGGED, true);
+    }
+
     public Block getInnerBlock() {
         return ModRegistry.STICK_BLOCK.get();
     }
@@ -57,18 +59,6 @@ public class StickBeansBlock extends BeansBlock {
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
         return StickBlock.getStickShape(state.getValue(AXIS_X), true, state.getValue(AXIS_Z));
-    }
-
-    @Override
-    public boolean canBeReplaced(BlockState state, BlockPlaceContext context) {
-        if (!context.isSecondaryUseActive() && context.getItemInHand().is(Items.STICK)) {
-            return switch (context.getClickedFace().getAxis()) {
-                case Z -> !state.getValue(AXIS_Z);
-                case X -> !state.getValue(AXIS_X);
-                default -> false;
-            };
-        }
-        return super.canBeReplaced(state, context);
     }
 
     @Override

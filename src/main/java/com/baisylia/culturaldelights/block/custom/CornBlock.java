@@ -4,26 +4,31 @@ import com.baisylia.culturaldelights.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraftforge.common.ForgeHooks;
 
-import javax.annotation.Nullable;
+import java.util.List;
 
 public class CornBlock extends CropBlock {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_7;
-    public static final IntegerProperty HEIGHT = IntegerProperty.create("height", 0, 2);
+    public static final int MAX_HEIGHT = 2;
+    public static final IntegerProperty HEIGHT = IntegerProperty.create("height", 0, MAX_HEIGHT);
+    private static final ThreadLocal<Boolean> EDITING = ThreadLocal.withInitial(() -> false);
+
+    private static final int CLEAR_FLAGS =
+            Block.UPDATE_ALL | Block.UPDATE_KNOWN_SHAPE | Block.UPDATE_SUPPRESS_DROPS;
 
     public CornBlock(Properties props) {
         super(props);
@@ -62,7 +67,7 @@ public class CornBlock extends CropBlock {
                 float speed = getGrowthSpeed(this, level, pos);
 
                 if (ForgeHooks.onCropsGrowPre(level, pos, state,
-                        random.nextInt((int)(25.0F / speed) + 1) == 0)) {
+                        random.nextInt((int) (25.0F / speed) + 1) == 0)) {
 
                     BlockPos bottom = getBottom(level, pos);
                     int nextAge = getAge(level.getBlockState(bottom)) + 1;
@@ -154,24 +159,67 @@ public class CornBlock extends CropBlock {
     }
 
     @Override
-    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
-        if (!state.is(newState.getBlock())) {
-            BlockPos bottom = getBottom(level, pos);
-            BlockPos current = bottom;
+    public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean isMoving) {
+        super.onPlace(state, level, pos, oldState, isMoving);
 
-            boolean dropped = false;
+        if (level.isClientSide || EDITING.get()) return;
 
-            while (level.getBlockState(current).is(this)) {
-                if (!dropped) {
-                    level.destroyBlock(current, true);
-                    dropped = true;
-                } else {
-                    level.setBlock(current, net.minecraft.world.level.block.Blocks.AIR.defaultBlockState(),
-                            35);
-                }
-                current = current.above();
+        if (oldState.is(this) && oldState.getValue(AGE) > state.getValue(AGE)) {
+            resetPlant(level, pos);
+        }
+    }
+
+    private void resetPlant(Level level, BlockPos pos) {
+        BlockPos bottom = getBottom(level, pos);
+
+        EDITING.set(true);
+
+        try {
+            clearAbove(level, bottom);
+            level.setBlock(bottom, defaultBlockState().setValue(AGE, 0).setValue(HEIGHT, 0), Block.UPDATE_ALL);
+        } finally {
+            EDITING.set(false);
+        }
+    }
+
+    private void clearAbove(Level level, BlockPos bottom) {
+        for (int offset = MAX_HEIGHT; offset >= 1; offset--) {
+            BlockPos current = bottom.above(offset);
+
+            if (level.getBlockState(current).is(this)) {
+                level.setBlock(current, Blocks.AIR.defaultBlockState(), CLEAR_FLAGS);
             }
         }
+    }
+
+    @Override
+    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
+        if (!state.is(newState.getBlock()) && !EDITING.get()) {
+            EDITING.set(true);
+
+            try {
+                BlockPos bottom = getBottom(level, pos);
+
+                clearAbove(level, bottom);
+
+                if (level.getBlockState(bottom).is(this)) {
+                    level.setBlock(bottom, Blocks.AIR.defaultBlockState(), CLEAR_FLAGS);
+                }
+            } finally {
+                EDITING.set(false);
+            }
+        }
+
+        super.onRemove(state, level, pos, newState, isMoving);
+    }
+
+    @Override
+    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
+        if (state.getValue(HEIGHT) != 0) {
+            return super.getDrops(state.setValue(HEIGHT, 0), builder);
+        }
+
+        return super.getDrops(state, builder);
     }
 
     public boolean isValidBonemealTarget(BlockGetter level, BlockPos pos, BlockState state, boolean isClient) {

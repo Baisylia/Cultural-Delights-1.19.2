@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {"id": "culturaldelights:cheese_cracker", "required": false},
+    {"id": "culturaldelights:cinnamon_cracker", "required": false},
+    {"id": "culturaldelights:popcorn", "required": false},
+    {"id": "culturaldelights:tortilla_chips", "required": false}
+  ]
+}

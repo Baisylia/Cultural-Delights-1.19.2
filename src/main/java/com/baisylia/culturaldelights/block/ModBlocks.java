@@ -2,6 +2,7 @@ package com.baisylia.culturaldelights.block;
 
 import com.baisylia.culturaldelights.CulturalDelights;
 import com.baisylia.culturaldelights.block.custom.*;
+import com.baisylia.culturaldelights.integration.supplementaries.SupplementariesCompat;
 import com.baisylia.culturaldelights.item.ModItems;
 import com.baisylia.culturaldelights.world.feature.tree.AvocadoPitGrower;
 import com.baisylia.culturaldelights.world.feature.tree.AvocadoTreeGrower;
@@ -121,10 +122,12 @@ public class ModBlocks {
     public static final RegistryObject<Block> BEANS = registerBlockWithoutBlockItem("beans",
             () -> new BeansBlock(BlockBehaviour.Properties.copy(vectorwing.farmersdelight.common.registry.ModBlocks.TOMATO_CROP.get()).noOcclusion()));
     public static final RegistryObject<Block> ROPE_BEANS = registerBlockWithoutBlockItem("rope_beans",
-            () -> ModList.get().isLoaded("supplementaries") ? new RopeBeansBlock(BlockBehaviour.Properties.copy(vectorwing.farmersdelight.common.registry.ModBlocks.TOMATO_CROP.get()).noOcclusion())
+            () -> ModList.get().isLoaded("supplementaries")
+                    ? SupplementariesCompat.makeRopeBeans(BlockBehaviour.Properties.copy(vectorwing.farmersdelight.common.registry.ModBlocks.TOMATO_CROP.get()).noOcclusion())
                     : new BeansBlock(BlockBehaviour.Properties.copy(vectorwing.farmersdelight.common.registry.ModBlocks.TOMATO_CROP.get()).noOcclusion()));
     public static final RegistryObject<Block> STICK_BEANS = registerBlockWithoutBlockItem("stick_beans",
-            () -> ModList.get().isLoaded("supplementaries") ? new StickBeansBlock(BlockBehaviour.Properties.copy(vectorwing.farmersdelight.common.registry.ModBlocks.TOMATO_CROP.get()).noOcclusion())
+            () -> ModList.get().isLoaded("supplementaries")
+                    ? SupplementariesCompat.makeStickBeans(BlockBehaviour.Properties.copy(vectorwing.farmersdelight.common.registry.ModBlocks.TOMATO_CROP.get()).noOcclusion())
                     : new BeansBlock(BlockBehaviour.Properties.copy(vectorwing.farmersdelight.common.registry.ModBlocks.TOMATO_CROP.get()).noOcclusion()));
     public static final RegistryObject<Block> BUDDING_BEANS = registerBlockWithoutBlockItem("budding_beans",
             () -> new BuddingBeansBlock(BlockBehaviour.Properties.copy(vectorwing.farmersdelight.common.registry.ModBlocks.BUDDING_TOMATO_CROP.get()).noOcclusion()));

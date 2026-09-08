@@ -141,6 +141,9 @@ public class CulturalDelights
         if (event.getPackType() == PackType.CLIENT_RESOURCES) {
             registerBuiltinResourcePack(event, true, Component.literal("Pastry Sheet"), "pastry_sheet");
             registerBuiltinResourcePack(event, true, Component.literal("Apple Juice"), "apple_juice");
+            if (ModList.get().isLoaded("supplementaries")) {
+                registerBuiltinResourcePack(event, true, Component.literal("Supplementaries Beans"), "supplementaries");
+            }
         }
     }
 

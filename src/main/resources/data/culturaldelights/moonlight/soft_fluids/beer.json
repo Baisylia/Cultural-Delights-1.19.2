@@ -1,0 +1,20 @@
+{
+  "color": "#c67c37",
+  "containers": [
+    {
+      "filled": [
+        "culturaldelights:beer"
+      ],
+      "empty": "minecraft:glass_bottle",
+      "capacity": 1
+    }
+  ],
+  "flowing_texture": "minecraft:block/water_flow",
+  "food": {
+    "divider": 1,
+    "item": "culturaldelights:beer"
+  },
+  "from_mod": "culturaldelights",
+  "still_texture": "minecraft:block/water_still",
+  "translation_key": "item.culturaldelights.beer"
+}
