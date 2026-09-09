@@ -300,6 +300,19 @@ public class VatBlockEntity extends BlockEntity implements MenuProvider, Worldly
         return VatTemperature.NORMAL;
     }
 
+    private static Direction getEjectionDirection(BlockPos pos, Level level, Direction facing) {
+        if (facing.getAxis().isHorizontal()) {
+            return facing.getCounterClockWise();
+        }
+        for (Direction dir : Direction.Plane.HORIZONTAL) {
+            BlockPos neighbor = pos.relative(dir);
+            if (!level.getBlockState(neighbor).isSolidRender(level, neighbor)) {
+                return dir;
+            }
+        }
+        return Direction.NORTH;
+    }
+
     private static void craftItem(VatBlockEntity entity) {
         Recipe<?> recipe = entity.currentRecipe;
 
@@ -313,11 +326,13 @@ public class VatBlockEntity extends BlockEntity implements MenuProvider, Worldly
         for(int i = 0; i < 7; ++i) {
             ItemStack slotStack = entity.itemHandler.getStackInSlot(i);
             if (slotStack.hasCraftingRemainingItem()) {
-                Direction direction = entity.getBlockState().getValue(VatBlock.FACING).getCounterClockWise();
-                double x = (double)entity.worldPosition.getX() + 0.5 + (double)direction.getStepX() * 0.25;
-                double y = (double)entity.worldPosition.getY() + 0.7;
-                double z = (double)entity.worldPosition.getZ() + 0.5 + (double)direction.getStepZ() * 0.25;
-                spawnItemEntity(entity.level, entity.itemHandler.getStackInSlot(i).getCraftingRemainingItem(), x, y, z, (float)direction.getStepX() * 0.08F, 0.25, (float)direction.getStepZ() * 0.08F);
+                Direction facing = entity.getBlockState().getValue(VatBlock.FACING);
+                Direction direction = getEjectionDirection(entity.worldPosition, entity.level, facing);
+                double offset = facing.getAxis().isHorizontal() ? 0.25 : 0.6;
+                double x = (double)entity.worldPosition.getX() + 0.5 + (double)direction.getStepX() * offset;
+                double y = (double)entity.worldPosition.getY() + (facing.getAxis().isHorizontal() ? 0.7 : 0.5);
+                double z = (double)entity.worldPosition.getZ() + 0.5 + (double)direction.getStepZ() * offset;
+                spawnItemEntity(entity.level, slotStack.getCraftingRemainingItem(), x, y, z, (float)direction.getStepX() * 0.08F, 0.25, (float)direction.getStepZ() * 0.08F);
             }
         }
 

@@ -18,24 +18,6 @@ public class IntoxicationEffect extends MobEffect {
     public void applyEffectTick(LivingEntity entity, int amplifier) {
         var tag = entity.getPersistentData();
 
-        // Sway
-        double wobbleTime = tag.getDouble("cd_intox_wobbleTime") + 0.05;
-        tag.putDouble("cd_intox_wobbleTime", wobbleTime);
-
-        double swayAmplitude = 0.5f * (amplifier + 1);
-        double swayX = Math.sin(wobbleTime) * swayAmplitude * 0.5;
-        double swayY = Math.cos(wobbleTime * 0.9) * swayAmplitude;
-
-        // Wobble
-        if (amplifier >= 3) {
-            double wobbleStrength = 0.2 * (amplifier - 2);
-            swayX += Math.sin(wobbleTime * 1.3) * wobbleStrength;
-            swayY += Math.cos(wobbleTime * 1.1) * wobbleStrength;
-        }
-
-        entity.setXRot(entity.getXRot() + (float) swayX);
-        entity.setYRot(entity.getYRot() + (float) swayY);
-
         // Slowness
         double speedFactor = 1.0 - 0.05 * amplifier;
         speedFactor = Math.max(speedFactor, 0.2);

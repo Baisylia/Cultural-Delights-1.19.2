@@ -6,7 +6,6 @@ import com.baisylia.culturaldelights.recipes.VatRecipe;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -18,13 +17,11 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Font;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
-import static net.minecraft.client.gui.GuiComponent.blit;
+import java.util.List;
 
 public class VatRecipeCategory implements IRecipeCategory<VatRecipe> {
     public final static ResourceLocation UID = new ResourceLocation(CulturalDelights.MOD_ID, "aging");
@@ -33,12 +30,18 @@ public class VatRecipeCategory implements IRecipeCategory<VatRecipe> {
 
     private final IDrawable background;
     private final IDrawable icon;
+    private final IDrawable coldThermometer;
+    private final IDrawable normalThermometer;
+    private final IDrawable hotThermometer;
     private final int regularCookTime = 400;
     private final LoadingCache<Integer, IDrawableAnimated> cachedArrows;
 
     public VatRecipeCategory(IGuiHelper helper) {
         this.background = helper.createDrawable(TEXTURE, 0, 0, 124, 58);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(ModBlocks.VAT.get()));
+        this.coldThermometer = helper.createDrawable(TEXTURE, 126, 20, 12, 46);
+        this.normalThermometer = helper.createDrawable(TEXTURE, 139, 20, 12, 46);
+        this.hotThermometer = helper.createDrawable(TEXTURE, 152, 20, 12, 46);
         this.cachedArrows = CacheBuilder.newBuilder()
                 .maximumSize(25)
                 .build(new CacheLoader<>() {
@@ -53,38 +56,29 @@ public class VatRecipeCategory implements IRecipeCategory<VatRecipe> {
     @Override
     public void draw(VatRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack poseStack, double mouseX, double mouseY) {
         IDrawableAnimated arrow = getArrow(recipe);
-        arrow.draw(poseStack, 63, 20);
-        drawCookTime(recipe, poseStack, 45);
+        arrow.draw(poseStack, 63, 10);
 
-        int xOffset = switch (recipe.getTemperature()) {
-            case COLD -> 0;
-            case NORMAL -> 13;
-            case HOT -> 26;
+        IDrawable thermometer = switch (recipe.getTemperature()) {
+            case COLD -> coldThermometer;
+            case NORMAL -> normalThermometer;
+            case HOT -> hotThermometer;
         };
-        Minecraft.getInstance().getTextureManager().bindForSetup(TEXTURE);
-        RenderSystem.setShaderTexture(0, TEXTURE);
-        blit(poseStack, 31, 20,176 + xOffset, 32, 12, 46, 256, 256
-        );
-        if (mouseX >= 31 && mouseX <= 43 && mouseY >= 20 && mouseY <= 66) {
-            Component text = Component.translatable(
-                    "container.culturaldelights.vat." + recipe.getTemperature().getSerializedName()
-            );
-
-            Minecraft.getInstance().screen.renderComponentTooltip(poseStack, java.util.List.of(text), (int) mouseX, (int) mouseY
-            );
-        }
+        thermometer.draw(poseStack, 5, 6);
     }
 
-    protected void drawCookTime(VatRecipe recipe, PoseStack poseStack, int y) {
-        int cookTime = recipe.getCookTime();
-        if (cookTime > 0) {
-            int cookTimeSeconds = cookTime / 20;
-            Component timeString = Component.translatable("gui.jei.category.smelting.time.seconds", cookTimeSeconds);
-            Minecraft minecraft = Minecraft.getInstance();
-            Font fontRenderer = minecraft.font;
-            int stringWidth = fontRenderer.width(timeString);
-            fontRenderer.draw(poseStack, timeString, getWidth() - stringWidth, y, 0xFF808080);
+    @Override
+    public List<Component> getTooltipStrings(VatRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
+        if (mouseX >= 5 && mouseX <= 17 && mouseY >= 6 && mouseY <= 52) {
+            return List.of(Component.translatable("container.culturaldelights.vat." + recipe.getTemperature().getSerializedName()));
         }
+        if (mouseX >= 63 && mouseX <= 86 && mouseY >= 10 && mouseY <= 28) {
+            int cookTime = recipe.getCookTime();
+            if (cookTime > 0) {
+                int cookTimeSeconds = cookTime / 20;
+                return List.of(Component.translatable("gui.jei.category.smelting.time.seconds", cookTimeSeconds));
+            }
+        }
+        return List.of();
     }
 
     protected IDrawableAnimated getArrow(VatRecipe recipe) {
@@ -118,14 +112,20 @@ public class VatRecipeCategory implements IRecipeCategory<VatRecipe> {
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, VatRecipe recipe, IFocusGroup focuses) {
         int[][] positions = {
-                {19, 2}, {37, 2},
-                {19, 20}, {37, 20},
-                {19, 38}, {37, 38}
+                {20, 3}, {38, 3},
+                {20, 21}, {38, 21},
+                {20, 39}, {38, 39}
         };
         for (int i = 0; i < recipe.getIngredients().size() && i < positions.length; i++) {
-            builder.addSlot(RecipeIngredientRole.INPUT, positions[i][0], positions[i][1]).addIngredients(recipe.getIngredients().get(i));
+            builder.addSlot(RecipeIngredientRole.INPUT, positions[i][0], positions[i][1])
+                    .addIngredients(recipe.getIngredients().get(i));
         }
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 95, 9).addItemStack(recipe.getResultItem());
-        builder.addSlot(RecipeIngredientRole.INPUT, 97, 39).addIngredients(recipe.getContainer());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 96, 10)
+                .addItemStack(recipe.getResultItem());
+
+        if (!recipe.getContainer().isEmpty()) {
+            builder.addSlot(RecipeIngredientRole.INPUT, 96, 39)
+                    .addIngredients(recipe.getContainer());
+        }
     }
 }
