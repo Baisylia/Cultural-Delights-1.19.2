@@ -127,46 +127,46 @@ public class ModItems {
 
 
     public static final RegistryObject<Item> BEER = ITEMS.register("beer",
-            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.BEER)));
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.BEER).stacksTo(16)));
     public static final RegistryObject<Item> WINE = ITEMS.register("wine",
-            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.WINE)));
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.WINE).stacksTo(16)));
     public static final RegistryObject<Item> GLOW_WINE = ITEMS.register("glow_wine",
-            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.GLOW_WINE)));
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.GLOW_WINE).stacksTo(16)));
     /*public static final RegistryObject<Item> GINGER_BEER = ITEMS.register("ginger_beer",
-            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.GINGER_BEER)));*/
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.GINGER_BEER).stacksTo(16)));*/
     public static final RegistryObject<Item> MEAD = ITEMS.register("mead",
-            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.MEAD)));
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.MEAD).stacksTo(16)));
     public static final RegistryObject<Item> APPLE_CIDER = ITEMS.register("apple_cider",
-            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.APPLE_CIDER)));
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.APPLE_CIDER).stacksTo(16)));
     public static final RegistryObject<Item> MOJITO = ITEMS.register("mojito",
-            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.MOJITO)));
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.MOJITO).stacksTo(16)));
     public static final RegistryObject<Item> MARGARITA = ITEMS.register("margarita",
-            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.MARGARITA)));
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.MARGARITA).stacksTo(16)));
     public static final RegistryObject<Item> BLOODY_MARY = ITEMS.register("bloody_mary",
-            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.BLOODY_MARY)));
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.BLOODY_MARY).stacksTo(16)));
     public static final RegistryObject<Item> LEMON_LIQUEUR = ITEMS.register("lemon_liqueur",
-            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.LEMON_LIQUEUR)));
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.LEMON_LIQUEUR).stacksTo(16)));
     public static final RegistryObject<Item> BUTTERBEER = ITEMS.register("butterbeer",
-            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.BUTTERBEER)));
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.BUTTERBEER).stacksTo(16)));
     public static final RegistryObject<Item> COLA = ITEMS.register("cola",
-            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.COLA)));
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.COLA).stacksTo(16)));
     public static final RegistryObject<Item> TEQUILA = ITEMS.register("tequila",
-            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.TEQUILA)));
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.TEQUILA).stacksTo(16)));
     public static final RegistryObject<Item> GIN = ITEMS.register("gin",
-            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.GIN)));
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.GIN).stacksTo(16)));
     public static final RegistryObject<Item> BRANDY = ITEMS.register("brandy",
-            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.BRANDY)));
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.BRANDY).stacksTo(16)));
     public static final RegistryObject<Item> VODKA = ITEMS.register("vodka",
-            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.VODKA)));
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.VODKA).stacksTo(16)));
     public static final RegistryObject<Item> WHISKEY = ITEMS.register("whiskey",
-            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.WHISKEY)));
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.WHISKEY).stacksTo(16)));
     public static final RegistryObject<Item> RUM = ITEMS.register("rum",
-            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.RUM)));
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.RUM).stacksTo(16)));
 
     public static final RegistryObject<Item> ACID = ITEMS.register("acid",
-            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.ACID)));
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.ACID).stacksTo(16)));
     public static final RegistryObject<Item> VINEGAR = ITEMS.register("vinegar",
-            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.VINEGAR)));
+            () -> new DrinkableItem(drinkItem().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.VINEGAR).stacksTo(16)));
     public static final RegistryObject<Item> PICKLED_EGG = ITEMS.register("pickled_egg",
             () -> new Item(new Item.Properties().tab(FarmersDelight.CREATIVE_TAB).food(ModFoods.PICKLED_EGG)));
     public static final RegistryObject<Item> CHEESE_WEDGE = ITEMS.register("cheese_wedge",
