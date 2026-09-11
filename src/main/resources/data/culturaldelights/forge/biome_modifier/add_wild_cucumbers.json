@@ -1,6 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "#forge:is_swamp",
-  "features": "culturaldelights:wild_cucumbers_placed",
-  "step": "vegetal_decoration"
-}

@@ -9,135 +9,135 @@ import vectorwing.farmersdelight.common.registry.ModEffects;
 public class ModFoods {
 
     //INGREDIENTS
-    public static final FoodProperties BEANS = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.2F).fast().build();
-    public static final FoodProperties REFRIED_BEANS = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.4F).build();
-    public static final FoodProperties TOFU = (new FoodProperties.Builder()).nutrition(8).saturationMod(0.6F).build();
-    public static final FoodProperties AVOCADO = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.6F).build();
-    public static final FoodProperties CUCUMBER = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.5F).build();
-    public static final FoodProperties PICKLE = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.7F).build();
-    public static final FoodProperties EGGPLANT = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.2F).build();
-    public static final FoodProperties SMOKED_EGGPLANT = (new FoodProperties.Builder()).nutrition(8).saturationMod(0.6F).build();
-    public static final FoodProperties SMOKED_TOMATO = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.6F).build();
-    public static final FoodProperties SMOKED_WHITE_EGGPLANT = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.5F).build();
-    public static final FoodProperties WHITE_EGGPLANT = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).build();
-    public static final FoodProperties CORN_COB = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.4F).build();
-    public static final FoodProperties BEAN_POD = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.6F).build();
-    public static final FoodProperties GINGER = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.5F).build();
-    public static final FoodProperties SQUID = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.2F).build();
-    public static final FoodProperties COOKED_SQUID = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.8F).build();
-    public static final FoodProperties GLOW_SQUID = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.2F)
+    public static final FoodProperties BEANS = (new FoodProperties.Builder()).nutrition(1).saturationModifier(0.2F).fast().build();
+    public static final FoodProperties REFRIED_BEANS = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.4F).build();
+    public static final FoodProperties TOFU = (new FoodProperties.Builder()).nutrition(8).saturationModifier(0.6F).build();
+    public static final FoodProperties AVOCADO = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.6F).build();
+    public static final FoodProperties CUCUMBER = (new FoodProperties.Builder()).nutrition(2).saturationModifier(0.5F).build();
+    public static final FoodProperties PICKLE = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.7F).build();
+    public static final FoodProperties EGGPLANT = (new FoodProperties.Builder()).nutrition(3).saturationModifier(0.2F).build();
+    public static final FoodProperties SMOKED_EGGPLANT = (new FoodProperties.Builder()).nutrition(8).saturationModifier(0.6F).build();
+    public static final FoodProperties SMOKED_TOMATO = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.6F).build();
+    public static final FoodProperties SMOKED_WHITE_EGGPLANT = (new FoodProperties.Builder()).nutrition(3).saturationModifier(0.5F).build();
+    public static final FoodProperties WHITE_EGGPLANT = (new FoodProperties.Builder()).nutrition(1).saturationModifier(0.1F).build();
+    public static final FoodProperties CORN_COB = (new FoodProperties.Builder()).nutrition(2).saturationModifier(0.4F).build();
+    public static final FoodProperties BEAN_POD = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.6F).build();
+    public static final FoodProperties GINGER = (new FoodProperties.Builder()).nutrition(2).saturationModifier(0.5F).build();
+    public static final FoodProperties SQUID = (new FoodProperties.Builder()).nutrition(2).saturationModifier(0.2F).build();
+    public static final FoodProperties COOKED_SQUID = (new FoodProperties.Builder()).nutrition(6).saturationModifier(0.8F).build();
+    public static final FoodProperties GLOW_SQUID = (new FoodProperties.Builder()).nutrition(2).saturationModifier(0.2F)
             .effect(() -> new MobEffectInstance(MobEffects.GLOWING, 40, 1), 1.0F).fast().build();
-    public static final FoodProperties RAW_CALAMARI = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.2F).build();
-    public static final FoodProperties COOKED_CALAMARI = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.5F).build();
+    public static final FoodProperties RAW_CALAMARI = (new FoodProperties.Builder()).nutrition(1).saturationModifier(0.2F).build();
+    public static final FoodProperties COOKED_CALAMARI = (new FoodProperties.Builder()).nutrition(3).saturationModifier(0.5F).build();
 
-    public static final FoodProperties CUT_AVOCADO = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).fast().build();
-    public static final FoodProperties CUT_CUCUMBER = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.3F).fast().build();
-    public static final FoodProperties CUT_PICKLE = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.5F).fast().build();
-    public static final FoodProperties CUT_EGGPLANT = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).fast().build();
-    public static final FoodProperties SMOKED_CUT_EGGPLANT = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.4F).fast().build();
+    public static final FoodProperties CUT_AVOCADO = (new FoodProperties.Builder()).nutrition(2).saturationModifier(0.3F).fast().build();
+    public static final FoodProperties CUT_CUCUMBER = (new FoodProperties.Builder()).nutrition(1).saturationModifier(0.3F).fast().build();
+    public static final FoodProperties CUT_PICKLE = (new FoodProperties.Builder()).nutrition(2).saturationModifier(0.5F).fast().build();
+    public static final FoodProperties CUT_EGGPLANT = (new FoodProperties.Builder()).nutrition(1).saturationModifier(0.1F).fast().build();
+    public static final FoodProperties SMOKED_CUT_EGGPLANT = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.4F).fast().build();
 
-    public static final FoodProperties CORN_DOG = (new FoodProperties.Builder()).nutrition(7).saturationMod(0.5F).build();
-    public static final FoodProperties HOT_DOG = (new FoodProperties.Builder()).nutrition(10).saturationMod(0.6F).build();
-    public static final FoodProperties CHEESY_CHIP_WRAP = (new FoodProperties.Builder()).nutrition(8).saturationMod(0.6F).build();
-    public static final FoodProperties CHEESE_CRACKER = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).fast().build();
-    public static final FoodProperties CHIPS_WITH_CHEESE = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.6F).build();
-    public static final FoodProperties CINNAMON_MINT_CURRY = (new FoodProperties.Builder()).nutrition(14).saturationMod(0.8F).build();
-    public static final FoodProperties CINNAMON_CRACKER = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).fast().build();
+    public static final FoodProperties CORN_DOG = (new FoodProperties.Builder()).nutrition(7).saturationModifier(0.5F).build();
+    public static final FoodProperties HOT_DOG = (new FoodProperties.Builder()).nutrition(10).saturationModifier(0.6F).build();
+    public static final FoodProperties CHEESY_CHIP_WRAP = (new FoodProperties.Builder()).nutrition(8).saturationModifier(0.6F).build();
+    public static final FoodProperties CHEESE_CRACKER = (new FoodProperties.Builder()).nutrition(1).saturationModifier(0.1F).fast().build();
+    public static final FoodProperties CHIPS_WITH_CHEESE = (new FoodProperties.Builder()).nutrition(6).saturationModifier(0.6F).build();
+    public static final FoodProperties CINNAMON_MINT_CURRY = (new FoodProperties.Builder()).nutrition(14).saturationModifier(0.8F).build();
+    public static final FoodProperties CINNAMON_CRACKER = (new FoodProperties.Builder()).nutrition(1).saturationModifier(0.1F).fast().build();
 
-    public static final FoodProperties BUTTER = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).build();
-    public static final FoodProperties BUTTERED_TOAST = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.5F).build();
-    public static final FoodProperties RAW_SAUSAGE = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).build();
-    public static final FoodProperties COOKED_SAUSAGE = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.4F).build();
-    public static final FoodProperties SNAG = (new FoodProperties.Builder()).nutrition(8).saturationMod(0.5F).build();
-    public static final FoodProperties SAUSAGES_AND_MASH = (new FoodProperties.Builder()).nutrition(12).saturationMod(0.9F)
-            .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT.get(), FoodValues.LONG_DURATION, 0), 1.0F).build();
-    public static final FoodProperties POPCORN_BUCKET = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.8F).build();
+    public static final FoodProperties BUTTER = (new FoodProperties.Builder()).nutrition(1).saturationModifier(0.1F).build();
+    public static final FoodProperties BUTTERED_TOAST = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.5F).build();
+    public static final FoodProperties RAW_SAUSAGE = (new FoodProperties.Builder()).nutrition(1).saturationModifier(0.1F).build();
+    public static final FoodProperties COOKED_SAUSAGE = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.4F).build();
+    public static final FoodProperties SNAG = (new FoodProperties.Builder()).nutrition(8).saturationModifier(0.5F).build();
+    public static final FoodProperties SAUSAGES_AND_MASH = (new FoodProperties.Builder()).nutrition(12).saturationModifier(0.9F)
+            .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT, FoodValues.LONG_DURATION, 0), 1.0F).build();
+    public static final FoodProperties POPCORN_BUCKET = (new FoodProperties.Builder()).nutrition(6).saturationModifier(0.8F).build();
 
-    public static final FoodProperties BEER = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
-            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F).build();
-    public static final FoodProperties WINE = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
-            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F).build();
-    public static final FoodProperties GLOW_WINE = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
-            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F).build();
-    public static final FoodProperties GINGER_BEER = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
+    public static final FoodProperties BEER = (new FoodProperties.Builder()).nutrition(0).saturationModifier(0.8F).alwaysEdible()
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION, 1200, 0), 1.0F).build();
+    public static final FoodProperties WINE = (new FoodProperties.Builder()).nutrition(0).saturationModifier(0.8F).alwaysEdible()
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION, 1200, 0), 1.0F).build();
+    public static final FoodProperties GLOW_WINE = (new FoodProperties.Builder()).nutrition(0).saturationModifier(0.8F).alwaysEdible()
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION, 1200, 0), 1.0F).build();
+    public static final FoodProperties GINGER_BEER = (new FoodProperties.Builder()).nutrition(0).saturationModifier(0.8F).alwaysEdible()
             .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 1200, 0), 1.0F).build();
-    public static final FoodProperties MEAD = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
-            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F).build();
-    public static final FoodProperties APPLE_CIDER = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
-            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F).build();
-    public static final FoodProperties MOJITO = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
-            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F)
+    public static final FoodProperties MEAD = (new FoodProperties.Builder()).nutrition(0).saturationModifier(0.8F).alwaysEdible()
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION, 1200, 0), 1.0F).build();
+    public static final FoodProperties APPLE_CIDER = (new FoodProperties.Builder()).nutrition(0).saturationModifier(0.8F).alwaysEdible()
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION, 1200, 0), 1.0F).build();
+    public static final FoodProperties MOJITO = (new FoodProperties.Builder()).nutrition(0).saturationModifier(0.8F).alwaysEdible()
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION, 1200, 0), 1.0F)
             .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 1200, 1), 1.0F).build();
-    public static final FoodProperties MARGARITA = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
-            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F)
+    public static final FoodProperties MARGARITA = (new FoodProperties.Builder()).nutrition(0).saturationModifier(0.8F).alwaysEdible()
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION, 1200, 0), 1.0F)
             .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 1200, 1), 1.0F).build();
-    public static final FoodProperties BLOODY_MARY = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
-            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F)
+    public static final FoodProperties BLOODY_MARY = (new FoodProperties.Builder()).nutrition(0).saturationModifier(0.8F).alwaysEdible()
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION, 1200, 0), 1.0F)
             .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 1200, 1), 1.0F).build();
-    public static final FoodProperties LEMON_LIQUEUR = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
-            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F).build();
-    public static final FoodProperties BUTTERBEER = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
-            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F)
-            .effect(() -> new MobEffectInstance(ModEffects.COMFORT.get(), FoodValues.LONG_DURATION, 0), 1.0F).build();
-    public static final FoodProperties COLA = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
+    public static final FoodProperties LEMON_LIQUEUR = (new FoodProperties.Builder()).nutrition(0).saturationModifier(0.8F).alwaysEdible()
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION, 1200, 0), 1.0F).build();
+    public static final FoodProperties BUTTERBEER = (new FoodProperties.Builder()).nutrition(0).saturationModifier(0.8F).alwaysEdible()
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION, 1200, 0), 1.0F)
+            .effect(() -> new MobEffectInstance(ModEffects.COMFORT, FoodValues.LONG_DURATION, 0), 1.0F).build();
+    public static final FoodProperties COLA = (new FoodProperties.Builder()).nutrition(0).saturationModifier(0.8F).alwaysEdible()
             .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 1200, 1), 1.0F).build();
-    public static final FoodProperties TEQUILA = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
-            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F).build();
-    public static final FoodProperties GIN = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
-            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F).build();
-    public static final FoodProperties BRANDY = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
-            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F).build();
-    public static final FoodProperties VODKA = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
-            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F).build();
-    public static final FoodProperties WHISKEY = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
-            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F).build();
-    public static final FoodProperties RUM = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
-            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION.get(), 1200, 0), 1.0F).build();
+    public static final FoodProperties TEQUILA = (new FoodProperties.Builder()).nutrition(0).saturationModifier(0.8F).alwaysEdible()
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION, 1200, 0), 1.0F).build();
+    public static final FoodProperties GIN = (new FoodProperties.Builder()).nutrition(0).saturationModifier(0.8F).alwaysEdible()
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION, 1200, 0), 1.0F).build();
+    public static final FoodProperties BRANDY = (new FoodProperties.Builder()).nutrition(0).saturationModifier(0.8F).alwaysEdible()
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION, 1200, 0), 1.0F).build();
+    public static final FoodProperties VODKA = (new FoodProperties.Builder()).nutrition(0).saturationModifier(0.8F).alwaysEdible()
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION, 1200, 0), 1.0F).build();
+    public static final FoodProperties WHISKEY = (new FoodProperties.Builder()).nutrition(0).saturationModifier(0.8F).alwaysEdible()
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION, 1200, 0), 1.0F).build();
+    public static final FoodProperties RUM = (new FoodProperties.Builder()).nutrition(0).saturationModifier(0.8F).alwaysEdible()
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.INTOXICATION, 1200, 0), 1.0F).build();
 
-    public static final FoodProperties ACID = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F)
+    public static final FoodProperties ACID = (new FoodProperties.Builder()).nutrition(0).saturationModifier(0.8F).alwaysEdible()
             .effect(() -> new MobEffectInstance(MobEffects.HARM, 1200, 0), 1.0F).build();
-    public static final FoodProperties VINEGAR = (new FoodProperties.Builder()).nutrition(0).saturationMod(0.8F).build();
-    public static final FoodProperties PICKLED_EGG = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.5F).build();
-    public static final FoodProperties CHEESE_WHEEL = (new FoodProperties.Builder()).nutrition(8).saturationMod(0.12F)
-            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.CHEESY.get(), 200, 1), 1.0F).fast().build();
-    public static final FoodProperties CHEESE_WEDGE = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F)
-            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.CHEESY.get(), 200, 1), 1.0F).fast().build();
+    public static final FoodProperties VINEGAR = (new FoodProperties.Builder()).nutrition(0).saturationModifier(0.8F).alwaysEdible().build();
+    public static final FoodProperties PICKLED_EGG = (new FoodProperties.Builder()).nutrition(3).saturationModifier(0.5F).build();
+    public static final FoodProperties CHEESE_WHEEL = (new FoodProperties.Builder()).nutrition(8).saturationModifier(0.12F)
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.CHEESY, 200, 1), 1.0F).fast().build();
+    public static final FoodProperties CHEESE_WEDGE = (new FoodProperties.Builder()).nutrition(2).saturationModifier(0.3F)
+            .effect(() -> new MobEffectInstance(com.baisylia.culturaldelights.effect.ModEffects.CHEESY, 200, 1), 1.0F).fast().build();
 
     //SUSHI
-    public static final FoodProperties MIDORI_ROLL = (new FoodProperties.Builder()).nutrition(14).saturationMod(0.7F).build();
-    public static final FoodProperties MIDORI_ROLL_SLICE = (new FoodProperties.Builder()).nutrition(7).saturationMod(0.4F).fast().build();
-    public static final FoodProperties EGG_ROLL = (new FoodProperties.Builder()).nutrition(5).saturationMod(0.5F).fast().build();
-    public static final FoodProperties CHICKEN_ROLL = (new FoodProperties.Builder()).nutrition(16).saturationMod(0.8F).build();
-    public static final FoodProperties CHICKEN_ROLL_SLICE = (new FoodProperties.Builder()).nutrition(8).saturationMod(0.6F).fast().build();
-    public static final FoodProperties PUFFERFISH_ROLL = (new FoodProperties.Builder()).nutrition(7).saturationMod(0.6F)
+    public static final FoodProperties MIDORI_ROLL = (new FoodProperties.Builder()).nutrition(14).saturationModifier(0.7F).build();
+    public static final FoodProperties MIDORI_ROLL_SLICE = (new FoodProperties.Builder()).nutrition(7).saturationModifier(0.4F).fast().build();
+    public static final FoodProperties EGG_ROLL = (new FoodProperties.Builder()).nutrition(5).saturationModifier(0.5F).fast().build();
+    public static final FoodProperties CHICKEN_ROLL = (new FoodProperties.Builder()).nutrition(16).saturationModifier(0.8F).build();
+    public static final FoodProperties CHICKEN_ROLL_SLICE = (new FoodProperties.Builder()).nutrition(8).saturationModifier(0.6F).fast().build();
+    public static final FoodProperties PUFFERFISH_ROLL = (new FoodProperties.Builder()).nutrition(7).saturationModifier(0.6F)
             .effect(() -> new MobEffectInstance(MobEffects.CONFUSION, 200, 0), 1.0F)
             .effect(() -> new MobEffectInstance(MobEffects.HUNGER, 200, 1), 1.0F).fast().build();
-    public static final FoodProperties TROPICAL_ROLL = (new FoodProperties.Builder()).nutrition(7).saturationMod(0.6F).fast().build();
-    public static final FoodProperties RICE_BALL = (new FoodProperties.Builder()).nutrition(3).saturationMod(0.5F).fast().build();
-    public static final FoodProperties CALAMARI_ROLL = (new FoodProperties.Builder()).nutrition(7).saturationMod(0.6F).fast().build();
+    public static final FoodProperties TROPICAL_ROLL = (new FoodProperties.Builder()).nutrition(7).saturationModifier(0.6F).fast().build();
+    public static final FoodProperties RICE_BALL = (new FoodProperties.Builder()).nutrition(3).saturationModifier(0.5F).fast().build();
+    public static final FoodProperties CALAMARI_ROLL = (new FoodProperties.Builder()).nutrition(7).saturationModifier(0.6F).fast().build();
 
     //MEALS
-    public static final FoodProperties CORN_DOUGH = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.1F).build();
-    public static final FoodProperties TORTILLA = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.6F).build();
-    public static final FoodProperties POPCORN = (new FoodProperties.Builder()).nutrition(1).saturationMod(0.2F).fast().build();
-    public static final FoodProperties TORTILLA_CHIPS = (new FoodProperties.Builder()).nutrition(2).saturationMod(0.3F).fast().build();
-    public static final FoodProperties ELOTE = (new FoodProperties.Builder()).nutrition(7).saturationMod(0.7F).build();
-    public static final FoodProperties EMPANADA = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.6F).build();
-    public static final FoodProperties BEEF_BURRITO = (new FoodProperties.Builder()).nutrition(14).saturationMod(0.9F).build();
-    public static final FoodProperties MUTTON_SANDWICH = (new FoodProperties.Builder()).nutrition(10).saturationMod(0.8F).build();
-    public static final FoodProperties AVOCADO_TOAST = (new FoodProperties.Builder()).nutrition(4).saturationMod(0.5F).build();
-    public static final FoodProperties CREAMED_CORN = (new FoodProperties.Builder()).nutrition(6).saturationMod(0.8F).build();
-    public static final FoodProperties CHICKEN_TACO = (new FoodProperties.Builder()).nutrition(10).saturationMod(0.9F).build();
-    public static final FoodProperties PORK_WRAP = (new FoodProperties.Builder()).nutrition(10).saturationMod(0.8F).build();
-    public static final FoodProperties FISH_TACO = (new FoodProperties.Builder()).nutrition(10).saturationMod(0.8F).build();
-    public static final FoodProperties HEARTY_SALAD = (new FoodProperties.Builder()).nutrition(7).saturationMod(0.7F)
-            .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT.get(), FoodValues.LONG_DURATION, 0), 1.0F).build();
-    public static final FoodProperties EGGPLANT_PARMESAN = (new FoodProperties.Builder()).nutrition(12).saturationMod(0.9F)
-            .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT.get(), FoodValues.LONG_DURATION, 0), 1.0F).build();
-    public static final FoodProperties EGGPLANT_BURGER = (new FoodProperties.Builder()).nutrition(12).saturationMod(0.7F).build();
-    public static final FoodProperties SPICY_CURRY = (new FoodProperties.Builder()).nutrition(12).saturationMod(1.3F)
-            .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT.get(), FoodValues.LONG_DURATION, 0), 1.0F).build();
-    public static final FoodProperties POACHED_EGGPLANTS = (new FoodProperties.Builder()).nutrition(8).saturationMod(1.0F)
-            .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT.get(), FoodValues.LONG_DURATION, 0), 1.0F).build();
+    public static final FoodProperties CORN_DOUGH = (new FoodProperties.Builder()).nutrition(1).saturationModifier(0.1F).build();
+    public static final FoodProperties TORTILLA = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.6F).build();
+    public static final FoodProperties POPCORN = (new FoodProperties.Builder()).nutrition(1).saturationModifier(0.2F).fast().build();
+    public static final FoodProperties TORTILLA_CHIPS = (new FoodProperties.Builder()).nutrition(2).saturationModifier(0.3F).fast().build();
+    public static final FoodProperties ELOTE = (new FoodProperties.Builder()).nutrition(7).saturationModifier(0.7F).build();
+    public static final FoodProperties EMPANADA = (new FoodProperties.Builder()).nutrition(6).saturationModifier(0.6F).build();
+    public static final FoodProperties BEEF_BURRITO = (new FoodProperties.Builder()).nutrition(14).saturationModifier(0.9F).build();
+    public static final FoodProperties MUTTON_SANDWICH = (new FoodProperties.Builder()).nutrition(10).saturationModifier(0.8F).build();
+    public static final FoodProperties AVOCADO_TOAST = (new FoodProperties.Builder()).nutrition(4).saturationModifier(0.5F).build();
+    public static final FoodProperties CREAMED_CORN = (new FoodProperties.Builder()).nutrition(6).saturationModifier(0.8F).build();
+    public static final FoodProperties CHICKEN_TACO = (new FoodProperties.Builder()).nutrition(10).saturationModifier(0.9F).build();
+    public static final FoodProperties PORK_WRAP = (new FoodProperties.Builder()).nutrition(10).saturationModifier(0.8F).build();
+    public static final FoodProperties FISH_TACO = (new FoodProperties.Builder()).nutrition(10).saturationModifier(0.8F).build();
+    public static final FoodProperties HEARTY_SALAD = (new FoodProperties.Builder()).nutrition(7).saturationModifier(0.7F)
+            .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT, FoodValues.LONG_DURATION, 0), 1.0F).build();
+    public static final FoodProperties EGGPLANT_PARMESAN = (new FoodProperties.Builder()).nutrition(12).saturationModifier(0.9F)
+            .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT, FoodValues.LONG_DURATION, 0), 1.0F).build();
+    public static final FoodProperties EGGPLANT_BURGER = (new FoodProperties.Builder()).nutrition(12).saturationModifier(0.7F).build();
+    public static final FoodProperties SPICY_CURRY = (new FoodProperties.Builder()).nutrition(12).saturationModifier(1.3F)
+            .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT, FoodValues.LONG_DURATION, 0), 1.0F).build();
+    public static final FoodProperties POACHED_EGGPLANTS = (new FoodProperties.Builder()).nutrition(8).saturationModifier(1.0F)
+            .effect(() -> new MobEffectInstance(ModEffects.NOURISHMENT, FoodValues.LONG_DURATION, 0), 1.0F).build();
 
 }

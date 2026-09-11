@@ -1,0 +1,32 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "tag": "c:crops/corn"
+    }
+  ],
+  "tool": {
+    "tag": "c:tools/knife"
+  },
+  "result": [
+    {
+      "item": {
+        "count": 1,
+        "id": "culturaldelights:corn_kernels"
+      }
+    },
+    {
+      "item": {
+        "count": 1,
+        "id": "culturaldelights:corn_kernels"
+      },
+      "chance": 0.5
+    },
+    {
+      "item": {
+        "count": 1,
+        "id": "farmersdelight:straw"
+      }
+    }
+  ]
+}

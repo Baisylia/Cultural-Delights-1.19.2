@@ -1,0 +1,25 @@
+{
+  "type": "culturaldelights:aging",
+  "cooktime": 200,
+  "ingredients": [
+    {
+      "tag": "c:drinks/milk"
+    },
+    {
+      "tag": "c:drinks/milk"
+    },
+    {
+      "tag": "c:drinks/milk"
+    },
+    {
+      "item": "minecraft:brown_mushroom"
+    },
+    {
+      "item": "cookscollection:salt"
+    }
+  ],
+  "result": {
+    "id": "culturaldelights:cheese_wheel",
+    "count": 1
+  }
+}

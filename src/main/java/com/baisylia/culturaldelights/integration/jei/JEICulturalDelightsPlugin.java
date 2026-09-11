@@ -2,6 +2,7 @@ package com.baisylia.culturaldelights.integration.jei;
 
 import com.baisylia.culturaldelights.CulturalDelights;
 import com.baisylia.culturaldelights.block.ModBlocks;
+import com.baisylia.culturaldelights.recipes.ModRecipes;
 import com.baisylia.culturaldelights.recipes.VatRecipe;
 import com.baisylia.culturaldelights.screens.ModMenuTypes;
 import com.baisylia.culturaldelights.screens.VatMenu;
@@ -12,6 +13,7 @@ import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.registration.*;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
 
 import java.util.List;
@@ -19,12 +21,18 @@ import java.util.Objects;
 
 @JeiPlugin
 public class JEICulturalDelightsPlugin implements IModPlugin {
-    public static RecipeType<VatRecipe> AGING_TYPE =
-            new RecipeType<>(VatRecipeCategory.UID, VatRecipe.class);
+    private static RecipeType<RecipeHolder<VatRecipe>> agingType;
+
+    public static RecipeType<RecipeHolder<VatRecipe>> getAgingType() {
+        if (agingType == null) {
+            agingType = RecipeType.createFromVanilla(ModRecipes.AGING_TYPE.get());
+        }
+        return agingType;
+    }
 
     @Override
     public ResourceLocation getPluginUid() {
-        return new ResourceLocation(CulturalDelights.MOD_ID, "jei_plugin");
+        return ResourceLocation.fromNamespaceAndPath(CulturalDelights.MOD_ID, "jei_plugin");
     }
 
     @Override
@@ -37,24 +45,23 @@ public class JEICulturalDelightsPlugin implements IModPlugin {
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
         RecipeManager rm = Objects.requireNonNull(Minecraft.getInstance().level).getRecipeManager();
-
-        List<VatRecipe> recipes = rm.getAllRecipesFor(VatRecipe.Type.INSTANCE);
-        registration.addRecipes(AGING_TYPE, recipes);
+        List<RecipeHolder<VatRecipe>> recipes = rm.getAllRecipesFor(ModRecipes.AGING_TYPE.get());
+        registration.addRecipes(getAgingType(), recipes);
     }
 
     @Override
     public void registerRecipeCatalysts(IRecipeCatalystRegistration registration) {
         var stack = ModBlocks.VAT.get().asItem().getDefaultInstance();
-        registration.addRecipeCatalyst(stack, AGING_TYPE);
+        registration.addRecipeCatalyst(stack, getAgingType());
     }
 
     @Override
     public void registerGuiHandlers(IGuiHandlerRegistration registration) {
-        registration.addRecipeClickArea(VatScreen.class, 88, 24, 26, 17, AGING_TYPE);
+        registration.addRecipeClickArea(VatScreen.class, 88, 24, 26, 17, getAgingType());
     }
 
     @Override
     public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
-        registration.addRecipeTransferHandler(VatMenu.class, ModMenuTypes.VAT_MENU.get(), AGING_TYPE, 36, 6, 0, 36);
+        registration.addRecipeTransferHandler(VatMenu.class, ModMenuTypes.VAT_MENU.get(), getAgingType(), 36, 6, 0, 36);
     }
 }

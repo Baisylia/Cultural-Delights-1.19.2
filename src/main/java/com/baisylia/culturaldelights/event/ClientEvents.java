@@ -7,12 +7,12 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.ViewportEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.client.event.ViewportEvent;
 
-@Mod.EventBusSubscriber(modid = CulturalDelights.MOD_ID, value = Dist.CLIENT)
+@EventBusSubscriber(modid = CulturalDelights.MOD_ID, value = Dist.CLIENT)
 public class ClientEvents {
 
     private static float currentPitch = 0.0F;
@@ -35,8 +35,8 @@ public class ClientEvents {
         float targetRoll = 0.0F;
         boolean hasEffect = false;
 
-        if (cameraEntity instanceof LivingEntity living && living.isAlive() && living.hasEffect(ModEffects.INTOXICATION.get())) {
-            MobEffectInstance effect = living.getEffect(ModEffects.INTOXICATION.get());
+        if (cameraEntity instanceof LivingEntity living && living.isAlive() && living.hasEffect(ModEffects.INTOXICATION)) {
+            MobEffectInstance effect = living.getEffect(ModEffects.INTOXICATION);
             if (effect != null) {
                 hasEffect = true;
                 int amplifier = effect.getAmplifier();
@@ -68,7 +68,7 @@ public class ClientEvents {
         }
 
         // Interpolate towards target
-        float deltaTicks = Minecraft.getInstance().getDeltaFrameTime();
+        float deltaTicks = Minecraft.getInstance().getTimer().getRealtimeDeltaTicks();
         float factor = Math.min(1.0F, deltaTicks * 0.15F);
         currentPitch = Mth.lerp(factor, currentPitch, targetPitch);
         currentYaw = Mth.lerp(factor, currentYaw, targetYaw);

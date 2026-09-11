@@ -1,17 +1,15 @@
 package com.baisylia.culturaldelights.world.feature.tree;
 
 import com.baisylia.culturaldelights.world.feature.ModConfiguredFeatures;
-import net.minecraft.core.Holder;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.block.grower.AbstractTreeGrower;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.block.grower.TreeGrower;
 
-import javax.annotation.Nullable;
+import java.util.Optional;
 
-public class AvocadoTreeGrower extends AbstractTreeGrower {
-    @Nullable
-    @Override
-    protected Holder<? extends ConfiguredFeature<?, ?>> getConfiguredFeature(RandomSource p_222910_, boolean pLargeHive) {
-        return ModConfiguredFeatures.AVOCADO_TREE.getHolder().get();
-    }
+public class AvocadoTreeGrower {
+    public static final TreeGrower AVOCADO_TREE_GROWER = new TreeGrower(
+            "culturaldelights:avocado",
+            Optional.empty(),
+            Optional.of(ModConfiguredFeatures.AVOCADO_TREE_KEY),
+            Optional.empty()
+    );
 }

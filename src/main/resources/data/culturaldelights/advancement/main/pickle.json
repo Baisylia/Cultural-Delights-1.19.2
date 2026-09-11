@@ -1,0 +1,34 @@
+{
+  "parent": "culturaldelights:main/vat",
+  "display": {
+    "icon": {
+      "id": "culturaldelights:pickle",
+      "count": 1
+    },
+    "title": "The Funniest Thing",
+    "description": "Pickle a cucumber in the vat",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "pickle": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "culturaldelights:pickle"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "pickle"
+    ]
+  ]
+}

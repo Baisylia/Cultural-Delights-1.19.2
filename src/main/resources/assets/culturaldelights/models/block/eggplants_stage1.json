@@ -2,5 +2,6 @@
   "parent": "minecraft:block/crop",
   "textures": {
     "crop": "culturaldelights:block/eggplants_stage1"
-  }
+  },
+  "render_type": "minecraft:cutout"
 }

@@ -4,7 +4,6 @@ import com.baisylia.culturaldelights.block.ModBlocks;
 import com.baisylia.culturaldelights.block.custom.BeansBlock;
 import com.baisylia.culturaldelights.block.custom.RopeBeansBlock;
 import com.baisylia.culturaldelights.block.custom.StickBeansBlock;
-import net.mehvahdjukaar.supplementaries.configs.CommonConfigs;
 import net.mehvahdjukaar.supplementaries.reg.ModRegistry;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
@@ -45,7 +44,7 @@ public class SupplementariesCompat {
     public static InteractionResult tryUseStick(BlockState state, Level level, BlockPos pos, Player player,
                                                 InteractionHand hand, BlockHitResult hit) {
         ItemStack stack = player.getItemInHand(hand);
-        if (!stack.is(Items.STICK) || !CommonConfigs.Tweaks.PLACEABLE_STICKS.get()) {
+        if (!stack.is(Items.STICK)) {
             return InteractionResult.PASS;
         }
 

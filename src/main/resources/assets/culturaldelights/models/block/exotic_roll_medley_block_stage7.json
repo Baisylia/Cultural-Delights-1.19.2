@@ -1,7 +1,7 @@
 {
   "credit": "Made with Blockbench",
   "textures": {
-    "tray_top": "farmersdelight:block/tray_top",
+    "tray_top": "farmersdelight:block/tray",
     "food": "culturaldelights:block/exotic_roll_medley",
     "particle": "culturaldelights:block/exotic_roll_medley",
     "tray_bottom": "farmersdelight:block/tray_bottom"

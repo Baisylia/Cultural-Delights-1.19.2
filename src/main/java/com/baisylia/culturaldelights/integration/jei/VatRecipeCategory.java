@@ -6,9 +6,9 @@ import com.baisylia.culturaldelights.recipes.VatRecipe;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
-import com.mojang.blaze3d.vertex.PoseStack;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
+import mezz.jei.api.gui.builder.ITooltipBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
 import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
@@ -17,23 +17,21 @@ import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.RecipeHolder;
 
-import java.util.List;
-
-public class VatRecipeCategory implements IRecipeCategory<VatRecipe> {
-    public final static ResourceLocation UID = new ResourceLocation(CulturalDelights.MOD_ID, "aging");
-    public final static ResourceLocation TEXTURE =
-            new ResourceLocation(CulturalDelights.MOD_ID, "textures/gui/vat_gui_jei.png");
+public class VatRecipeCategory implements IRecipeCategory<RecipeHolder<VatRecipe>> {
+    public static final ResourceLocation TEXTURE =
+            ResourceLocation.fromNamespaceAndPath(CulturalDelights.MOD_ID, "textures/gui/vat_gui_jei.png");
 
     private final IDrawable background;
     private final IDrawable icon;
     private final IDrawable coldThermometer;
     private final IDrawable normalThermometer;
     private final IDrawable hotThermometer;
-    private final int regularCookTime = 400;
     private final LoadingCache<Integer, IDrawableAnimated> cachedArrows;
 
     public VatRecipeCategory(IGuiHelper helper) {
@@ -54,44 +52,45 @@ public class VatRecipeCategory implements IRecipeCategory<VatRecipe> {
     }
 
     @Override
-    public void draw(VatRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack poseStack, double mouseX, double mouseY) {
-        IDrawableAnimated arrow = getArrow(recipe);
-        arrow.draw(poseStack, 63, 10);
+    public void draw(RecipeHolder<VatRecipe> holder, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+        background.draw(guiGraphics, 0, 0);
+        IDrawableAnimated arrow = getArrow(holder.value());
+        arrow.draw(guiGraphics, 63, 10);
 
-        IDrawable thermometer = switch (recipe.getTemperature()) {
+        IDrawable thermometer = switch (holder.value().getTemperature()) {
             case COLD -> coldThermometer;
             case NORMAL -> normalThermometer;
             case HOT -> hotThermometer;
         };
-        thermometer.draw(poseStack, 5, 6);
+        thermometer.draw(guiGraphics, 5, 6);
     }
 
     @Override
-    public List<Component> getTooltipStrings(VatRecipe recipe, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
+    public void getTooltip(ITooltipBuilder tooltip, RecipeHolder<VatRecipe> holder, IRecipeSlotsView recipeSlotsView, double mouseX, double mouseY) {
         if (mouseX >= 5 && mouseX <= 17 && mouseY >= 6 && mouseY <= 52) {
-            return List.of(Component.translatable("container.culturaldelights.vat." + recipe.getTemperature().getSerializedName()));
+            tooltip.add(Component.translatable("container.culturaldelights.vat." + holder.value().getTemperature().getSerializedName()));
         }
         if (mouseX >= 63 && mouseX <= 86 && mouseY >= 10 && mouseY <= 28) {
-            int cookTime = recipe.getCookTime();
+            int cookTime = holder.value().getCookTime();
             if (cookTime > 0) {
                 int cookTimeSeconds = cookTime / 20;
-                return List.of(Component.translatable("gui.jei.category.smelting.time.seconds", cookTimeSeconds));
+                tooltip.add(Component.translatable("gui.jei.category.smelting.time.seconds", cookTimeSeconds));
             }
         }
-        return List.of();
     }
 
     protected IDrawableAnimated getArrow(VatRecipe recipe) {
         int cookTime = recipe.getCookTime();
         if (cookTime <= 0) {
+            int regularCookTime = 400;
             cookTime = regularCookTime;
         }
         return this.cachedArrows.getUnchecked(cookTime);
     }
 
     @Override
-    public RecipeType<VatRecipe> getRecipeType() {
-        return JEICulturalDelightsPlugin.AGING_TYPE;
+    public RecipeType<RecipeHolder<VatRecipe>> getRecipeType() {
+        return JEICulturalDelightsPlugin.getAgingType();
     }
 
     @Override
@@ -100,8 +99,13 @@ public class VatRecipeCategory implements IRecipeCategory<VatRecipe> {
     }
 
     @Override
-    public IDrawable getBackground() {
-        return this.background;
+    public int getWidth() {
+        return 124;
+    }
+
+    @Override
+    public int getHeight() {
+        return 58;
     }
 
     @Override
@@ -110,7 +114,8 @@ public class VatRecipeCategory implements IRecipeCategory<VatRecipe> {
     }
 
     @Override
-    public void setRecipe(IRecipeLayoutBuilder builder, VatRecipe recipe, IFocusGroup focuses) {
+    public void setRecipe(IRecipeLayoutBuilder builder, RecipeHolder<VatRecipe> holder, IFocusGroup focuses) {
+        VatRecipe recipe = holder.value();
         int[][] positions = {
                 {20, 3}, {38, 3},
                 {20, 21}, {38, 21},

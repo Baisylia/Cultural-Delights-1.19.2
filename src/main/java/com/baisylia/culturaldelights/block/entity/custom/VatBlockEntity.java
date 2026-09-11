@@ -2,12 +2,14 @@ package com.baisylia.culturaldelights.block.entity.custom;
 
 import com.baisylia.culturaldelights.block.custom.VatBlock;
 import com.baisylia.culturaldelights.block.entity.ModBlockEntities;
+import com.baisylia.culturaldelights.recipes.ModRecipes;
 import com.baisylia.culturaldelights.recipes.VatRecipe;
 import com.baisylia.culturaldelights.screens.VatMenu;
 import com.baisylia.culturaldelights.util.ModTags;
 import com.baisylia.culturaldelights.util.VatTemperature;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.Vec3i;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -24,20 +26,17 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.ContainerOpenersCounter;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.items.wrapper.SidedInvWrapper;
+import net.neoforged.neoforge.items.IItemHandler;
+import net.neoforged.neoforge.items.ItemStackHandler;
+import net.neoforged.neoforge.items.wrapper.RangedWrapper;
+import net.neoforged.neoforge.items.wrapper.RecipeWrapper;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Optional;
 
@@ -47,12 +46,10 @@ public class VatBlockEntity extends BlockEntity implements MenuProvider, Worldly
     private static final int OUTPUT_SLOT = 7;
     protected final ContainerData data;
     private final ContainerOpenersCounter openersCounter;
-    LazyOptional<? extends IItemHandler>[] handlers =
-            SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
     private int progress = 0;
     private int maxProgress = 72;
     private VatTemperature cachedTemperature = VatTemperature.NORMAL;
-    private Recipe<SimpleContainer> currentRecipe = null;
+    private VatRecipe currentRecipe = null;
     private final ItemStackHandler itemHandler = new ItemStackHandler(9) {
         @Override
         protected void onContentsChanged(int slot) {
@@ -62,7 +59,8 @@ public class VatBlockEntity extends BlockEntity implements MenuProvider, Worldly
             }
         }
     };
-    private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
+    private final IItemHandler inputHandler = new RangedWrapper(itemHandler, 0, 7);
+    private final IItemHandler outputHandler = new RangedWrapper(itemHandler, 7, 8);
 
     public VatBlockEntity(BlockPos pWorldPosition, BlockState pBlockState) {
         super(ModBlockEntities.VAT_BLOCK_ENTITY.get(), pWorldPosition, pBlockState);
@@ -117,14 +115,6 @@ public class VatBlockEntity extends BlockEntity implements MenuProvider, Worldly
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, VatBlockEntity pBlockEntity) {
         pBlockEntity.recheckOpen();
 
-        /*if (isFueled(pBlockEntity, pPos, pLevel)) {
-            pBlockEntity.litTime = 1;
-            setChanged(pLevel, pPos, pState);
-        } else {
-            pBlockEntity.litTime = 0;
-            setChanged(pLevel, pPos, pState);
-        }*/
-
         VatTemperature newTemp = getTemperature(pPos, pLevel);
         if (newTemp != pBlockEntity.cachedTemperature) {
             pBlockEntity.cachedTemperature = newTemp;
@@ -147,13 +137,13 @@ public class VatBlockEntity extends BlockEntity implements MenuProvider, Worldly
         }
     }
 
-    private static boolean canInsertItemIntoOutput(SimpleContainer inventory, ItemStack outputStack) {
-        ItemStack currentOutput = inventory.getItem(OUTPUT_SLOT);
+    private static boolean canInsertItemIntoOutput(ItemStackHandler handler, ItemStack outputStack) {
+        ItemStack currentOutput = handler.getStackInSlot(OUTPUT_SLOT);
 
         if (currentOutput.isEmpty()) {
             return true;
         }
-        if (!currentOutput.is(outputStack.getItem())) {
+        if (!ItemStack.isSameItemSameComponents(currentOutput, outputStack)) {
             return false;
         }
 
@@ -162,27 +152,22 @@ public class VatBlockEntity extends BlockEntity implements MenuProvider, Worldly
 
     private static boolean hasRecipe(VatBlockEntity entity) {
         Level level = entity.level;
+        if (level == null) return false;
         BlockPos pos = entity.getBlockPos();
 
-        // Check if the Vat is fueled (lit)
         VatTemperature currentTemp = getTemperature(pos, level);
-
-        SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
-        for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
-            inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
-        }
+        RecipeWrapper wrapper = new RecipeWrapper(entity.itemHandler);
 
         if (entity.currentRecipe != null) {
-            if (entity.currentRecipe.matches(inventory, level)) {
-                return canInsertItemIntoOutput(inventory, entity.currentRecipe.getResultItem());
+            if (entity.currentRecipe.matches(wrapper, level)) {
+                return canInsertItemIntoOutput(entity.itemHandler, entity.currentRecipe.getResultItem(level.registryAccess()));
             }
         }
 
-        // Check for Vat Recipe
-        Optional<VatRecipe> recipeMatch = level.getRecipeManager()
-                .getRecipeFor(VatRecipe.Type.INSTANCE, inventory, level);
+        Optional<RecipeHolder<VatRecipe>> recipeMatch = level.getRecipeManager()
+                .getRecipeFor(ModRecipes.AGING_TYPE.get(), wrapper, level);
         if (recipeMatch.isPresent()) {
-            VatRecipe recipe = recipeMatch.get();
+            VatRecipe recipe = recipeMatch.get().value();
 
             if (recipe.getTemperature() != currentTemp) {
                 return false;
@@ -190,7 +175,7 @@ public class VatBlockEntity extends BlockEntity implements MenuProvider, Worldly
 
             entity.currentRecipe = recipe;
             entity.maxProgress = recipe.getCookTime();
-            return canInsertItemIntoOutput(inventory, recipe.getResultItem());
+            return canInsertItemIntoOutput(entity.itemHandler, recipe.getResultItem(level.registryAccess()));
         } else {
             entity.currentRecipe = null;
         }
@@ -267,13 +252,14 @@ public class VatBlockEntity extends BlockEntity implements MenuProvider, Worldly
     }
 
     private static void craftItem(VatBlockEntity entity) {
-        Recipe<?> recipe = entity.currentRecipe;
+        VatRecipe recipe = entity.currentRecipe;
 
-        if (recipe == null) {
+        if (recipe == null || entity.level == null) {
             return;
         }
 
-        ItemStack resultItem = recipe.getResultItem();
+        RecipeWrapper wrapper = new RecipeWrapper(entity.itemHandler);
+        ItemStack resultItem = recipe.assemble(wrapper, entity.level.registryAccess());
 
         // Handle by-products (empty buckets, etc.)
         for (int i = 0; i < 7; ++i) {
@@ -318,49 +304,29 @@ public class VatBlockEntity extends BlockEntity implements MenuProvider, Worldly
         return new VatMenu(pContainerId, pInventory, this, this.data);
     }
 
-    @Nonnull
-    @Override
-    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @javax.annotation.Nullable Direction side) {
-        if (side == null && cap == ForgeCapabilities.ITEM_HANDLER) {
-            return lazyItemHandler.cast();
+    public IItemHandler getItemHandler(@Nullable Direction side) {
+        if (side == null) {
+            return this.itemHandler;
         }
-        if (!this.remove && side != null && cap == ForgeCapabilities.ITEM_HANDLER) {
-            if (side == Direction.UP)
-                return handlers[0].cast();
-            else if (side == Direction.DOWN)
-                return handlers[1].cast();
-            else
-                return handlers[2].cast();
-        }
-
-        return super.getCapability(cap, side);
+        return switch (side) {
+            case DOWN -> this.outputHandler;
+            default -> this.inputHandler;
+        };
     }
 
     @Override
-    public void onLoad() {
-        super.onLoad();
-        lazyItemHandler = LazyOptional.of(() -> itemHandler);
-    }
-
-    @Override
-    public void invalidateCaps() {
-        super.invalidateCaps();
-        lazyItemHandler.invalidate();
-    }
-
-    @Override
-    protected void saveAdditional(CompoundTag tag) {
-        tag.put("inventory", itemHandler.serializeNBT());
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
+        tag.put("inventory", itemHandler.serializeNBT(registries));
         tag.putInt("vat.progress", progress);
         tag.putInt("vat.temperature", cachedTemperature.ordinal());
         tag.putInt("vat.max_progress", maxProgress);
-        super.saveAdditional(tag);
+        super.saveAdditional(tag, registries);
     }
 
     @Override
-    public void load(CompoundTag nbt) {
-        super.load(nbt);
-        itemHandler.deserializeNBT(nbt.getCompound("inventory"));
+    protected void loadAdditional(CompoundTag nbt, HolderLookup.Provider registries) {
+        super.loadAdditional(nbt, registries);
+        itemHandler.deserializeNBT(registries, nbt.getCompound("inventory"));
         progress = nbt.getInt("vat.progress");
         cachedTemperature = VatTemperature.values()[nbt.getInt("vat.temperature")];
         maxProgress = nbt.getInt("vat.max_progress");

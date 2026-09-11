@@ -1,0 +1,32 @@
+{
+  "type": "cookscollection:baking",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "tag": "culturaldelights:regular_eggplants"
+    },
+    {
+      "item": "farmersdelight:raw_pasta"
+    },
+    {
+      "item": "farmersdelight:tomato_sauce"
+    },
+    {
+      "tag": "c:drinks/milk"
+    },
+    {
+      "tag": "c:eggs"
+    },
+    {
+      "tag": "c:foods/bread"
+    },
+    {
+      "item": "minecraft:bowl"
+    }
+  ],
+  "result": {
+    "id": "culturaldelights:eggplant_parmesan",
+    "count": 1
+  }
+}

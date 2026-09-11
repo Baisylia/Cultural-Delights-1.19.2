@@ -1,0 +1,29 @@
+{
+  "type": "cookscollection:baking",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "item": "minecraft:bowl"
+    },
+    {
+      "item": "culturaldelights:raw_sausage"
+    },
+    {
+      "item": "culturaldelights:raw_sausage"
+    },
+    {
+      "item": "minecraft:potato"
+    },
+    {
+      "item": "minecraft:potato"
+    },
+    {
+      "item": "culturaldelights:bean_pod"
+    }
+  ],
+  "result": {
+    "id": "culturaldelights:sausages_and_mash",
+    "count": 1
+  }
+}

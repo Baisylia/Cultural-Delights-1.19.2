@@ -1,67 +1,71 @@
 package com.baisylia.culturaldelights.recipes;
 
 import com.baisylia.culturaldelights.util.VatTemperature;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import it.unimi.dsi.fastutil.ints.IntList;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.GsonHelper;
-import net.minecraft.world.SimpleContainer;
-import net.minecraft.world.entity.player.StackedContents;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.util.RecipeMatcher;
+import net.neoforged.neoforge.common.util.RecipeMatcher;
+import net.neoforged.neoforge.items.wrapper.RecipeWrapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class VatRecipe implements Recipe<SimpleContainer> {
+public class VatRecipe implements Recipe<RecipeWrapper> {
 
-    private final ResourceLocation id;
     private final ItemStack output;
     private final NonNullList<Ingredient> recipeItems;
+    private final VatTemperature temperature;
     private final Ingredient containerItem;
     private final int cookTime;
-    private final VatTemperature temperature;
-    private final boolean isSimple;
 
-    public VatRecipe(ResourceLocation id, ItemStack output, NonNullList<Ingredient> recipeItems, VatTemperature temperature, Ingredient containerItem, int cookTime) {
-        this.id = id;
+    public VatRecipe(ItemStack output, NonNullList<Ingredient> recipeItems, VatTemperature temperature, Ingredient containerItem, int cookTime) {
         this.output = output;
         this.recipeItems = recipeItems;
+        this.temperature = temperature;
         this.containerItem = containerItem;
         this.cookTime = cookTime;
-        this.temperature = temperature;
-        this.isSimple = recipeItems.stream().allMatch(Ingredient::isSimple);
     }
 
     public VatTemperature getTemperature() {
         return this.temperature;
     }
+
     public Ingredient getContainer() {
-        return containerItem;
-    }
-    @Override
-    public ResourceLocation getId() {
-        return id;
+        return this.containerItem;
     }
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return Serializer.INSTANCE;
+        return ModRecipes.AGING_SERIALIZER.get();
     }
 
     @Override
+    public RecipeType<?> getType() {
+        return ModRecipes.AGING_TYPE.get();
+    }
+
+    @Override
+    public ItemStack getResultItem(HolderLookup.Provider provider) {
+        return this.output;
+    }
+
     public ItemStack getResultItem() {
-        return output.copy();
+        return this.output.copy();
     }
 
     @Override
     public NonNullList<Ingredient> getIngredients() {
-        return recipeItems;
+        return this.recipeItems;
     }
 
     public int getCookTime() {
@@ -69,137 +73,99 @@ public class VatRecipe implements Recipe<SimpleContainer> {
     }
 
     @Override
-    public boolean matches(SimpleContainer pContainer, Level pLevel) {
+    public boolean matches(RecipeWrapper inv, Level level) {
         // Check if output slot is already occupied with a different item
-        ItemStack outputSlot = pContainer.getItem(7);
-        if (!outputSlot.isEmpty() && !ItemStack.isSame(this.getResultItem(), outputSlot)) {
+        ItemStack outputSlot = inv.getItem(7);
+        if (!outputSlot.isEmpty() && !ItemStack.isSameItemSameComponents(this.output, outputSlot)) {
             return false;
         }
-
-        // Check if output slot is full
         if (!outputSlot.isEmpty() && outputSlot.getCount() >= outputSlot.getMaxStackSize()) {
             return false;
         }
-        StackedContents stackedcontents = new StackedContents();
-        List<ItemStack> inputs = new java.util.ArrayList<>();
-        int i = 0;
 
-        for(int j = 0; j < 6; ++j) {
-            ItemStack itemstack = pContainer.getItem(j);
-            if (!itemstack.isEmpty()) {
-                ++i;
-                if (isSimple)
-                    stackedcontents.accountStack(itemstack, 1);
-                else inputs.add(itemstack);
+        // Container
+        ItemStack containerSlot = inv.getItem(6);
+        boolean containerMatches;
+        if (this.containerItem.isEmpty()) {
+            containerMatches = containerSlot.isEmpty();
+        } else {
+            containerMatches = this.containerItem.test(containerSlot);
+        }
+        if (!containerMatches) {
+            return false;
+        }
+
+        List<ItemStack> inputs = new ArrayList<>();
+        int count = 0;
+        for (int j = 0; j < 6; ++j) {
+            ItemStack stack = inv.getItem(j);
+            if (!stack.isEmpty()) {
+                ++count;
+                inputs.add(stack);
             }
         }
 
-        // Container
-        ItemStack containerSlot = pContainer.getItem(6);
-        boolean containerMatches;
-        if (containerItem.isEmpty()) {
-            containerMatches = containerSlot.isEmpty();
-        } else {
-            containerMatches = containerItem.test(containerSlot);
-        }
-
-        return containerMatches && i == this.recipeItems.size() && (isSimple ? stackedcontents.canCraft(this, (IntList)null) : RecipeMatcher.findMatches(inputs,  this.recipeItems) != null);
+        return count == this.recipeItems.size() && RecipeMatcher.findMatches(inputs, this.recipeItems) != null;
     }
 
     @Override
-    public ItemStack assemble(SimpleContainer p_44001_) {
-        return output;
+    public ItemStack assemble(RecipeWrapper inv, HolderLookup.Provider provider) {
+        return this.output.copy();
     }
 
     @Override
-    public boolean canCraftInDimensions(int p_43999_, int p_44000_) {
+    public boolean canCraftInDimensions(int width, int height) {
         return true;
     }
 
-    @Override
-    public RecipeType<?> getType() {
-        return Type.INSTANCE;
-    }
-
-    public static class Type implements RecipeType<VatRecipe> {
-        private Type() { }
-        public static final Type INSTANCE = new Type();
-        public static final String ID = "AGING";
-    }
-
-
     public static class Serializer implements RecipeSerializer<VatRecipe> {
-        public static final Serializer INSTANCE = new Serializer();
-        private static final ResourceLocation NAME = new ResourceLocation("culturaldelights", "aging");
-        public VatRecipe fromJson(ResourceLocation resourceLocation, JsonObject json) {
-            NonNullList<Ingredient> inputs = itemsFromJson(GsonHelper.getAsJsonArray(json, "ingredients"));
+        public static final StreamCodec<RegistryFriendlyByteBuf, VatRecipe> STREAM_CODEC = StreamCodec.of(
+                VatRecipe.Serializer::toNetwork,
+                VatRecipe.Serializer::fromNetwork
+        );
+        private static final MapCodec<VatRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
+                ItemStack.STRICT_CODEC.fieldOf("result").forGetter(r -> r.output),
+                Ingredient.LIST_CODEC_NONEMPTY.fieldOf("ingredients").xmap(ingredients -> {
+                    NonNullList<Ingredient> nonNullList = NonNullList.create();
+                    nonNullList.addAll(ingredients);
+                    return nonNullList;
+                }, ingredients -> ingredients).forGetter(VatRecipe::getIngredients),
+                VatTemperature.CODEC.optionalFieldOf("temperature", VatTemperature.NORMAL).forGetter(VatRecipe::getTemperature),
+                Ingredient.CODEC.optionalFieldOf("container", Ingredient.EMPTY).forGetter(VatRecipe::getContainer),
+                Codec.INT.optionalFieldOf("cooktime", 200).forGetter(VatRecipe::getCookTime)
+        ).apply(inst, VatRecipe::new));
 
-            Ingredient container = Ingredient.EMPTY;
-            if (json.has("container")) {
-                container = Ingredient.fromJson(json.get("container"));
-            }
-
-            VatTemperature temperature = VatTemperature.NORMAL;
-            if (json.has("temperature")) {
-                temperature = VatTemperature.valueOf(
-                        GsonHelper.getAsString(json, "temperature").toUpperCase()
-                );
-            }
-
-            if (inputs.isEmpty()) {
-                throw new JsonParseException("No ingredients for aging recipe");
-            } else if (inputs.size() > 7) {
-                throw new JsonParseException("Too many ingredients for aging recipe. The maximum is 7");
-            } else {
-                ItemStack itemstack = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "result"));
-                int cookTimeIn = GsonHelper.getAsInt(json, "cooktime", 200);
-
-                return new VatRecipe(resourceLocation, itemstack, inputs, temperature, container, cookTimeIn);
-            }
-        }
-
-
-        private static NonNullList<Ingredient> itemsFromJson(JsonArray ingredientArray) {
-            NonNullList<Ingredient> nonnulllist = NonNullList.create();
-
-            for(int i = 0; i < ingredientArray.size(); ++i) {
-                Ingredient ingredient = Ingredient.fromJson(ingredientArray.get(i));
-                if (!ingredient.isEmpty()) {
-                    nonnulllist.add(ingredient);
-                }
-            }
-            return nonnulllist;
-        }
-        @Override
-        public VatRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
-            //String s = buf.readUtf();
-            int i = buf.readVarInt();
+        private static VatRecipe fromNetwork(RegistryFriendlyByteBuf buffer) {
+            int i = buffer.readVarInt();
             NonNullList<Ingredient> inputs = NonNullList.withSize(i, Ingredient.EMPTY);
+            inputs.replaceAll(ignored -> Ingredient.CONTENTS_STREAM_CODEC.decode(buffer));
 
-            for(int j = 0; j < inputs.size(); ++j) {
-                inputs.set(j, Ingredient.fromNetwork(buf));
+            Ingredient container = Ingredient.CONTENTS_STREAM_CODEC.decode(buffer);
+            VatTemperature temperature = buffer.readEnum(VatTemperature.class);
+            ItemStack output = ItemStack.STREAM_CODEC.decode(buffer);
+            int cookTime = buffer.readVarInt();
+            return new VatRecipe(output, inputs, temperature, container, cookTime);
+        }
+
+        private static void toNetwork(RegistryFriendlyByteBuf buffer, VatRecipe recipe) {
+            buffer.writeVarInt(recipe.recipeItems.size());
+            for (Ingredient ingredient : recipe.recipeItems) {
+                Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, ingredient);
             }
-
-            Ingredient container = Ingredient.fromNetwork(buf);
-            VatTemperature temperature = buf.readEnum(VatTemperature.class);
-
-            ItemStack itemstack = buf.readItem();
-            int cookTimeIn = buf.readVarInt();
-            return new VatRecipe(id, itemstack, inputs, temperature, container, cookTimeIn);
+            Ingredient.CONTENTS_STREAM_CODEC.encode(buffer, recipe.containerItem);
+            buffer.writeEnum(recipe.temperature);
+            ItemStack.STREAM_CODEC.encode(buffer, recipe.output);
+            buffer.writeVarInt(recipe.cookTime);
         }
 
         @Override
-        public void toNetwork(FriendlyByteBuf buf, VatRecipe recipe) {
-            buf.writeVarInt(recipe.recipeItems.size());
+        public MapCodec<VatRecipe> codec() {
+            return CODEC;
+        }
 
-            for(Ingredient ingredient : recipe.getIngredients()) {
-                ingredient.toNetwork(buf);
-            }
-
-            recipe.containerItem.toNetwork(buf);
-            buf.writeEnum(recipe.temperature);
-            buf.writeItem(recipe.getResultItem());
-            buf.writeVarInt(recipe.cookTime);
+        @Override
+        public StreamCodec<RegistryFriendlyByteBuf, VatRecipe> streamCodec() {
+            return STREAM_CODEC;
         }
     }
 }

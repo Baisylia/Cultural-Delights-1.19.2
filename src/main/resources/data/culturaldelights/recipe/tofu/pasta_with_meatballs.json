@@ -1,0 +1,21 @@
+{
+  "type": "farmersdelight:cooking",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "ingredients": [
+    {
+      "item": "culturaldelights:tofu"
+    },
+    {
+      "tag": "c:foods/pasta"
+    },
+    {
+      "item": "farmersdelight:tomato_sauce"
+    }
+  ],
+  "recipe_book_tab": "meals",
+  "result": {
+    "id": "farmersdelight:pasta_with_meatballs",
+    "count": 1
+  }
+}

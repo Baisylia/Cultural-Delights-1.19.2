@@ -1,0 +1,20 @@
+{
+  "type": "culturaldelights:aging",
+  "cooktime": 200,
+  "ingredients": [
+    {
+      "item": "culturaldelights:vodka"
+    },
+    {
+      "item": "cookscollection:lemon"
+    }
+  ],
+  "temperature": "hot",
+  "container": {
+    "item": "minecraft:glass_bottle"
+  },
+  "result": {
+    "id": "culturaldelights:lemon_liqueur",
+    "count": 1
+  }
+}

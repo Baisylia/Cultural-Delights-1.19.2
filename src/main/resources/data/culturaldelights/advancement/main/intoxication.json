@@ -1,0 +1,30 @@
+{
+  "parent": "culturaldelights:main/vat",
+  "display": {
+    "icon": {
+      "id": "culturaldelights:mead",
+      "count": 1
+    },
+    "title": "Drink Responsibly",
+    "description": "Get intoxication from a fermented beverage",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "intoxication": {
+      "trigger": "minecraft:effects_changed",
+      "conditions": {
+        "effects": {
+          "culturaldelights:intoxication": {}
+        }
+      }
+    }
+  },
+  "requirements": [
+    [
+      "intoxication"
+    ]
+  ]
+}

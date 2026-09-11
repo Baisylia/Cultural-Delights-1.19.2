@@ -1,0 +1,25 @@
+{
+  "type": "culturaldelights:aging",
+  "cooktime": 200,
+  "ingredients": [
+    {
+      "item": "minecraft:water_bucket"
+    },
+    {
+      "item": "culturaldelights:beans"
+    },
+    {
+      "item": "culturaldelights:beans"
+    },
+    {
+      "item": "culturaldelights:beans"
+    },
+    {
+      "item": "cookscollection:salt"
+    }
+  ],
+  "result": {
+    "id": "culturaldelights:tofu",
+    "count": 1
+  }
+}

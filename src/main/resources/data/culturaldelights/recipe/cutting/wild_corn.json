@@ -1,0 +1,26 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "culturaldelights:wild_corn"
+    }
+  ],
+  "tool": {
+    "tag": "c:tools/knife"
+  },
+  "result": [
+    {
+      "item": {
+        "count": 1,
+        "id": "culturaldelights:corn_kernels"
+      }
+    },
+    {
+      "item": {
+        "count": 1,
+        "id": "culturaldelights:corn_kernels"
+      },
+      "chance": 0.5
+    }
+  ]
+}

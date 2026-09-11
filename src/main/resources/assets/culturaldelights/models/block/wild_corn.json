@@ -2,5 +2,6 @@
   "parent": "minecraft:block/cross",
   "textures": {
     "cross": "culturaldelights:block/wild_corn"
-  }
+  },
+  "render_type": "minecraft:cutout"
 }

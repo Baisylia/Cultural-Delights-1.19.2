@@ -2,6 +2,7 @@ package com.baisylia.culturaldelights.block.custom;
 
 import com.baisylia.culturaldelights.block.ModBlocks;
 import com.baisylia.culturaldelights.item.ModItems;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
@@ -12,6 +13,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class EggplantsBlock extends CropBlock {
+    public static final MapCodec<EggplantsBlock> CODEC = simpleCodec(EggplantsBlock::new);
 
     private static final VoxelShape[] SHAPE_BY_AGE = new VoxelShape[]{
             Block.box(0.0D, 0.0D, 0.0D, 16.0D, 2.0D, 16.0D),
@@ -26,6 +28,11 @@ public class EggplantsBlock extends CropBlock {
 
     public EggplantsBlock(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    public MapCodec<EggplantsBlock> codec() {
+        return CODEC;
     }
 
     public BlockState getPlant(BlockGetter world, BlockPos pos) {

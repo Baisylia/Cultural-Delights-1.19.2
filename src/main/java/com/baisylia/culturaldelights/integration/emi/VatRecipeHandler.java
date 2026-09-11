@@ -5,6 +5,7 @@ import com.google.common.collect.Lists;
 import dev.emi.emi.api.recipe.EmiRecipe;
 import dev.emi.emi.api.recipe.handler.StandardRecipeHandler;
 import net.minecraft.world.inventory.Slot;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
@@ -27,9 +28,14 @@ public class VatRecipeHandler implements StandardRecipeHandler<VatMenu> {
     @Override
     public List<Slot> getCraftingSlots(VatMenu handler) {
         List<Slot> list = Lists.newArrayList();
-        for (int i = 1; i < 8; i++) {
-            list.add(handler.getSlot(35+i));
+        for (int i = 36; i <= 42; i++) {
+            list.add(handler.getSlot(i));
         }
         return list;
+    }
+
+    @Override
+    public @Nullable Slot getOutputSlot(VatMenu handler) {
+        return handler.getSlot(43);
     }
 }

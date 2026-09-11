@@ -1,0 +1,19 @@
+{
+  "type": "cookscollection:baking",
+  "cooktime": 200,
+  "ingredients": [
+    {
+      "item": "minecraft:potato"
+    },
+    {
+      "item": "culturaldelights:tofu"
+    },
+    {
+      "tag": "c:drinks/milk"
+    }
+  ],
+  "result": {
+    "id": "farmersdelight:stuffed_potato",
+    "count": 1
+  }
+}

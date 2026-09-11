@@ -1,0 +1,33 @@
+{
+  "type": "farmersdelight:cooking",
+  "ingredients": [
+    {
+      "item": "culturaldelights:cinnamon"
+    },
+    {
+      "item": "culturaldelights:mint"
+    },
+    {
+      "item": "farmersdelight:rice"
+    },
+    {
+      "item": "culturaldelights:corn_cob"
+    },
+    {
+      "tag": "c:foods/raw_chicken"
+    },
+    {
+      "tag": "c:drinks/milk"
+    }
+  ],
+  "container": {
+    "id": "minecraft:bowl",
+    "count": 1
+  },
+  "result": {
+    "id": "culturaldelights:cinnamon_mint_curry",
+    "count": 1
+  },
+  "experience": 0.35,
+  "cookingtime": 200
+}

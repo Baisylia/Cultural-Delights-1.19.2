@@ -17,25 +17,25 @@ public class ModTags {
         public static final TagKey<Block> COLD_CONDUCTORS = tag("cold_conductors");
 
         private static TagKey<Block> tag(String name) {
-            return BlockTags.create(new ResourceLocation(CulturalDelights.MOD_ID, name));
+            return BlockTags.create(ResourceLocation.fromNamespaceAndPath(CulturalDelights.MOD_ID, name));
         }
 
-        private static TagKey<Block> forgeTag(String name) {
-            return BlockTags.create(new ResourceLocation("forge", name));
+        private static TagKey<Block> commonTag(String name) {
+            return BlockTags.create(ResourceLocation.fromNamespaceAndPath("c", name));
         }
     }
 
     public static class Items {
-        public static final TagKey<Item> BOWL_FOODS = forgeTag("rollmatout/bowl_foods");
-        public static final TagKey<Item> BOTTLE_FOODS = forgeTag("rollmatout/bottle_foods");
-        public static final TagKey<Item> BUCKET_FOODS = forgeTag("rollmatout/bucket_foods");
+        public static final TagKey<Item> BOWL_FOODS = commonTag("rollmatout/bowl_foods");
+        public static final TagKey<Item> BOTTLE_FOODS = commonTag("rollmatout/bottle_foods");
+        public static final TagKey<Item> BUCKET_FOODS = commonTag("rollmatout/bucket_foods");
 
         private static TagKey<Item> tag(String name) {
-            return ItemTags.create(new ResourceLocation(CulturalDelights.MOD_ID, name));
+            return ItemTags.create(ResourceLocation.fromNamespaceAndPath(CulturalDelights.MOD_ID, name));
         }
 
-        private static TagKey<Item> forgeTag(String name) {
-            return ItemTags.create(new ResourceLocation("forge", name));
+        private static TagKey<Item> commonTag(String name) {
+            return ItemTags.create(ResourceLocation.fromNamespaceAndPath("c", name));
         }
     }
 }

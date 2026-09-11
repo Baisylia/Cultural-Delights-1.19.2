@@ -1,6 +1,0 @@
-{
-  "type": "forge:add_features",
-  "biomes": "#minecraft:is_jungle",
-  "features": "culturaldelights:wild_eggplants_placed",
-  "step": "vegetal_decoration"
-}

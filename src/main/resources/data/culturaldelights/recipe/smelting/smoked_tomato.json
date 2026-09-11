@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "farmersdelight:tomato"
+  },
+  "result": {
+    "id": "culturaldelights:smoked_tomato"
+  },
+  "experience": 0.35,
+  "cookingtime": 100
+}

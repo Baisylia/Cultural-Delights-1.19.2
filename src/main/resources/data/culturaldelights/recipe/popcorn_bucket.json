@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:bucket"
+    },
+    {
+      "item": "culturaldelights:popcorn"
+    },
+    {
+      "item": "culturaldelights:popcorn"
+    },
+    {
+      "item": "culturaldelights:popcorn"
+    },
+    {
+      "item": "culturaldelights:popcorn"
+    },
+    {
+      "item": "culturaldelights:popcorn"
+    },
+    {
+      "item": "culturaldelights:popcorn"
+    },
+    {
+      "item": "culturaldelights:butter"
+    }
+  ],
+  "result": {
+    "id": "culturaldelights:popcorn_bucket",
+    "count": 1
+  }
+}

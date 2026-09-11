@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "culturaldelights:squid"
+  },
+  "result": {
+    "id": "culturaldelights:cooked_squid"
+  },
+  "experience": 0.35,
+  "cookingtime": 200
+}

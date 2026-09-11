@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "c:crops/tomato"
+    },
+    {
+      "tag": "c:crops/onion"
+    },
+    {
+      "item": "culturaldelights:tofu"
+    },
+    {
+      "item": "minecraft:stick"
+    }
+  ],
+  "result": {
+    "id": "farmersdelight:barbecue_stick",
+    "count": 1
+  }
+}

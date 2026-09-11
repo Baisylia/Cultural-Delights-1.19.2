@@ -1,0 +1,34 @@
+{
+  "parent": "farmersdelight:main/root",
+  "display": {
+    "icon": {
+      "id": "culturaldelights:vat",
+      "count": 1
+    },
+    "title": "The Key is Proper Aging",
+    "description": "Craft a vat",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "vat": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "culturaldelights:vat"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "vat"
+    ]
+  ]
+}

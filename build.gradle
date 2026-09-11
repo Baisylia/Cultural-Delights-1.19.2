@@ -1,33 +1,45 @@
 plugins {
-    id 'idea'
     id 'java-library'
-    id 'maven-publish'
-    id 'net.neoforged.moddev.legacyforge' version '2.0.91'
+    id 'net.neoforged.moddev' version '2.0.137'
 }
 
-tasks.named('wrapper', Wrapper).configure {
-    distributionType = Wrapper.DistributionType.BIN
+version = project.version
+group = project.group
+
+base {
+    archivesName = "${mod_id}-${minecraft_version}"
 }
 
-version = mod_version
-group = mod_group_id
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(java_version)
+}
 
 repositories {
-    mavenLocal()
-    maven {
-        name = "Jared's maven"
-        url = "https://maven.blamejared.com/"
-    }
-    maven {
-        name = "TerraformersMC"
-        url = "https://maven.terraformersmc.com/"
-    }
-    maven {
-        url = "https://www.cursemaven.com"
-        content {
-            includeGroup "curse.maven"
+    mavenCentral()
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = 'Sponge'
+                url = 'https://repo.spongepowered.org/repository/maven-public'
+            }
         }
+        filter { includeGroupAndSubgroups('org.spongepowered') }
     }
+
+    exclusiveContent {
+        forRepositories(
+                maven {
+                    name = 'ParchmentMC'
+                    url = 'https://maven.parchmentmc.org/'
+                },
+                maven {
+                    name = "NeoForge"
+                    url = 'https://maven.neoforged.net/releases'
+                }
+        )
+        filter { includeGroup('org.parchmentmc.data') }
+    }
+
     exclusiveContent {
         forRepository {
             maven {
@@ -39,143 +51,139 @@ repositories {
             includeGroup "maven.modrinth"
         }
     }
+
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "BlameJared"
+                url = "https://maven.blamejared.com"
+            }
+        }
+        filter {
+            includeGroup "mezz.jei"
+        }
+    }
+
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "MehVahdJukaar"
+                url = "https://maven.mehvahdjukaar.com"
+            }
+        }
+        filter {
+            includeGroup "net.mehvahdjukaar"
+        }
+    }
 }
 
-base {
-    archivesName = mod_id
-}
+neoForge {
+    version = neoforge_version
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
-
-legacyForge {
-    version = project.minecraft_version + '-' + project.forge_version
+    def at = file('src/main/resources/META-INF/accesstransformer.cfg')
+    if (at.exists()) {
+        accessTransformers.from(at.absolutePath)
+    }
 
     parchment {
-        mappingsVersion = project.parchment_mappings_version
-        minecraftVersion = project.parchment_minecraft_version
+        minecraftVersion = parchment_minecraft
+        mappingsVersion = parchment_version
     }
 
     runs {
+        configureEach {
+            systemProperty('neoforge.enabledGameTestNamespaces', mod_id)
+            ideName = "NeoForge ${it.name.capitalize()}"
+        }
         client {
             client()
-
-            systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
         }
-
         server {
             server()
-            programArgument '--nogui'
-            systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
+            programArguments.addAll '--nogui'
         }
-
-        gameTestServer {
-            type = "gameTestServer"
-            systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
-        }
-
         data {
             data()
-
-            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
-        }
-
-        configureEach {
-            systemProperty 'forge.logging.markers', 'REGISTRIES'
-
-            logLevel = org.slf4j.event.Level.INFO
+            programArguments.addAll '--mod', mod_id, '--all',
+                    '--output', file('src/generated/resources/').absolutePath,
+                    '--existing', file('src/main/resources/').absolutePath
         }
     }
 
     mods {
         "${mod_id}" {
-            sourceSet(sourceSets.main)
+            sourceSet sourceSets.main
         }
     }
 }
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
-configurations {
-    runtimeClasspath.extendsFrom localRuntime
-}
-obfuscation {
-    createRemappingConfiguration(configurations.localRuntime)
-}
-
 dependencies {
-    compileOnly("mezz.jei:jei-1.19.2-common-api:${jei_version}")
-    compileOnly("mezz.jei:jei-1.19.2-forge-api:${jei_version}")
-    compileOnly("dev.emi:emi-forge:${emi_version}:api")
+    // Farmer's Delight
+    compileOnly "maven.modrinth:farmers-delight:${farmers_delight_version}"
+    runtimeOnly "maven.modrinth:farmers-delight:${farmers_delight_version}"
 
-    modImplementation("maven.modrinth:farmers-delight:${farmers_delight_version}")
-    modImplementation("curse.maven:cooks-collection-1222140:${cooks_collection_version}")
-    //runtimeOnly("maven.modrinth:jei:${jei_version}")
-    modRuntimeOnly("dev.emi:emi-forge:${emi_version}")
-    modImplementation("maven.modrinth:appleskin:forge-${appleskin_version}")
-    modImplementation("maven.modrinth:supplementaries:${supplementaries_version}")
-    modImplementation("maven.modrinth:moonlight:${moonlight_version}")
-}
+    // Cook's Collection
+    compileOnly "maven.modrinth:cooks-collection:${cooks_collection_version}"
+    runtimeOnly "maven.modrinth:cooks-collection:${cooks_collection_version}"
 
-// Uncomment the lines below if you wish to configure mixin. The mixin file should be named modid.mixins.json.
-/*
-mixin {
-    add sourceSets.main, "${mod_id}.refmap.json"
-    config "${mod_id}.mixins.json"
-}
+    // Supplementaries
+    compileOnly "maven.modrinth:supplementaries:${supplementaries_version}"
+    runtimeOnly "maven.modrinth:supplementaries:${supplementaries_version}"
+    compileOnly "maven.modrinth:moonlight:uPJlV3eS"
+    runtimeOnly "maven.modrinth:moonlight:uPJlV3eS"
 
-dependencies {
-    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    // EMI
+    compileOnly "maven.modrinth:emi:${emi_version}+neoforge"
+    runtimeOnly "maven.modrinth:emi:${emi_version}+neoforge"
+
+    // JEI
+    compileOnly "mezz.jei:jei-1.21.1-neoforge-api:${jei_version}"
+    //runtimeOnly "mezz.jei:jei-1.21.1-neoforge:${jei_version}"
+
+    // AppleSkin
+    compileOnly "maven.modrinth:appleskin:${appleskin_version}"
+    runtimeOnly "maven.modrinth:appleskin:${appleskin_version}"
 }
 
 jar {
-    manifest.attributes([
-            "MixinConfigs": "${mod_id}.mixins.json"
-    ])
+    manifest {
+        attributes([
+                'Specification-Title'   : mod_name,
+                'Specification-Vendor'  : mod_author,
+                'Specification-Version' : project.jar.archiveVersion,
+                'Implementation-Title'  : project.name,
+                'Implementation-Version': project.jar.archiveVersion,
+                'Implementation-Vendor' : mod_author,
+                'Built-On-Minecraft'    : minecraft_version
+        ])
+    }
 }
-*/
 
-var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
-    var replaceProperties = [
-            minecraft_version      : minecraft_version,
-            minecraft_version_range: minecraft_version_range,
-            forge_version          : forge_version,
-            forge_version_range    : forge_version_range,
-            loader_version_range   : loader_version_range,
-            mod_id                 : mod_id,
-            mod_name               : mod_name,
-            mod_license            : mod_license,
-            mod_version            : mod_version,
-            mod_authors            : mod_authors,
-            mod_description        : mod_description
+processResources {
+    var expandProps = [
+            'version'                      : version,
+            'group'                        : project.group,
+            'minecraft_version'            : minecraft_version,
+            'minecraft_version_range'      : minecraft_version_range,
+            'mod_name'                     : mod_name,
+            'mod_author'                   : mod_author,
+            'mod_id'                       : mod_id,
+            'license'                      : license,
+            'description'                  : project.description,
+            'neoforge_version'             : neoforge_version,
+            'neoforge_loader_version_range': neoforge_loader_version_range,
+            'credits'                      : credits,
+            'java_version'                 : java_version,
     ]
-    inputs.properties replaceProperties
-    expand replaceProperties
-    from "src/main/templates"
-    into "build/generated/sources/modMetadata"
-}
-sourceSets.main.resources.srcDir generateModMetadata
-legacyForge.ideSyncTask generateModMetadata
 
-publishing {
-    publications {
-        register('mavenJava', MavenPublication) {
-            from components.java
-        }
+    filesMatching(['pack.mcmeta', 'META-INF/neoforge.mods.toml']) {
+        expand expandProps
     }
-    repositories {
-        maven {
-            url "file://${project.projectDir}/repo"
-        }
-    }
+    inputs.properties(expandProps)
 }
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
-}
-
-idea {
-    module {
-        downloadSources = true
-        downloadJavadoc = true
-    }
 }

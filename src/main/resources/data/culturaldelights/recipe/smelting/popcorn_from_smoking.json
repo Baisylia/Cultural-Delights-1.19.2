@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "culturaldelights:corn_kernels"
+  },
+  "result": {
+    "id": "culturaldelights:popcorn"
+  },
+  "experience": 0.35,
+  "cookingtime": 100
+}

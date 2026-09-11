@@ -9,22 +9,23 @@ import net.minecraft.world.level.Level;
 
 public class BucketFoodItem extends Item {
     public BucketFoodItem(Item.Properties properties) {
-        super(properties);
+        super(properties.craftRemainder(Items.BUCKET));
     }
 
     @Override
     public ItemStack getCraftingRemainingItem(ItemStack stack) {
-        return new ItemStack(Items.BUCKET); // Returns an empty bottle
+        return new ItemStack(Items.BUCKET);
     }
 
     @Override
     public boolean hasCraftingRemainingItem(ItemStack stack) {
-        return true; // Ensures that the bottle is returned after crafting
+        return true;
     }
 
-    public ItemStack finishUsingItem(ItemStack p_40684_, Level p_40685_, LivingEntity p_40686_) {
-        ItemStack itemstack = super.finishUsingItem(p_40684_, p_40685_, p_40686_);
-        return p_40686_ instanceof Player && ((Player)p_40686_).getAbilities().instabuild ? itemstack : new ItemStack(Items.BUCKET);
+    @Override
+    public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
+        ItemStack itemstack = super.finishUsingItem(stack, level, entity);
+        return entity instanceof Player player && player.getAbilities().instabuild ? itemstack : new ItemStack(Items.BUCKET);
     }
 }
 

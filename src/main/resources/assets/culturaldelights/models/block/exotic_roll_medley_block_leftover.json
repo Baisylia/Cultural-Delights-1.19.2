@@ -1,8 +1,8 @@
 {
   "credit": "Made with Blockbench",
   "textures": {
-    "tray_top": "farmersdelight:block/tray_top",
-    "particle": "farmersdelight:block/tray_top",
+    "tray_top": "farmersdelight:block/tray",
+    "particle": "farmersdelight:block/tray",
     "tray_bottom": "farmersdelight:block/tray_bottom"
   },
   "elements": [

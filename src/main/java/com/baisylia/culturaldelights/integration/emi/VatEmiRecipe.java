@@ -7,13 +7,14 @@ import dev.emi.emi.api.widget.WidgetHolder;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.RecipeHolder;
 
 import java.util.ArrayList;
 
 public class VatEmiRecipe extends AbstractVatRecipe {
 
-    public VatEmiRecipe(VatRecipe recipe) {
-        super(recipe.getId(), getIngredients(recipe), EmiIngredient.of(recipe.getContainer()), recipe.getResultItem(), recipe.getCookTime(), recipe.getTemperature());
+    public VatEmiRecipe(RecipeHolder<VatRecipe> holder) {
+        super(holder.id(), getIngredients(holder.value()), EmiIngredient.of(holder.value().getContainer()), holder.value().getResultItem(), holder.value().getCookTime(), holder.value().getTemperature());
     }
 
     private static ArrayList<EmiIngredient> getIngredients(VatRecipe recipe) {
@@ -44,7 +45,11 @@ public class VatEmiRecipe extends AbstractVatRecipe {
                         builder.addSlot(getInputs().get(4), 19, 38);
                         if (getInputs().size() > 5) {
                             builder.addSlot(getInputs().get(5), 37, 38);
-                            }}}}}
+                        }
+                    }
+                }
+            }
+        }
         builder.addSlot(container, 95, 38);
         drawCookTime(cookTime, builder, 50, getDisplayWidth());
         builder.addSlot(result, 95, 9).recipeContext(this).drawBack(false);

@@ -1,0 +1,73 @@
+{
+  "values": {
+    "culturaldelights:cucumber_seeds": {
+      "chance": 0.3
+    },
+    "culturaldelights:corn_kernels": {
+      "chance": 0.3
+    },
+    "culturaldelights:eggplant_seeds": {
+      "chance": 0.3
+    },
+    "culturaldelights:avocado_pit": {
+      "chance": 0.3
+    },
+    "culturaldelights:cut_cucumber": {
+      "chance": 0.5
+    },
+    "culturaldelights:cut_avocado": {
+      "chance": 0.5
+    },
+    "culturaldelights:cut_eggplant": {
+      "chance": 0.5
+    },
+    "culturaldelights:avocado": {
+      "chance": 0.65
+    },
+    "culturaldelights:cucumber": {
+      "chance": 0.65
+    },
+    "culturaldelights:corn_cob": {
+      "chance": 0.65
+    },
+    "culturaldelights:eggplant": {
+      "chance": 0.65
+    },
+    "culturaldelights:white_eggplant": {
+      "chance": 0.65
+    },
+    "culturaldelights:bean_pod": {
+      "chance": 0.65
+    },
+    "culturaldelights:beans": {
+      "chance": 0.65
+    },
+    "culturaldelights:agave": {
+      "chance": 0.65
+    },
+    "culturaldelights:mint": {
+      "chance": 0.65
+    },
+    "culturaldelights:wild_cucumbers": {
+      "chance": 0.65
+    },
+    "culturaldelights:wild_corn": {
+      "chance": 0.65
+    },
+    "culturaldelights:wild_eggplants": {
+      "chance": 0.65
+    },
+    "culturaldelights:wild_beans": {
+      "chance": 0.65
+    },
+    "culturaldelights:avocado_leaves": {
+      "chance": 0.65
+    },
+    "culturaldelights:avocado_sapling": {
+      "chance": 0.65
+    },
+    "culturaldelights:popcorn": {
+      "chance": 0.85
+    }
+  }
+}

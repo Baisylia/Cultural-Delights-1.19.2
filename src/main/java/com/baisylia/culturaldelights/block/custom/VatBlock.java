@@ -1,17 +1,13 @@
 package com.baisylia.culturaldelights.block.custom;
 
-import com.baisylia.culturaldelights.block.entity.custom.VatBlockEntity;
 import com.baisylia.culturaldelights.block.entity.ModBlockEntities;
+import com.baisylia.culturaldelights.block.entity.custom.VatBlockEntity;
 import com.baisylia.culturaldelights.util.VatTemperature;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.level.block.Rotation;
-import net.minecraft.world.level.block.Mirror;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -27,17 +23,23 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.network.NetworkHooks;
-//import org.jetbrains.annotations.Nullable;
+
 import javax.annotation.Nullable;
 
 public class VatBlock extends BaseEntityBlock {
+    public static final MapCodec<VatBlock> CODEC = simpleCodec(VatBlock::new);
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
     public static final EnumProperty<VatTemperature> TEMPERATURE =
             EnumProperty.create("temperature", VatTemperature.class);
-    public static BooleanProperty OPEN = BlockStateProperties.OPEN;
+    public static final BooleanProperty OPEN = BlockStateProperties.OPEN;
+
     public VatBlock(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    public MapCodec<VatBlock> codec() {
+        return CODEC;
     }
 
     /* FACING */
@@ -60,28 +62,28 @@ public class VatBlock extends BaseEntityBlock {
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource randomSource) {
         if (state.getValue(TEMPERATURE) == VatTemperature.HOT) {
-            double x = (double)pos.getX() + (double)0.5F;
+            double x = (double) pos.getX() + (double) 0.5F;
             double y = pos.getY();
-            double z = (double)pos.getZ() + (double)0.5F;
+            double z = (double) pos.getZ() + (double) 0.5F;
             Direction direction = state.getValue(FACING);
             Direction.Axis axis = direction.getAxis();
             double r1 = randomSource.nextDouble() * 0.6 - 0.3;
-            double r2 = axis == Direction.Axis.X ? (double)direction.getStepX() * 0.52 : r1;
-            double r3 = randomSource.nextDouble() * (double)6.0F / (double)16.0F;
-            double r4 = axis == Direction.Axis.Z ? (double)direction.getStepZ() * 0.52 : r1;
+            double r2 = axis == Direction.Axis.X ? (double) direction.getStepX() * 0.52 : r1;
+            double r3 = randomSource.nextDouble() * (double) 6.0F / (double) 16.0F;
+            double r4 = axis == Direction.Axis.Z ? (double) direction.getStepZ() * 0.52 : r1;
             level.addParticle(ParticleTypes.SMOKE, x + r2, y + r3, z + r4, 0.0F, 0.0F, 0.0F);
             level.addParticle(ParticleTypes.FLAME, x + r2, y + r3, z + r4, 0.0, 0.0F, 0.0F);
         }
         if (state.getValue(TEMPERATURE) == VatTemperature.COLD) {
-            double x = (double)pos.getX() + (double)0.5F;
+            double x = (double) pos.getX() + (double) 0.5F;
             double y = pos.getY();
-            double z = (double)pos.getZ() + (double)0.5F;
+            double z = (double) pos.getZ() + (double) 0.5F;
             Direction direction = state.getValue(FACING);
             Direction.Axis axis = direction.getAxis();
             double r1 = randomSource.nextDouble() * 0.6 - 0.3;
-            double r2 = axis == Direction.Axis.X ? (double)direction.getStepX() * 0.52 : r1;
-            double r3 = randomSource.nextDouble() * (double)6.0F / (double)16.0F;
-            double r4 = axis == Direction.Axis.Z ? (double)direction.getStepZ() * 0.52 : r1;
+            double r2 = axis == Direction.Axis.X ? (double) direction.getStepX() * 0.52 : r1;
+            double r3 = randomSource.nextDouble() * (double) 6.0F / (double) 16.0F;
+            double r4 = axis == Direction.Axis.Z ? (double) direction.getStepZ() * 0.52 : r1;
             level.addParticle(ParticleTypes.SNOWFLAKE, x + r2, y + r3, z + r4, 0.0F, 0.0F, 0.0F);
             level.addParticle(ParticleTypes.BUBBLE, x + r2, y + r3, z + r4, 0.0, 0.0F, 0.0F);
         }
@@ -111,12 +113,12 @@ public class VatBlock extends BaseEntityBlock {
     }
 
     @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos,
-                                 Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+    protected InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos,
+                                               Player pPlayer, BlockHitResult pHit) {
         if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if(entity instanceof VatBlockEntity VatBlockEntity) {
-                NetworkHooks.openScreen(((ServerPlayer)pPlayer), VatBlockEntity, pPos);
+            if (entity instanceof VatBlockEntity vatBlockEntity) {
+                pPlayer.openMenu(vatBlockEntity, pPos);
             } else {
                 throw new IllegalStateException("Our Container provider is missing!");
             }

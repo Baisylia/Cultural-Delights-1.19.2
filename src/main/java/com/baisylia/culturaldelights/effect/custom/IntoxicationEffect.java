@@ -1,12 +1,14 @@
 package com.baisylia.culturaldelights.effect.custom;
 
-import com.baisylia.culturaldelights.effect.ModEffects;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.common.EffectCure;
+
+import java.util.Set;
 
 public class IntoxicationEffect extends MobEffect {
 
@@ -15,7 +17,7 @@ public class IntoxicationEffect extends MobEffect {
     }
 
     @Override
-    public void applyEffectTick(LivingEntity entity, int amplifier) {
+    public boolean applyEffectTick(LivingEntity entity, int amplifier) {
         var tag = entity.getPersistentData();
 
         // Slowness
@@ -43,7 +45,7 @@ public class IntoxicationEffect extends MobEffect {
         entity.setDeltaMovement(movement);
 
         // Nausea
-        if (!entity.level.isClientSide && amplifier >= 4) {
+        if (!entity.level().isClientSide && amplifier >= 4) {
             entity.addEffect(new MobEffectInstance(
                     MobEffects.CONFUSION,
                     100 * amplifier,
@@ -53,7 +55,7 @@ public class IntoxicationEffect extends MobEffect {
             ));
         }
         // Poison
-        if (!entity.level.isClientSide && amplifier >= 6) {
+        if (!entity.level().isClientSide && amplifier >= 6) {
             entity.addEffect(new MobEffectInstance(
                     MobEffects.POISON,
                     50 * amplifier,
@@ -62,29 +64,16 @@ public class IntoxicationEffect extends MobEffect {
                     true
             ));
         }
-    }
-
-    @Override
-    public void removeAttributeModifiers(LivingEntity entity, net.minecraft.world.entity.ai.attributes.AttributeMap map, int amplifier) {
-        var tag = entity.getPersistentData();
-        tag.remove("cd_intox_wobbleTime");
-        tag.remove("cd_intox_stumbleX");
-        tag.remove("cd_intox_stumbleZ");
-
-        if (entity.hasEffect(ModEffects.CHEESY.get())) {
-            entity.removeEffect(MobEffects.CONFUSION);
-            entity.removeEffect(MobEffects.POISON);
-        }
-        super.removeAttributeModifiers(entity, map, amplifier);
-    }
-
-    @Override
-    public boolean isDurationEffectTick(int duration, int amplifier) {
         return true;
     }
 
     @Override
-    public java.util.List<net.minecraft.world.item.ItemStack> getCurativeItems() {
-        return java.util.Collections.emptyList();
+    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
+        return true;
+    }
+
+    @Override
+    public void fillEffectCures(Set<EffectCure> cures, MobEffectInstance effectInstance) {
+        // Intoxication can't be cured by milk
     }
 }

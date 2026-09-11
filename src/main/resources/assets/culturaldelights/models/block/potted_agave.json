@@ -3,5 +3,5 @@
   "textures": {
     "plant": "culturaldelights:block/agave"
   },
-  "render_type": "cutout"
+  "render_type": "minecraft:cutout"
 }

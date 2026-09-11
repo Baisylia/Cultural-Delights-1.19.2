@@ -1,0 +1,24 @@
+{
+  "type": "farmersdelight:cooking",
+  "ingredients": [
+    {
+      "tag": "c:crops/corn"
+    },
+    {
+      "tag": "c:crops/corn"
+    },
+    {
+      "tag": "c:drinks/milk"
+    }
+  ],
+  "result": {
+    "id": "culturaldelights:creamed_corn",
+    "count": 1
+  },
+  "container": {
+    "id": "minecraft:bowl",
+    "count": 1
+  },
+  "experience": 0.2,
+  "cookingtime": 200
+}

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "culturaldelights:tortilla"
+    },
+    {
+      "tag": "c:foods/cooked_pork"
+    },
+    {
+      "item": "minecraft:apple"
+    },
+    {
+      "tag": "c:foods/leafy_green"
+    }
+  ],
+  "result": {
+    "id": "culturaldelights:pork_wrap",
+    "count": 1
+  }
+}

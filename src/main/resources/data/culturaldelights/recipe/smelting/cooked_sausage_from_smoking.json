@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "culturaldelights:raw_sausage"
+  },
+  "result": {
+    "id": "culturaldelights:cooked_sausage"
+  },
+  "experience": 0.35,
+  "cookingtime": 100
+}

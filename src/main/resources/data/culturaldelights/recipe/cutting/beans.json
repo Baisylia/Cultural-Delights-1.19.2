@@ -1,0 +1,26 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "culturaldelights:bean_pod"
+    }
+  ],
+  "tool": {
+    "tag": "c:tools/knife"
+  },
+  "result": [
+    {
+      "item": {
+        "count": 1,
+        "id": "culturaldelights:beans"
+      }
+    },
+    {
+      "item": {
+        "count": 1,
+        "id": "culturaldelights:beans"
+      },
+      "chance": 0.5
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "culturaldelights:wild_eggplants"
+    }
+  ],
+  "tool": {
+    "tag": "c:tools/knife"
+  },
+  "result": [
+    {
+      "item": {
+        "count": 1,
+        "id": "culturaldelights:white_eggplant"
+      }
+    },
+    {
+      "item": {
+        "count": 1,
+        "id": "culturaldelights:eggplant_seeds"
+      }
+    },
+    {
+      "item": {
+        "count": 1,
+        "id": "minecraft:light_gray_dye"
+      },
+      "chance": 0.5
+    }
+  ]
+}

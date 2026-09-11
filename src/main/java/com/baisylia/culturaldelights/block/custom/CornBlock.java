@@ -1,11 +1,11 @@
 package com.baisylia.culturaldelights.block.custom;
 
 import com.baisylia.culturaldelights.item.ModItems;
+import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
@@ -16,8 +16,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.storage.loot.LootContext;
-import net.minecraftforge.common.ForgeHooks;
+import net.minecraft.world.level.storage.loot.LootParams;
+import net.neoforged.neoforge.common.CommonHooks;
 
 import java.util.List;
 
@@ -25,6 +25,7 @@ public class CornBlock extends CropBlock {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_7;
     public static final int MAX_HEIGHT = 2;
     public static final IntegerProperty HEIGHT = IntegerProperty.create("height", 0, MAX_HEIGHT);
+    public static final MapCodec<CornBlock> CODEC = simpleCodec(CornBlock::new);
     private static final ThreadLocal<Boolean> EDITING = ThreadLocal.withInitial(() -> false);
 
     private static final int CLEAR_FLAGS =
@@ -37,6 +38,12 @@ public class CornBlock extends CropBlock {
                 .setValue(HEIGHT, 0));
     }
 
+    @Override
+    public MapCodec<CornBlock> codec() {
+        return CODEC;
+    }
+
+    @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(AGE, HEIGHT);
     }
@@ -64,9 +71,9 @@ public class CornBlock extends CropBlock {
             int age = getAge(state);
 
             if (age < getMaxAge()) {
-                float speed = getGrowthSpeed(this, level, pos);
+                float speed = getGrowthSpeed(state, level, pos);
 
-                if (ForgeHooks.onCropsGrowPre(level, pos, state,
+                if (CommonHooks.canCropGrow(level, pos, state,
                         random.nextInt((int) (25.0F / speed) + 1) == 0)) {
 
                     BlockPos bottom = getBottom(level, pos);
@@ -75,7 +82,7 @@ public class CornBlock extends CropBlock {
                     if (canAdvanceAge(level, bottom, nextAge)) {
                         syncPlantAges(level, bottom, nextAge);
                         handleVerticalGrowth(level, bottom, nextAge);
-                        ForgeHooks.onCropsGrowPost(level, pos, state);
+                        CommonHooks.fireCropGrowPost(level, pos, state);
                     }
                 }
             }
@@ -150,9 +157,7 @@ public class CornBlock extends CropBlock {
                 return false;
             }
 
-            if (!(topState.isAir() || topState.is(this))) {
-                return false;
-            }
+            return topState.isAir() || topState.is(this);
         }
 
         return true;
@@ -214,7 +219,7 @@ public class CornBlock extends CropBlock {
     }
 
     @Override
-    public List<ItemStack> getDrops(BlockState state, LootContext.Builder builder) {
+    public List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {
         if (state.getValue(HEIGHT) != 0) {
             return super.getDrops(state.setValue(HEIGHT, 0), builder);
         }
@@ -222,8 +227,9 @@ public class CornBlock extends CropBlock {
         return super.getDrops(state, builder);
     }
 
-    public boolean isValidBonemealTarget(BlockGetter level, BlockPos pos, BlockState state, boolean isClient) {
-        BlockPos bottom = getBottom((LevelReader) level, pos);
+    @Override
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
+        BlockPos bottom = getBottom(level, pos);
         BlockState bottomState = level.getBlockState(bottom);
         return bottomState.getValue(AGE) < getMaxAge();
     }

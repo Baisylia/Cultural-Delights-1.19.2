@@ -1,0 +1,24 @@
+{
+  "type": "farmersdelight:cooking",
+  "ingredients": [
+    {
+      "item": "culturaldelights:corn_dough"
+    },
+    {
+      "item": "culturaldelights:raw_sausage"
+    },
+    {
+      "item": "cookscollection:cooking_oil"
+    }
+  ],
+  "result": {
+    "id": "culturaldelights:corn_dog",
+    "count": 1
+  },
+  "container": {
+    "id": "minecraft:stick",
+    "count": 1
+  },
+  "experience": 0.2,
+  "cookingtime": 200
+}

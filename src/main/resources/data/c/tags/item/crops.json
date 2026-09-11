@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "#c:crops/cucumber",
+    "#c:crops/eggplant",
+    "#c:crops/corn",
+    "#c:crops/avocado",
+    "culturaldelights:cut_cucumber",
+    "culturaldelights:cut_eggplant",
+    "culturaldelights:cut_avocado"
+  ]
+}

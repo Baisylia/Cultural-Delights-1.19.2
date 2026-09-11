@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "culturaldelights:beer"
+    },
+    {
+      "item": "culturaldelights:butter"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:glass_bottle"
+    },
+    {
+      "item": "culturaldelights:cinnamon"
+    }
+  ],
+  "result": {
+    "id": "culturaldelights:butterbeer",
+    "count": 1
+  }
+}

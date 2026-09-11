@@ -1,0 +1,33 @@
+{
+  "type": "farmersdelight:cooking",
+  "ingredients": [
+    {
+      "item": "minecraft:blaze_powder"
+    },
+    {
+      "item": "farmersdelight:tomato_sauce"
+    },
+    {
+      "item": "farmersdelight:rice"
+    },
+    {
+      "item": "culturaldelights:beans"
+    },
+    {
+      "tag": "c:foods/raw_chicken"
+    },
+    {
+      "tag": "c:drinks/milk"
+    }
+  ],
+  "result": {
+    "id": "culturaldelights:spicy_curry",
+    "count": 1
+  },
+  "container": {
+    "id": "minecraft:bowl",
+    "count": 1
+  },
+  "experience": 0.35,
+  "cookingtime": 200
+}

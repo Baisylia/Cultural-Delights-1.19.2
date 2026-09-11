@@ -9,21 +9,19 @@ import dev.emi.emi.api.widget.WidgetHolder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-//import org.jetbrains.annotations.Nullable;
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Collections;
 import java.util.List;
 
 public abstract class AbstractVatRecipe implements EmiRecipe {
-    public final static ResourceLocation TEXTURE = new ResourceLocation(CulturalDelights.MOD_ID, "textures/gui/vat_gui_jei.png");
+    public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(CulturalDelights.MOD_ID, "textures/gui/vat_gui_jei.png");
     final List<EmiIngredient> ingredients;
     final int cookTime;
     final EmiStack result;
     final ResourceLocation id;
     final EmiIngredient container;
     final VatTemperature temperature;
-
 
     public AbstractVatRecipe(ResourceLocation id, List<EmiIngredient> ingredients, EmiIngredient container, ItemStack resultItem, int cookTime, VatTemperature temperature) {
         this.id = id;
@@ -32,6 +30,14 @@ public abstract class AbstractVatRecipe implements EmiRecipe {
         this.result = EmiStack.of(resultItem);
         this.cookTime = cookTime;
         this.temperature = temperature;
+    }
+
+    protected static void drawCookTime(int cookTime, WidgetHolder builder, int y, int width) {
+        if (cookTime > 0) {
+            int cookTimeSeconds = cookTime / 20;
+            Component timeString = Component.translatable("emi.cooking.time", cookTimeSeconds);
+            builder.addFillingArrow(62, 10, cookTime * 100).tooltipText(Collections.singletonList(timeString));
+        }
     }
 
     @Override
@@ -57,13 +63,5 @@ public abstract class AbstractVatRecipe implements EmiRecipe {
     @Override
     public int getDisplayHeight() {
         return 58;
-    }
-
-    protected static void drawCookTime(int cookTime, WidgetHolder builder, int y, int width) {
-        if (cookTime > 0) {
-            int cookTimeSeconds = cookTime / 20;
-            Component timeString = Component.translatable("emi.cooking.time", cookTimeSeconds);
-            builder.addFillingArrow(62, 10, cookTime*100).tooltipText(Collections.singletonList(timeString));
-        }
     }
 }

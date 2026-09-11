@@ -1,5 +1,5 @@
 {
-  "parent": "farmersdelight:block/crop_cross",
+  "parent": "minecraft:block/cross",
   "render_type": "minecraft:cutout",
   "textures": {
     "cross": "culturaldelights:block/beans_stage3"

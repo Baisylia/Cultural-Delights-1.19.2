@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "culturaldelights:eggplant"
+  },
+  "result": {
+    "id": "culturaldelights:smoked_eggplant"
+  },
+  "experience": 0.35,
+  "cookingtime": 100
+}

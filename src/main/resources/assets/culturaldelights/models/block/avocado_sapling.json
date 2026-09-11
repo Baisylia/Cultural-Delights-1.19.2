@@ -2,5 +2,6 @@
   "parent": "minecraft:block/cross",
   "textures": {
     "cross": "culturaldelights:block/avocado_sapling"
-  }
+  },
+  "render_type": "minecraft:cutout"
 }

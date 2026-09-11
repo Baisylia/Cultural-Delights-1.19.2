@@ -2,6 +2,6 @@
   "replace": false,
   "values": [
     "minecraft:dark_forest",
-    "#forge:is_swamp"
+    "#c:is_swamp"
   ]
 }

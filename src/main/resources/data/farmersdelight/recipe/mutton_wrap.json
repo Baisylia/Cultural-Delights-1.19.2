@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "culturaldelights:tortilla"
+    },
+    {
+      "tag": "c:foods/cooked_mutton"
+    },
+    {
+      "tag": "c:foods/leafy_green"
+    },
+    {
+      "item": "culturaldelights:refried_beans"
+    }
+  ],
+  "result": {
+    "id": "farmersdelight:mutton_wrap",
+    "count": 1
+  }
+}

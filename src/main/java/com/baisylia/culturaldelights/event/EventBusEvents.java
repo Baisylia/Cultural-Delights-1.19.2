@@ -2,45 +2,46 @@ package com.baisylia.culturaldelights.event;
 
 import com.baisylia.culturaldelights.CulturalDelights;
 import com.baisylia.culturaldelights.effect.ModEffects;
+import net.minecraft.core.Holder;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.event.entity.living.MobEffectEvent;
-import net.minecraftforge.eventbus.api.Event;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
 
-@Mod.EventBusSubscriber(modid = CulturalDelights.MOD_ID)
+import java.util.Objects;
+
+@EventBusSubscriber(modid = CulturalDelights.MOD_ID)
 public class EventBusEvents {
 
     // Cheesers wow
     @SubscribeEvent
     public static void onEffectApplicable(MobEffectEvent.Applicable event) {
-        if (!event.getEntity().hasEffect(ModEffects.CHEESY.get()))
+        if (!event.getEntity().hasEffect(ModEffects.CHEESY))
             return;
 
         // Preserve Alcoholy Side Effects
-        var effect = event.getEffectInstance().getEffect();
-        if (effect == ModEffects.CHEESY.get() || effect == ModEffects.INTOXICATION.get())
+        Holder<MobEffect> effect = event.getEffectInstance().getEffect();
+        if (effect.is(ModEffects.CHEESY.getKey()) || effect.is(ModEffects.INTOXICATION.getKey()))
             return;
 
-        if (effect == net.minecraft.world.effect.MobEffects.POISON
-                || effect == net.minecraft.world.effect.MobEffects.CONFUSION) {
-            if (event.getEntity().hasEffect(ModEffects.INTOXICATION.get()))
+        if (effect.is(Objects.requireNonNull(MobEffects.POISON.getKey())) || effect.is(Objects.requireNonNull(MobEffects.CONFUSION.getKey()))) {
+            if (event.getEntity().hasEffect(ModEffects.INTOXICATION))
                 return;
         }
 
-        event.setResult(Event.Result.DENY);
+        event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
     }
 
     // Alcyhols woa
     @SubscribeEvent
     public static void intoxicationStack(MobEffectEvent.Applicable event) {
-        if (event.getEffectInstance().getEffect() != ModEffects.INTOXICATION.get())
+        if (!event.getEffectInstance().getEffect().is(ModEffects.INTOXICATION.getKey()))
             return;
 
         var entity = event.getEntity();
-        var current = entity.getEffect(ModEffects.INTOXICATION.get());
+        var current = entity.getEffect(ModEffects.INTOXICATION);
 
         if (current != null) {
             int newAmplifier = current.getAmplifier() + event.getEffectInstance().getAmplifier() + 1;
@@ -51,13 +52,13 @@ public class EventBusEvents {
                     current.getDuration(),
                     event.getEffectInstance().getDuration()
             );
-            entity.removeEffect(ModEffects.INTOXICATION.get());
-            entity.addEffect(new net.minecraft.world.effect.MobEffectInstance(
-                    ModEffects.INTOXICATION.get(),
+            entity.removeEffect(ModEffects.INTOXICATION);
+            entity.addEffect(new MobEffectInstance(
+                    ModEffects.INTOXICATION,
                     duration,
                     newAmplifier
             ));
-            event.setResult(Event.Result.DENY);
+            event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
         }
     }
 }

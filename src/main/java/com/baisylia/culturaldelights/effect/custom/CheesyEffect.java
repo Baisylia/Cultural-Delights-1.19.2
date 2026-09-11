@@ -3,6 +3,8 @@ package com.baisylia.culturaldelights.effect.custom;
 import com.baisylia.culturaldelights.effect.ModEffects;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 
 public class CheesyEffect extends MobEffect {
@@ -12,26 +14,20 @@ public class CheesyEffect extends MobEffect {
     }
 
     @Override
-    public void addAttributeModifiers(LivingEntity entity, net.minecraft.world.entity.ai.attributes.AttributeMap map, int amplifier) {
-        if (!entity.level.isClientSide) {
+    public void onEffectStarted(LivingEntity entity, int amplifier) {
+        if (!entity.level().isClientSide) {
             entity.getActiveEffects().stream()
-                    .filter(effect -> {
-                        var eff = effect.getEffect();
-
+                    .map(MobEffectInstance::getEffect)
+                    .filter(eff -> {
                         // Preserve Alcoholy Side Effects
-                        if (eff == this || eff == ModEffects.INTOXICATION.get()) return false;
-                        if ((eff == net.minecraft.world.effect.MobEffects.CONFUSION
-                                || eff == net.minecraft.world.effect.MobEffects.POISON)
-                                && entity.hasEffect(ModEffects.INTOXICATION.get()))
-                            return false;
-
-                        return true;
+                        if (eff.value() == this || eff.is(ModEffects.INTOXICATION.getKey())) return false;
+                        return (!eff.is(MobEffects.CONFUSION) && !eff.is(MobEffects.POISON))
+                                || !entity.hasEffect(ModEffects.INTOXICATION);
                     })
-                    .map(effect -> effect.getEffect())
                     .toList()
                     .forEach(entity::removeEffect);
         }
 
-        super.addAttributeModifiers(entity, map, amplifier);
+        super.onEffectStarted(entity, amplifier);
     }
 }
