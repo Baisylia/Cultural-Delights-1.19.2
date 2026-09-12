@@ -187,7 +187,7 @@ publishMods {
     type = STABLE
     version = "${project.version}-${minecraft_version}"
     displayName = "${mod_name} ${minecraft_version} - ${project.version}"
-    modLoaders.add('neoforge')
+    modLoaders.add('forge')
 
     curseforge {
         accessToken = providers.environmentVariable("CURSEFORGE_TOKEN")
