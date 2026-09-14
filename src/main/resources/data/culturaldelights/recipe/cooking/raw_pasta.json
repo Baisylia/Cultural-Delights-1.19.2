@@ -2,13 +2,13 @@
   "type": "farmersdelight:cooking",
   "ingredients": [
     {
-      "item": "minecraft:wheat"
+      "tag": "c:crops/wheat"
     },
     {
-      "item": "minecraft:wheat"
+      "tag": "c:crops/wheat"
     },
     {
-      "item": "minecraft:egg"
+      "tag": "c:eggs"
     }
   ],
   "result": {

@@ -1,0 +1,16 @@
+{
+  "replace": false,
+  "values": [
+    "#c:crops/cucumber",
+    "#c:crops/eggplant",
+    "#c:crops/corn",
+    "culturaldelights:cut_cucumber",
+    "culturaldelights:cut_eggplant",
+    "culturaldelights:smoked_eggplant",
+    "culturaldelights:smoked_white_eggplant",
+    "culturaldelights:smoked_cut_eggplant",
+    "culturaldelights:pickle",
+    "culturaldelights:cut_pickle",
+    "culturaldelights:beans"
+  ]
+}

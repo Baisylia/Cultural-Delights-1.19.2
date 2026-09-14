@@ -1,0 +1,20 @@
+{
+  "replace": false,
+  "values": [
+    "culturaldelights:beer",
+    "culturaldelights:wine",
+    "culturaldelights:glow_wine",
+    "culturaldelights:mead",
+    "culturaldelights:apple_cider",
+    "culturaldelights:mojito",
+    "culturaldelights:margarita",
+    "culturaldelights:bloody_mary",
+    "culturaldelights:lemon_liqueur",
+    "culturaldelights:tequila",
+    "culturaldelights:gin",
+    "culturaldelights:brandy",
+    "culturaldelights:vodka",
+    "culturaldelights:whiskey",
+    "culturaldelights:rum"
+  ]
+}

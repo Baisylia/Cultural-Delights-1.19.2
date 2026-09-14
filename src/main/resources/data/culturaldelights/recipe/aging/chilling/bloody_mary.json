@@ -6,7 +6,7 @@
       "item": "culturaldelights:vodka"
     },
     {
-      "item": "farmersdelight:tomato"
+      "tag": "c:crops/tomato"
     },
     {
       "item": "minecraft:ice"
@@ -18,7 +18,7 @@
       "item": "culturaldelights:vinegar"
     },
     {
-      "item": "cookscollection:lemon"
+      "tag": "c:fruits/lemon"
     }
   ],
   "temperature": "cold",

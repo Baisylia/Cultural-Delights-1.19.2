@@ -3,7 +3,7 @@
   "cooktime": 200,
   "ingredients": [
     {
-      "item": "minecraft:water_bucket"
+      "tag": "c:buckets/water"
     },
     {
       "item": "minecraft:ice"
@@ -18,7 +18,7 @@
       "item": "minecraft:sugar"
     },
     {
-      "item": "cookscollection:lemon"
+      "tag": "c:fruits/lemon"
     }
   ],
   "temperature": "cold",

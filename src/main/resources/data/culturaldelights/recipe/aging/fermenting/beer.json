@@ -3,13 +3,13 @@
   "cooktime": 200,
   "ingredients": [
     {
-      "item": "minecraft:water_bucket"
+      "tag": "c:buckets/water"
     },
     {
-      "item": "minecraft:wheat"
+      "tag": "c:crops/wheat"
     },
     {
-      "item": "minecraft:wheat"
+      "tag": "c:crops/wheat"
     },
     {
       "item": "minecraft:sugar"

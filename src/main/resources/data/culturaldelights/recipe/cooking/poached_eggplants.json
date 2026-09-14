@@ -2,7 +2,7 @@
   "type": "farmersdelight:cooking",
   "ingredients": [
     {
-      "tag": "culturaldelights:regular_eggplants"
+      "tag": "culturaldelights:all_eggplants"
     },
     {
       "tag": "c:eggs"

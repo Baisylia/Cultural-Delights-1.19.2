@@ -16,7 +16,7 @@
       "tag": "c:foods/cooked_chicken"
     },
     "!": {
-      "item": "minecraft:beetroot"
+      "tag": "c:crops/beetroot"
     }
   },
   "result": {

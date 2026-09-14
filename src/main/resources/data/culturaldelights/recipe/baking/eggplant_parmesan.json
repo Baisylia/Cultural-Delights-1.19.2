@@ -4,10 +4,10 @@
   "experience": 1.0,
   "ingredients": [
     {
-      "tag": "culturaldelights:regular_eggplants"
+      "tag": "culturaldelights:all_eggplants"
     },
     {
-      "item": "farmersdelight:raw_pasta"
+      "tag": "c:foods/pasta"
     },
     {
       "item": "farmersdelight:tomato_sauce"

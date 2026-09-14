@@ -3,22 +3,22 @@
   "cooktime": 200,
   "ingredients": [
     {
-      "item": "minecraft:egg"
+      "tag": "c:eggs"
     },
     {
-      "item": "minecraft:egg"
+      "tag": "c:eggs"
     },
     {
-      "item": "minecraft:egg"
+      "tag": "c:eggs"
     },
     {
-      "item": "minecraft:egg"
+      "tag": "c:eggs"
     },
     {
       "item": "culturaldelights:vinegar"
     },
     {
-      "item": "cookscollection:salt"
+      "tag": "c:dusts/salt"
     }
   ],
   "result": {

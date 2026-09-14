@@ -3,16 +3,16 @@
   "cooktime": 200,
   "ingredients": [
     {
-      "item": "farmersdelight:tomato"
+      "tag": "c:crops/tomato"
     },
     {
-      "item": "farmersdelight:tomato"
+      "tag": "c:crops/tomato"
     },
     {
-      "item": "farmersdelight:tomato"
+      "tag": "c:crops/tomato"
     },
     {
-      "item": "farmersdelight:tomato"
+      "tag": "c:crops/tomato"
     }
   ],
   "result": {

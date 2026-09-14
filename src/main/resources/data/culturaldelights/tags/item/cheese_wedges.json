@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "culturaldelights:cheese_wedge",
+    {
+      "id": "#brewinandchewin:foods/cheese_wedge",
+      "required": false
+    },
+    {
+      "id": "#hearthandharvest:cheese_slices",
+      "required": false
+    }
+  ]
+}

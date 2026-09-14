@@ -8,7 +8,7 @@
       "item": "culturaldelights:raw_sausage"
     },
     {
-      "item": "cookscollection:cooking_oil"
+      "tag": "c:cooking_oil"
     }
   ],
   "result": {

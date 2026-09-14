@@ -3,13 +3,13 @@
   "category": "misc",
   "ingredients": [
     {
-      "tag": "culturaldelights:smoked_regular_eggplants"
+      "tag": "culturaldelights:smoked_all_eggplants"
     },
     {
-      "tag": "culturaldelights:smoked_regular_eggplants"
+      "tag": "culturaldelights:smoked_all_eggplants"
     },
     {
-      "item": "farmersdelight:raw_pasta"
+      "tag": "c:foods/pasta"
     },
     {
       "item": "farmersdelight:tomato_sauce"

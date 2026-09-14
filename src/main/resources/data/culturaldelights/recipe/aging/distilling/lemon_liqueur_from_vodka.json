@@ -6,7 +6,7 @@
       "item": "culturaldelights:vodka"
     },
     {
-      "item": "cookscollection:lemon"
+      "tag": "c:fruits/lemon"
     }
   ],
   "temperature": "hot",

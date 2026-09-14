@@ -3,7 +3,7 @@
   "cooktime": 200,
   "ingredients": [
     {
-      "item": "minecraft:water_bucket"
+      "tag": "c:buckets/water"
     },
     {
       "item": "culturaldelights:beans"
@@ -15,7 +15,7 @@
       "item": "culturaldelights:beans"
     },
     {
-      "item": "cookscollection:salt"
+      "tag": "c:dusts/salt"
     }
   ],
   "result": {

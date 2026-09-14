@@ -4,10 +4,10 @@
   "experience": 1.0,
   "ingredients": [
     {
-      "item": "culturaldelights:cheese_wedge"
+      "tag": "culturaldelights:cheese_wedges"
     },
     {
-      "item": "farmersdelight:wheat_dough"
+      "tag": "c:foods/dough/wheat"
     }
   ],
   "result": {

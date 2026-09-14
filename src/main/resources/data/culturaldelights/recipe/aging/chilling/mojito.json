@@ -15,10 +15,10 @@
       "item": "minecraft:sugar"
     },
     {
-      "item": "cookscollection:lemon"
+      "tag": "c:fruits/lemon"
     },
     {
-      "item": "cookscollection:lemon"
+      "tag": "c:fruits/lemon"
     }
   ],
   "temperature": "cold",

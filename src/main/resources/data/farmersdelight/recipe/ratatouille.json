@@ -3,19 +3,19 @@
   "cooktime": 200,
   "ingredients": [
     {
-      "item": "farmersdelight:tomato"
+      "tag": "c:crops/tomato"
     },
     {
-      "item": "farmersdelight:onion"
+      "tag": "c:crops/onion"
     },
     {
       "item": "minecraft:bowl"
     },
     {
-      "item": "minecraft:beetroot"
+      "tag": "c:crops/beetroot"
     },
     {
-      "tag": "culturaldelights:regular_eggplants"
+      "tag": "culturaldelights:all_eggplants"
     }
   ],
   "result": {

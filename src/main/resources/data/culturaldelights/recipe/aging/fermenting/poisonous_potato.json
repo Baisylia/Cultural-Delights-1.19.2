@@ -3,16 +3,16 @@
   "cooktime": 200,
   "ingredients": [
     {
-      "item": "minecraft:potato"
+      "tag": "c:crops/potato"
     },
     {
-      "item": "minecraft:potato"
+      "tag": "c:crops/potato"
     },
     {
-      "item": "minecraft:potato"
+      "tag": "c:crops/potato"
     },
     {
-      "item": "minecraft:potato"
+      "tag": "c:crops/potato"
     }
   ],
   "result": {

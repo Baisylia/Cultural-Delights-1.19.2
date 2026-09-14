@@ -13,10 +13,10 @@
       "item": "culturaldelights:raw_sausage"
     },
     {
-      "item": "minecraft:potato"
+      "tag": "c:crops/potato"
     },
     {
-      "item": "minecraft:potato"
+      "tag": "c:crops/potato"
     },
     {
       "item": "culturaldelights:bean_pod"

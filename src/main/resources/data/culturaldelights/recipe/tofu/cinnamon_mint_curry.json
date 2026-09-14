@@ -8,7 +8,7 @@
       "item": "culturaldelights:mint"
     },
     {
-      "item": "farmersdelight:rice"
+      "tag": "c:crops/rice"
     },
     {
       "item": "culturaldelights:corn_cob"

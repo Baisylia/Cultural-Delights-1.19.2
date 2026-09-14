@@ -18,7 +18,7 @@
       "item": "culturaldelights:vinegar"
     },
     {
-      "item": "cookscollection:salt"
+      "tag": "c:dusts/salt"
     }
   ],
   "result": {

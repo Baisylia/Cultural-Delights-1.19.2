@@ -2,10 +2,10 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "minecraft:bread"
+      "tag": "c:foods/bread"
     },
     {
-      "tag": "culturaldelights:smoked_regular_eggplants"
+      "tag": "culturaldelights:smoked_all_eggplants"
     },
     {
       "tag": "c:foods/leafy_green"

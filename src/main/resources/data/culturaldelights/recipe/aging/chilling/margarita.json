@@ -12,13 +12,13 @@
       "item": "minecraft:ice"
     },
     {
-      "item": "cookscollection:salt"
+      "tag": "c:dusts/salt"
     },
     {
-      "item": "cookscollection:lemon"
+      "tag": "c:fruits/lemon"
     },
     {
-      "item": "cookscollection:lemon"
+      "tag": "c:fruits/lemon"
     }
   ],
   "temperature": "cold",

@@ -3,33 +3,45 @@ package com.baisylia.culturaldelights.block.custom;
 import com.baisylia.culturaldelights.item.ModItems;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.LevelEvent;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.storage.loot.LootParams;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.common.CommonHooks;
 
-import java.util.List;
+import javax.annotation.Nullable;
 
 public class CornBlock extends CropBlock {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_7;
     public static final int MAX_HEIGHT = 2;
     public static final IntegerProperty HEIGHT = IntegerProperty.create("height", 0, MAX_HEIGHT);
     public static final MapCodec<CornBlock> CODEC = simpleCodec(CornBlock::new);
-    private static final ThreadLocal<Boolean> EDITING = ThreadLocal.withInitial(() -> false);
 
-    private static final int CLEAR_FLAGS =
-            Block.UPDATE_ALL | Block.UPDATE_KNOWN_SHAPE | Block.UPDATE_SUPPRESS_DROPS;
+    private static final VoxelShape SHAPE_BOTTOM_0 = Block.box(3.0, 0.0, 3.0, 13.0, 5.0, 13.0);
+    private static final VoxelShape SHAPE_BOTTOM_1 = Block.box(3.0, 0.0, 3.0, 13.0, 9.0, 13.0);
+    private static final VoxelShape SHAPE_BOTTOM_2 = Block.box(2.0, 0.0, 2.0, 14.0, 14.0, 14.0);
+    private static final VoxelShape SHAPE_FULL = Block.box(2.0, 0.0, 2.0, 14.0, 16.0, 14.0);
+    private static final VoxelShape SHAPE_MIDDLE_3 = Block.box(2.0, 0.0, 2.0, 14.0, 12.0, 14.0);
+    private static final VoxelShape SHAPE_TOP_5 = Block.box(2.0, 0.0, 2.0, 14.0, 10.0, 14.0);
+    private static final VoxelShape SHAPE_TOP_6 = Block.box(2.0, 0.0, 2.0, 14.0, 14.0, 14.0);
 
     public CornBlock(Properties props) {
         super(props);
@@ -64,174 +76,186 @@ public class CornBlock extends CropBlock {
     }
 
     @Override
+    public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+        int height = state.getValue(HEIGHT);
+        int age = state.getValue(AGE);
+        if (height == 0) {
+            return switch (age) {
+                case 0 -> SHAPE_BOTTOM_0;
+                case 1 -> SHAPE_BOTTOM_1;
+                case 2 -> SHAPE_BOTTOM_2;
+                default -> SHAPE_FULL;
+            };
+        } else if (height == 1) {
+            return age == 3 ? SHAPE_MIDDLE_3 : SHAPE_FULL;
+        } else {
+            return switch (age) {
+                case 5 -> SHAPE_TOP_5;
+                case 6 -> SHAPE_TOP_6;
+                default -> SHAPE_FULL;
+            };
+        }
+    }
+
+    public static int getExpectedMaxHeight(int age) {
+        if (age >= 5) return 2;
+        if (age >= 3) return 1;
+        return 0;
+    }
+
+    public BlockPos getBottom(BlockGetter level, BlockPos pos) {
+        BlockState state = level.getBlockState(pos);
+        if (state.is(this)) {
+            int height = state.getValue(HEIGHT);
+            if (height > 0) {
+                BlockPos candidate = pos.below(height);
+                BlockState candidateState = level.getBlockState(candidate);
+                if (candidateState.is(this) && candidateState.getValue(HEIGHT) == 0) {
+                    return candidate;
+                }
+            }
+        }
+        while (level.getBlockState(pos.below()).is(this)) {
+            pos = pos.below();
+        }
+        return pos;
+    }
+
+    public boolean canGrowUp(BlockGetter level, BlockPos bottom, int currentAge, int newAge) {
+        int currentMaxHeight = getExpectedMaxHeight(currentAge);
+        int newMaxHeight = getExpectedMaxHeight(newAge);
+        for (int h = currentMaxHeight + 1; h <= newMaxHeight; h++) {
+            BlockPos targetPos = bottom.above(h);
+            BlockState targetState = level.getBlockState(targetPos);
+            if (!targetState.isAir() && !targetState.is(this) && !targetState.canBeReplaced()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean isRandomlyTicking(BlockState state) {
+        return state.getValue(HEIGHT) == 0 && !this.isMaxAge(state);
+    }
+
+    @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         if (!level.isAreaLoaded(pos, 1)) return;
+        if (state.getValue(HEIGHT) != 0) return;
 
         if (level.getRawBrightness(pos, 0) >= 9) {
-            int age = getAge(state);
-
-            if (age < getMaxAge()) {
+            int age = this.getAge(state);
+            if (age < this.getMaxAge()) {
                 float speed = getGrowthSpeed(state, level, pos);
-
-                if (CommonHooks.canCropGrow(level, pos, state,
-                        random.nextInt((int) (25.0F / speed) + 1) == 0)) {
-
-                    BlockPos bottom = getBottom(level, pos);
-                    int nextAge = getAge(level.getBlockState(bottom)) + 1;
-
-                    if (canAdvanceAge(level, bottom, nextAge)) {
-                        syncPlantAges(level, bottom, nextAge);
-                        handleVerticalGrowth(level, bottom, nextAge);
-                        CommonHooks.fireCropGrowPost(level, pos, state);
-                    }
+                if (CommonHooks.canCropGrow(level, pos, state, random.nextInt((int) (25.0F / speed) + 1) == 0)) {
+                    this.growCropBy(level, pos, state, 1);
+                    CommonHooks.fireCropGrowPost(level, pos, state);
                 }
             }
         }
     }
 
-    private void handleVerticalGrowth(ServerLevel level, BlockPos bottom, int age) {
-        level.setBlock(bottom,
-                level.getBlockState(bottom)
-                        .setValue(HEIGHT, 0)
-                        .setValue(AGE, age),
-                2);
+    public void growCropBy(Level level, BlockPos pos, BlockState state, int increment) {
+        BlockPos bottom = getBottom(level, pos);
+        BlockState bottomState = level.getBlockState(bottom);
+        if (!bottomState.is(this)) return;
 
-        if (age >= 3) {
-            BlockPos middlePos = bottom.above();
+        int currentAge = this.getAge(bottomState);
+        int newAge = Math.min(currentAge + increment, this.getMaxAge());
+        if (newAge <= currentAge) return;
 
-            if (level.isEmptyBlock(middlePos) || level.getBlockState(middlePos).is(this)) {
-                level.setBlock(middlePos,
-                        defaultBlockState()
-                                .setValue(AGE, age)
-                                .setValue(HEIGHT, 1),
-                        2);
-            }
+        if (!canGrowUp(level, bottom, currentAge, newAge)) {
+            return;
         }
 
-        if (age >= 5) {
-            BlockPos topPos = bottom.above(2);
-
-            if (level.isEmptyBlock(topPos) || level.getBlockState(topPos).is(this)) {
-                level.setBlock(topPos,
-                        defaultBlockState()
-                                .setValue(AGE, age)
-                                .setValue(HEIGHT, 2),
-                        2);
-            }
+        int targetHeight = getExpectedMaxHeight(newAge);
+        for (int h = 0; h <= targetHeight; h++) {
+            BlockPos targetPos = bottom.above(h);
+            BlockState targetState = defaultBlockState().setValue(AGE, newAge).setValue(HEIGHT, h);
+            level.setBlock(targetPos, targetState, 3);
         }
     }
 
     @Override
     public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
-
         int height = state.getValue(HEIGHT);
+        int age = state.getValue(AGE);
 
-        BlockState below = level.getBlockState(pos.below());
+        if (height > getExpectedMaxHeight(age)) {
+            return false;
+        }
 
         if (height == 0) {
             return super.canSurvive(state, level, pos);
         }
 
-        return below.is(this);
-    }
-
-    private boolean canAdvanceAge(ServerLevel level, BlockPos bottom, int nextAge) {
-
-        if (nextAge >= 3) {
-            BlockPos middle = bottom.above();
-            BlockState middleState = level.getBlockState(middle);
-
-            if (!(middleState.isAir() || middleState.is(this))) {
-                return false;
-            }
-        }
-
-        if (nextAge >= 5) {
-            BlockPos middle = bottom.above();
-            BlockPos top = bottom.above(2);
-
-            BlockState middleState = level.getBlockState(middle);
-            BlockState topState = level.getBlockState(top);
-
-            if (!(middleState.isAir() || middleState.is(this))) {
-                return false;
-            }
-
-            return topState.isAir() || topState.is(this);
-        }
-
-        return true;
+        BlockState belowState = level.getBlockState(pos.below());
+        if (!belowState.is(this)) return false;
+        if (belowState.getValue(HEIGHT) != height - 1) return false;
+        return height <= getExpectedMaxHeight(belowState.getValue(AGE));
     }
 
     @Override
-    public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean isMoving) {
-        super.onPlace(state, level, pos, oldState, isMoving);
+    protected BlockState updateShape(BlockState state, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos) {
+        int height = state.getValue(HEIGHT);
+        int age = state.getValue(AGE);
+        int maxHeight = getExpectedMaxHeight(age);
 
-        if (level.isClientSide || EDITING.get()) return;
-
-        if (oldState.is(this) && oldState.getValue(AGE) > state.getValue(AGE)) {
-            resetPlant(level, pos);
+        if (facing == Direction.DOWN && !state.canSurvive(level, currentPos)) {
+            return Blocks.AIR.defaultBlockState();
         }
-    }
 
-    private void resetPlant(Level level, BlockPos pos) {
-        BlockPos bottom = getBottom(level, pos);
-
-        EDITING.set(true);
-
-        try {
-            clearAbove(level, bottom);
-            level.setBlock(bottom, defaultBlockState().setValue(AGE, 0).setValue(HEIGHT, 0), Block.UPDATE_ALL);
-        } finally {
-            EDITING.set(false);
-        }
-    }
-
-    private void clearAbove(Level level, BlockPos bottom) {
-        for (int offset = MAX_HEIGHT; offset >= 1; offset--) {
-            BlockPos current = bottom.above(offset);
-
-            if (level.getBlockState(current).is(this)) {
-                level.setBlock(current, Blocks.AIR.defaultBlockState(), CLEAR_FLAGS);
+        if (facing == Direction.UP && height < maxHeight) {
+            if (!facingState.is(this) || facingState.getValue(HEIGHT) != height + 1) {
+                return Blocks.AIR.defaultBlockState();
             }
         }
+
+        return super.updateShape(state, facing, facingState, level, currentPos, facingPos);
     }
 
     @Override
-    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving) {
-        if (!state.is(newState.getBlock()) && !EDITING.get()) {
-            EDITING.set(true);
+    public boolean canBeReplaced(BlockState state, BlockPlaceContext useContext) {
+        return false;
+    }
 
-            try {
+    @Override
+    public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
+        if (!level.isClientSide) {
+            if (player.isCreative()) {
                 BlockPos bottom = getBottom(level, pos);
-
-                clearAbove(level, bottom);
-
-                if (level.getBlockState(bottom).is(this)) {
-                    level.setBlock(bottom, Blocks.AIR.defaultBlockState(), CLEAR_FLAGS);
+                int maxHeight = getExpectedMaxHeight(state.getValue(AGE));
+                for (int h = maxHeight; h >= 0; h--) {
+                    BlockPos p = bottom.above(h);
+                    if (!p.equals(pos)) {
+                        BlockState s = level.getBlockState(p);
+                        if (s.is(this)) {
+                            level.setBlock(p, Blocks.AIR.defaultBlockState(), 35);
+                            level.levelEvent(player, LevelEvent.PARTICLES_DESTROY_BLOCK, p, Block.getId(s));
+                        }
+                    }
                 }
-            } finally {
-                EDITING.set(false);
+            } else {
+                dropResources(state, level, pos, null, player, player.getMainHandItem());
             }
         }
-
-        super.onRemove(state, level, pos, newState, isMoving);
+        return super.playerWillDestroy(level, pos, state, player);
     }
 
     @Override
-    public List<ItemStack> getDrops(BlockState state, LootParams.Builder builder) {
-        if (state.getValue(HEIGHT) != 0) {
-            return super.getDrops(state.setValue(HEIGHT, 0), builder);
-        }
-
-        return super.getDrops(state, builder);
+    public void playerDestroy(Level level, Player player, BlockPos pos, BlockState state, @Nullable BlockEntity te, ItemStack stack) {
+        super.playerDestroy(level, player, pos, Blocks.AIR.defaultBlockState(), te, stack);
     }
 
     @Override
     public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
         BlockPos bottom = getBottom(level, pos);
         BlockState bottomState = level.getBlockState(bottom);
-        return bottomState.getValue(AGE) < getMaxAge();
+        if (!bottomState.is(this)) return false;
+        int age = this.getAge(bottomState);
+        if (age >= this.getMaxAge()) return false;
+        return canGrowUp(level, bottom, age, age + 1);
     }
 
     @Override
@@ -241,36 +265,6 @@ public class CornBlock extends CropBlock {
 
     @Override
     public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
-        BlockPos bottom = getBottom(level, pos);
-        BlockState bottomState = level.getBlockState(bottom);
-
-        int nextAge = Math.min(bottomState.getValue(AGE) + getBonemealAgeIncrease(level), getMaxAge());
-
-        if (canAdvanceAge(level, bottom, nextAge)) {
-            syncPlantAges(level, bottom, nextAge);
-            handleVerticalGrowth(level, bottom, nextAge);
-        }
-    }
-
-    private BlockPos getBottom(LevelReader level, BlockPos pos) {
-        while (level.getBlockState(pos.below()).is(this)) {
-            pos = pos.below();
-        }
-        return pos;
-    }
-
-    private void syncPlantAges(ServerLevel level, BlockPos bottom, int age) {
-        BlockPos current = bottom;
-        int height = 0;
-
-        while (level.getBlockState(current).is(this)) {
-            level.setBlock(current,
-                    level.getBlockState(current)
-                            .setValue(AGE, age)
-                            .setValue(HEIGHT, height),
-                    2);
-            current = current.above();
-            height++;
-        }
+        growCropBy(level, pos, state, getBonemealAgeIncrease(level));
     }
 }

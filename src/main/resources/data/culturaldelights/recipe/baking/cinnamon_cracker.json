@@ -10,7 +10,7 @@
       "item": "culturaldelights:cinnamon"
     },
     {
-      "item": "farmersdelight:wheat_dough"
+      "tag": "c:foods/dough/wheat"
     }
   ],
   "result": {

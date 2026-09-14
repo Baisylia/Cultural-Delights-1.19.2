@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "cookscollection:cooking_oil",
+      "required": false
+    },
+    {
+      "id": "hearthandharvest:cooking_oil",
+      "required": false
+    },
+    {
+      "id": "#rusticdelight:cooking_oil",
+      "required": false
+    }
+  ]
+}
