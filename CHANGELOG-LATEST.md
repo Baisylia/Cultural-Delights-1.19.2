@@ -1,7 +1,7 @@
 ### Added
 
-- Added more tags for mod compatibility.
+- Harvesting mature corn with a knife now drops straw.
 
 ### Fixed
 
-- Fixed issues ticking corn.
+- Fixed suspended bean model being shaded.
