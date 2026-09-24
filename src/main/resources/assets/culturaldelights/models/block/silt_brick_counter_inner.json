@@ -1,0 +1,7 @@
+{
+	"parent": "culturaldelights:block/brick_counter_inner",
+	"textures": {
+		"side": "culturaldelights:block/silt_brick_counter_side",
+        "bottom": "twigs:block/silt_bricks"
+	}
+}

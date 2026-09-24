@@ -24,6 +24,8 @@ import vectorwing.farmersdelight.common.block.TomatoBlock;
 import vectorwing.farmersdelight.common.registry.ModSounds;
 import vectorwing.farmersdelight.common.tag.ModTags;
 
+import static vectorwing.farmersdelight.common.registry.ModBlocks.ROPE;
+
 import java.util.function.Supplier;
 
 public class BeansBlock extends TomatoBlock {
@@ -91,7 +93,7 @@ public class BeansBlock extends TomatoBlock {
                 return true;
             }
         }
-        return ENABLE_BEAN_VINE_CLIMBING_TAGGED_ROPES.get() ? stateAbove.is(ModTags.Blocks.ROPES) : stateAbove.is(vectorwing.farmersdelight.common.registry.ModBlocks.ROPE.get());
+        return ENABLE_BEAN_VINE_CLIMBING_TAGGED_ROPES.get() ? stateAbove.is(ModTags.Blocks.ROPES) : stateAbove.is(ROPE.get());
     }
 
     @Override

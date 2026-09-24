@@ -2,6 +2,7 @@ package com.baisylia.culturaldelights.integration.emi;
 
 import com.baisylia.culturaldelights.CulturalDelights;
 import com.baisylia.culturaldelights.block.ModBlocks;
+import com.baisylia.culturaldelights.item.ModItems;
 import com.baisylia.culturaldelights.recipes.ModRecipes;
 import com.baisylia.culturaldelights.recipes.VatRecipe;
 import com.baisylia.culturaldelights.screens.ModMenuTypes;
@@ -38,5 +39,8 @@ public class EMICulturalDelightsPlugin implements EmiPlugin {
             registry.addRecipe(new VatEmiRecipe(recipeHolder));
         }
         registry.addRecipeHandler(ModMenuTypes.VAT_MENU.get(), new VatRecipeHandler());
+
+        registry.addRecipe(new EmiMarshmallowCookingRecipe(100, ModItems.MARSHMALLOW_ON_A_STICK.get(), ModItems.CARAMELIZED_MARSHMALLOW_ON_A_STICK.get()));
+        registry.addRecipe(new EmiMarshmallowCookingRecipe(100, ModItems.CARAMELIZED_MARSHMALLOW_ON_A_STICK.get(), ModItems.CHARRED_MARSHMALLOW_ON_A_STICK.get()));
     }
 }

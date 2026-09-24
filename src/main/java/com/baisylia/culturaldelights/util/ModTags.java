@@ -15,6 +15,7 @@ public class ModTags {
         public static final TagKey<Block> HEAT_CONDUCTORS = tag("heat_conductors");
         public static final TagKey<Block> COLD_SOURCES = tag("cold_sources");
         public static final TagKey<Block> COLD_CONDUCTORS = tag("cold_conductors");
+        public static final TagKey<Block> COUNTERS = tag("counters");
 
         private static TagKey<Block> tag(String name) {
             return BlockTags.create(ResourceLocation.fromNamespaceAndPath(CulturalDelights.MOD_ID, name));
@@ -29,6 +30,8 @@ public class ModTags {
         public static final TagKey<Item> BOWL_FOODS = commonTag("rollmatout/bowl_foods");
         public static final TagKey<Item> BOTTLE_FOODS = commonTag("rollmatout/bottle_foods");
         public static final TagKey<Item> BUCKET_FOODS = commonTag("rollmatout/bucket_foods");
+        public static final TagKey<Item> COUNTERS = tag("counters");
+        public static final TagKey<Item> MARSHMALLOWS = tag("marshmallows");
 
         private static TagKey<Item> tag(String name) {
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(CulturalDelights.MOD_ID, name));

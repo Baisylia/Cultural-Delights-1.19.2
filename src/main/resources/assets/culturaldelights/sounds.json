@@ -1,0 +1,29 @@
+{
+  "item.marshmallow.sizzle": {
+    "subtitle": "culturaldelights.subtitles.marshmallow.sizzle",
+    "sounds": [
+      {
+        "name": "block.furnace.fire_crackle",
+        "type": "event"
+      }
+    ]
+  },
+  "item.marshmallow.caramelize": {
+    "subtitle": "culturaldelights.subtitles.marshmallow.caramelize",
+    "sounds": [
+      {
+        "name": "entity.generic.extinguish_fire",
+        "type": "event"
+      }
+    ]
+  },
+  "item.marshmallow.char": {
+    "subtitle": "culturaldelights.subtitles.marshmallow.char",
+    "sounds": [
+      {
+        "name": "entity.blaze.shoot",
+        "type": "event"
+      }
+    ]
+  }
+}

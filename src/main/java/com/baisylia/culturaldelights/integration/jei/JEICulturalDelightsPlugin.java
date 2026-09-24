@@ -2,6 +2,7 @@ package com.baisylia.culturaldelights.integration.jei;
 
 import com.baisylia.culturaldelights.CulturalDelights;
 import com.baisylia.culturaldelights.block.ModBlocks;
+import com.baisylia.culturaldelights.item.ModItems;
 import com.baisylia.culturaldelights.recipes.ModRecipes;
 import com.baisylia.culturaldelights.recipes.VatRecipe;
 import com.baisylia.culturaldelights.screens.ModMenuTypes;
@@ -12,6 +13,7 @@ import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.registration.*;
 import net.minecraft.client.Minecraft;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
@@ -47,6 +49,10 @@ public class JEICulturalDelightsPlugin implements IModPlugin {
         RecipeManager rm = Objects.requireNonNull(Minecraft.getInstance().level).getRecipeManager();
         List<RecipeHolder<VatRecipe>> recipes = rm.getAllRecipesFor(ModRecipes.AGING_TYPE.get());
         registration.addRecipes(getAgingType(), recipes);
+        registration.addItemStackInfo(List.of(
+                ModItems.MARSHMALLOW_ON_A_STICK.get().getDefaultInstance(),
+                ModItems.CARAMELIZED_MARSHMALLOW_ON_A_STICK.get().getDefaultInstance()
+        ), Component.translatable("emi.culturaldelights.marshmallow_on_a_stick.help"));
     }
 
     @Override

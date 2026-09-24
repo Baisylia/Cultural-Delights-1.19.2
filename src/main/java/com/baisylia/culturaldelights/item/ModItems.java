@@ -3,6 +3,7 @@ package com.baisylia.culturaldelights.item;
 import com.baisylia.culturaldelights.CulturalDelights;
 import com.baisylia.culturaldelights.block.ModBlocks;
 import com.baisylia.culturaldelights.item.custom.BucketFoodItem;
+import com.baisylia.culturaldelights.item.custom.MarshmallowOnAStickItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.Items;
@@ -268,6 +269,18 @@ public class ModItems {
 
     public static final DeferredItem<Item> CALAMARI_ROLL = ITEMS.register("calamari_roll",
             () -> new Item(new Item.Properties().food(ModFoods.CALAMARI_ROLL)));
+
+    public static final DeferredItem<Item> MARSHMALLOW = ITEMS.register("marshmallow",
+            () -> new Item(new Item.Properties().food(ModFoods.MARSHMALLOW)));
+
+    public static final DeferredItem<Item> MARSHMALLOW_ON_A_STICK = ITEMS.register("marshmallow_on_a_stick",
+            () -> new MarshmallowOnAStickItem(new Item.Properties().food(ModFoods.MARSHMALLOW_ON_A_STICK)));
+
+    public static final DeferredItem<Item> CARAMELIZED_MARSHMALLOW_ON_A_STICK = ITEMS.register("caramelized_marshmallow_on_a_stick",
+            () -> new MarshmallowOnAStickItem(new Item.Properties().food(ModFoods.CARAMELIZED_MARSHMALLOW_ON_A_STICK)));
+
+    public static final DeferredItem<Item> CHARRED_MARSHMALLOW_ON_A_STICK = ITEMS.register("charred_marshmallow_on_a_stick",
+            () -> new MarshmallowOnAStickItem(new Item.Properties().food(ModFoods.CHARRED_MARSHMALLOW_ON_A_STICK)));
 
 
     public static void register(IEventBus eventBus) {

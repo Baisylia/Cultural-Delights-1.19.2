@@ -1,0 +1,7 @@
+{
+	"parent": "culturaldelights:block/brick_counter",
+	"textures": {
+		"side": "culturaldelights:block/ash_brick_counter_side",
+        "bottom": "supplementaries:block/ash_bricks"
+    }
+}

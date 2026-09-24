@@ -1,0 +1,13 @@
+{
+  "values": [
+    "culturaldelights:brick_counter",
+    {
+      "id": "culturaldelights:ash_brick_counter",
+      "required": false
+    },
+    {
+      "id": "culturaldelights:silt_brick_counter",
+      "required": false
+    }
+  ]
+}

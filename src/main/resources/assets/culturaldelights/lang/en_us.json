@@ -144,5 +144,23 @@
 
   "resourcepack.culturaldelights.pastry_sheet.description": "Replaces Pie Crust with Pastry Sheet for more versatility",
   "resourcepack.culturaldelights.apple_juice.description": "Renames Apple Cider to Apple Juice to avoid duplicate items",
-  "resourcepack.culturaldelights.supplementaries.description": "Adds rope and stick bean vine models for Supplementaries"
+  "resourcepack.culturaldelights.supplementaries.description": "Adds rope and stick bean vine models for Supplementaries",
+
+  "block.culturaldelights.brick_counter": "Brick Counter",
+  "block.culturaldelights.ash_brick_counter": "Ash Brick Counter",
+  "block.culturaldelights.silt_brick_counter": "Silt Brick Counter",
+
+  "item.culturaldelights.marshmallow": "Marshmallow",
+  "item.culturaldelights.marshmallow_on_a_stick": "Marshmallow on a Stick",
+  "item.culturaldelights.caramelized_marshmallow_on_a_stick": "Caramelized Marshmallow on a Stick",
+  "item.culturaldelights.charred_marshmallow_on_a_stick": "Charred Marshmallow on a Stick",
+
+  "culturaldelights.subtitles.marshmallow.sizzle": "Marshmallow melts",
+  "culturaldelights.subtitles.marshmallow.caramelize": "Marshmallow caramelizes",
+  "culturaldelights.subtitles.marshmallow.char": "Marshmallow chars",
+  "emi.culturaldelights.marshmallow_on_a_stick.help": "Hold over a Campfire or heat source to cook.",
+
+  "tag.item.culturaldelights.counters": "Counters",
+  "tag.block.culturaldelights.counters": "Counters",
+  "tag.item.culturaldelights.marshmallows": "Marshmallows"
 }

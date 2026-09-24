@@ -1,0 +1,27 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "twigs"
+    }
+  ],
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "II",
+    "##",
+    "##"
+  ],
+  "key": {
+    "I": {
+      "tag": "c:ingots/iron"
+    },
+    "#": {
+      "item": "twigs:silt_brick"
+    }
+  },
+  "result": {
+    "id": "culturaldelights:silt_brick_counter",
+    "count": 4
+  }
+}

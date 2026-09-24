@@ -217,6 +217,15 @@ public class ModBlocks {
     public static final DeferredBlock<Block> BUTTERSCOTCH_CINNAMONN_PIE = registerBlock("butterscotch_cinnamon_pie",
             () -> new PieBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAKE), ModItems.BUTTERSCOTCH_CINNAMON_PIE_SLICE), false, 0);
 
+    public static final DeferredBlock<Block> BRICK_COUNTER = registerBlock("brick_counter",
+            () -> new CounterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS)), false, 0);
+    public static final @Nullable DeferredBlock<Block> ASH_BRICK_COUNTER = ModList.get().isLoaded("supplementaries")
+            ? registerBlock("ash_brick_counter", () -> new CounterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS)), false, 0)
+            : null;
+    public static final @Nullable DeferredBlock<Block> SILT_BRICK_COUNTER = ModList.get().isLoaded("twigs")
+            ? registerBlock("silt_brick_counter", () -> new CounterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS)), false, 0)
+            : null;
+
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block, boolean isFuel, int fuelAmount) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn, isFuel, fuelAmount);
