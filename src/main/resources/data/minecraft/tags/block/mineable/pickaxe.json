@@ -1,5 +1,9 @@
 {
   "values": [
-    "#culturaldelights:counters"
+    "#culturaldelights:counters",
+    "culturaldelights:oven",
+    "culturaldelights:salt_block",
+    "culturaldelights:salt_spike",
+    "culturaldelights:vat"
   ]
 }

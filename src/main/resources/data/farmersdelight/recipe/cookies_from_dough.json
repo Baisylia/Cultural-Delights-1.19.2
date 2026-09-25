@@ -1,0 +1,19 @@
+{
+  "type": "culturaldelights:baking",
+  "ingredients": [
+    {
+      "tag": "c:foods/dough/wheat"
+    },
+    {
+      "tag": "c:crops/cocoa_bean"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "result": {
+    "id": "minecraft:cookie",
+    "count": 8
+  },
+  "cookingtime": 200
+}

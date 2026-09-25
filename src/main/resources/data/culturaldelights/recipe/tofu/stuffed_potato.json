@@ -1,5 +1,5 @@
-{
-  "type": "cookscollection:baking",
+﻿{
+  "type": "culturaldelights:baking",
   "cooktime": 200,
   "ingredients": [
     {
@@ -17,3 +17,4 @@
     "count": 1
   }
 }
+

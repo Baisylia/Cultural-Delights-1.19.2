@@ -1,0 +1,22 @@
+{
+  "type": "culturaldelights:baking",
+  "ingredients": [
+    {
+      "tag": "c:crops/wheat"
+    },
+    {
+      "tag": "c:crops/wheat"
+    },
+    {
+      "item": "minecraft:sweet_berries"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "result": {
+    "id": "farmersdelight:sweet_berry_cookie",
+    "count": 8
+  },
+  "cookingtime": 200
+}

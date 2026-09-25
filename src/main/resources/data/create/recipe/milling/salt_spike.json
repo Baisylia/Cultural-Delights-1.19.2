@@ -1,0 +1,22 @@
+﻿{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "create"
+    }
+  ],
+  "type": "create:milling",
+  "ingredients": [
+    {
+      "item": "culturaldelights:salt_spike"
+    }
+  ],
+  "processing_time": 250,
+  "results": [
+    {
+      "count": 4,
+      "id": "culturaldelights:salt"
+    }
+  ]
+}
+

@@ -33,13 +33,6 @@ ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.${mod_id}]]
-modId = "cookscollection"
-type = "required"
-versionRange = "[0.5.0,)"
-ordering = "AFTER"
-side = "BOTH"
-
-[[dependencies.${mod_id}]]
 modId = "supplementaries"
 type = "optional"
 versionRange = "[1.21.1,)"

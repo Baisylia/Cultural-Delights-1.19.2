@@ -1,0 +1,7 @@
+﻿{
+  "parent": "culturaldelights:block/loaf",
+  "textures": {
+    "texture": "culturaldelights:block/rustic_loaf",
+    "particle": "culturaldelights:item/rustic_loaf"
+  }
+}

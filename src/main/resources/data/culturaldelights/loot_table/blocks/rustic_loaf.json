@@ -1,0 +1,24 @@
+﻿{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "culturaldelights:rustic_loaf"
+        }
+      ],
+      "conditions": [
+        {
+          "condition": "minecraft:block_state_property",
+          "block": "culturaldelights:rustic_loaf",
+          "properties": {
+            "bites": "0"
+          }
+        }
+      ]
+    }
+  ]
+}

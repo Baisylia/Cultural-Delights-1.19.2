@@ -163,5 +163,44 @@
 
   "tag.item.culturaldelights.counters": "Counters",
   "tag.block.culturaldelights.counters": "Counters",
-  "tag.item.culturaldelights.marshmallows": "Marshmallows"
+  "tag.item.culturaldelights.marshmallows": "Marshmallows",
+
+  "item.culturaldelights.lemon": "Lemon",
+  "item.culturaldelights.salt": "Salt",
+  "item.culturaldelights.sunflower_seeds": "Sunflower Seeds",
+  "item.culturaldelights.cooking_oil": "Cooking Oil",
+  "item.culturaldelights.lemon_muffin": "Lemon Muffin",
+  "item.culturaldelights.chocolate_muffin": "Chocolate Muffin",
+  "item.culturaldelights.fried_potato": "Fried Potato",
+  "item.culturaldelights.lemonade": "Lemonade",
+  "item.culturaldelights.rustic_loaf_slice": "Slice of Rustic Loaf",
+  "item.culturaldelights.fish_and_chips": "Fish and Chips",
+
+  "recipe.culturaldelights.shapeless_baking": "Shapeless Baking",
+  "recipe.culturaldelights.shaped_baking": "Shaped Baking",
+
+  "emi.category.culturaldelights.shapeless_baking": "Shapeless Baking",
+  "emi.category.culturaldelights.shaped_baking": "Shaped Baking",
+
+  "culturaldelights.subtitles.oven.crackle": "Oven crackles",
+  "culturaldelights.subtitles.oven.open": "Oven opens",
+  "culturaldelights.subtitles.oven.close": "Oven closes",
+  "culturaldelights.subtitles.fruiting_leaves.pick_fruit": "Fruit picked",
+
+  "block.culturaldelights.oven": "Oven",
+  "block.culturaldelights.lemon_log": "Lemon Log",
+  "block.culturaldelights.lemon_wood": "Lemon Wood",
+  "block.culturaldelights.lemon_leaves": "Lemon Leaves",
+  "block.culturaldelights.fruiting_lemon_leaves": "Fruiting Lemon Leaves",
+  "block.culturaldelights.lemon_sapling": "Lemon Sapling",
+  "block.culturaldelights.lemon_crate": "Lemon Crate",
+  "block.culturaldelights.rustic_loaf": "Rustic Loaf",
+  "block.culturaldelights.salt_block": "Salt Block",
+  "block.culturaldelights.salt_spike": "Salt Spike",
+
+  "container.culturaldelights.oven.heated": "Heated",
+  "container.culturaldelights.oven.not_heated": "Needs heat from below",
+
+  "advancement.culturaldelights.salt.title": "Why So Salty?!",
+  "advancement.culturaldelights.salt.description": "Set up a renewable Salt Spike farm with Water, a Salt Block, and Pointed Dripstone"
 }

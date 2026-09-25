@@ -1,0 +1,19 @@
+{
+  "type": "culturaldelights:baking",
+  "ingredients": [
+    {
+      "tag": "c:foods/dough/wheat"
+    },
+    {
+      "item": "minecraft:honey_bottle"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "result": {
+    "id": "farmersdelight:honey_cookie",
+    "count": 8
+  },
+  "cookingtime": 200
+}

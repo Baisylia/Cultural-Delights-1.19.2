@@ -1,0 +1,6 @@
+﻿{
+  "type": "neoforge:add_features",
+  "biomes": "minecraft:dripstone_caves",
+  "features": "culturaldelights:salt_placed",
+  "step": "underground_ores"
+}

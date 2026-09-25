@@ -68,6 +68,21 @@
     },
     "culturaldelights:popcorn": {
       "chance": 0.85
+    },
+    "culturaldelights:lemon": {
+      "chance": 0.25
+    },
+    "culturaldelights:fried_potato": {
+      "chance": 0.45
+    },
+    "culturaldelights:lemon_leaves": {
+      "chance": 0.3
+    },
+    "culturaldelights:fruiting_lemon_leaves": {
+      "chance": 0.3
+    },
+    "culturaldelights:lemon_sapling": {
+      "chance": 0.3
     }
   }
 }

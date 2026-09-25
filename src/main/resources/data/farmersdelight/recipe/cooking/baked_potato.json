@@ -1,0 +1,20 @@
+﻿{
+  "type": "culturaldelights:baking",
+  "ingredients": [
+    {
+      "item": "minecraft:potato"
+    },
+    {
+      "item": "minecraft:potato"
+    },
+    {
+      "item": "minecraft:potato"
+    }
+  ],
+  "result": {
+    "id": "minecraft:baked_potato",
+    "count": 3
+  },
+  "cookingtime": 200
+}
+

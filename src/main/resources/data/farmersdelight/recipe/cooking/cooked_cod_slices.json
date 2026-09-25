@@ -1,0 +1,20 @@
+﻿{
+  "type": "culturaldelights:baking",
+  "ingredients": [
+    {
+      "item": "farmersdelight:cod_slice"
+    },
+    {
+      "item": "farmersdelight:cod_slice"
+    },
+    {
+      "item": "farmersdelight:cod_slice"
+    }
+  ],
+  "result": {
+    "id": "farmersdelight:cooked_cod_slice",
+    "count": 3
+  },
+  "cookingtime": 200
+}
+

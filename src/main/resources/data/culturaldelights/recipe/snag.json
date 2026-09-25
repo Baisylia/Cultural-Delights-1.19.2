@@ -1,4 +1,4 @@
-{
+﻿{
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
@@ -8,7 +8,7 @@
       "tag": "c:crops/onion"
     },
     {
-      "item": "cookscollection:rustic_loaf_slice"
+      "item": "culturaldelights:rustic_loaf_slice"
     }
   ],
   "result": {

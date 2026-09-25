@@ -1,0 +1,20 @@
+﻿{
+  "type": "culturaldelights:baking",
+  "ingredients": [
+    {
+      "item": "minecraft:porkchop"
+    },
+    {
+      "item": "minecraft:porkchop"
+    },
+    {
+      "item": "minecraft:porkchop"
+    }
+  ],
+  "result": {
+    "id": "minecraft:cooked_porkchop",
+    "count": 3
+  },
+  "cookingtime": 200
+}
+

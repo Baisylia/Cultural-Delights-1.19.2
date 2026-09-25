@@ -10,6 +10,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class VatEmiRecipe extends AbstractVatRecipe {
 
@@ -60,7 +61,7 @@ public class VatEmiRecipe extends AbstractVatRecipe {
             case HOT -> 26;
         };
         builder.addTexture(AbstractVatRecipe.TEXTURE, 5, 6, 12, 46, 126 + xOffset, 20)
-                .tooltip((mx, my) -> java.util.List.of(
+                .tooltip((mx, my) -> List.of(
                         ClientTooltipComponent.create(Component.translatable("container.culturaldelights.vat."
                                 + temperature.getSerializedName()).getVisualOrderText())
                 ));

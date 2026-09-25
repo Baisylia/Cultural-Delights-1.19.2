@@ -25,5 +25,41 @@
         "type": "event"
       }
     ]
+  },
+  "block.oven.crackle": {
+    "subtitle": "culturaldelights.subtitles.oven.crackle",
+    "sounds": [
+      {
+        "name": "block.furnace.fire_crackle",
+        "type": "event"
+      }
+    ]
+  },
+  "block.oven.open": {
+    "subtitle": "culturaldelights.subtitles.oven.open",
+    "sounds": [
+      "culturaldelights:block/oven/open1",
+      "culturaldelights:block/oven/open2",
+      "culturaldelights:block/oven/open3",
+      "culturaldelights:block/oven/open4"
+    ]
+  },
+  "block.oven.close": {
+    "subtitle": "culturaldelights.subtitles.oven.close",
+    "sounds": [
+      "culturaldelights:block/oven/close1",
+      "culturaldelights:block/oven/close2",
+      "culturaldelights:block/oven/close3",
+      "culturaldelights:block/oven/close4"
+    ]
+  },
+  "block.fruiting_leaves.pick_fruit": {
+    "subtitle": "culturaldelights.subtitles.fruiting_leaves.pick_fruit",
+    "sounds": [
+      {
+        "name": "block.sweet_berry_bush.pick_berries",
+        "type": "event"
+      }
+    ]
   }
 }

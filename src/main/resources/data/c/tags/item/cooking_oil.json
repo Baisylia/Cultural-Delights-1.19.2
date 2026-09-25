@@ -2,6 +2,10 @@
   "replace": false,
   "values": [
     {
+      "id": "culturaldelights:cooking_oil",
+      "required": false
+    },
+    {
       "id": "cookscollection:cooking_oil",
       "required": false
     },

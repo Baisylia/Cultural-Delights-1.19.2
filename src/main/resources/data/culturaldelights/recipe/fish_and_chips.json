@@ -1,0 +1,24 @@
+﻿{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "culturaldelights:fried_potato"
+    },
+    {
+      "tag": "c:foods/cooked_fish"
+    },
+    {
+      "item": "minecraft:bowl"
+    },
+    {
+      "tag": "c:crops/onion"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "culturaldelights:fish_and_chips"
+  }
+
+}
+
+

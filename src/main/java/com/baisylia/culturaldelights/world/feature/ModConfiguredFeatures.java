@@ -16,6 +16,8 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> WILD_CUCUMBERS_KEY = registerKey("wild_cucumbers");
     public static final ResourceKey<ConfiguredFeature<?, ?>> WILD_EGGPLANTS_KEY = registerKey("wild_eggplants");
     public static final ResourceKey<ConfiguredFeature<?, ?>> WILD_BEANS_KEY = registerKey("wild_beans");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> LEMON_KEY = registerKey("lemon");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SALT_KEY = registerKey("salt");
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
         return ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(CulturalDelights.MOD_ID, name));

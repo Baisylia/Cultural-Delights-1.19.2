@@ -1,0 +1,42 @@
+﻿{
+  "type": "culturaldelights:baking",
+  "cooktime": 600,
+  "ingredients": [
+    {
+      "item": "minecraft:brown_mushroom"
+    },
+    {
+      "item": "farmersdelight:cabbage_leaf"
+    },
+	{
+      "item": "minecraft:brown_mushroom"
+    },
+	{
+      "tag": "c:drinks/milk"
+    },
+	{
+      "item": "brewinandchewin:flaxen_cheese_wedge"
+    },
+	{
+      "tag": "c:drinks/milk"
+    },
+	{
+      "tag": "c:eggs"
+    },
+	{
+      "item": "farmersdelight:pie_crust"
+    },
+	{
+      "tag": "c:eggs"
+    }
+  ],
+  "result": {
+    "id": "brewinandchewin:quiche"
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "brewinandchewin"
+    }
+  ]
+}

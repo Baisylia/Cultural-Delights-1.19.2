@@ -1,0 +1,20 @@
+﻿{
+  "type": "culturaldelights:baking",
+  "ingredients": [
+    {
+      "item": "minecraft:rabbit"
+    },
+    {
+      "item": "minecraft:rabbit"
+    },
+    {
+      "item": "minecraft:rabbit"
+    }
+  ],
+  "result": {
+    "id": "minecraft:cooked_rabbit",
+    "count": 3
+  },
+  "cookingtime": 200
+}
+

@@ -1,0 +1,7 @@
+﻿{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "culturaldelights:block/lemon_log_top",
+    "side": "culturaldelights:block/lemon_log"
+  }
+}

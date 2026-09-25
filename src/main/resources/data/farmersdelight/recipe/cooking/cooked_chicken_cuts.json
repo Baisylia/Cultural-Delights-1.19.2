@@ -1,0 +1,20 @@
+﻿{
+  "type": "culturaldelights:baking",
+  "ingredients": [
+    {
+      "item": "farmersdelight:chicken_cuts"
+    },
+    {
+      "item": "farmersdelight:chicken_cuts"
+    },
+    {
+      "item": "farmersdelight:chicken_cuts"
+    }
+  ],
+  "result": {
+    "id": "farmersdelight:cooked_chicken_cuts",
+    "count": 3
+  },
+  "cookingtime": 200
+}
+

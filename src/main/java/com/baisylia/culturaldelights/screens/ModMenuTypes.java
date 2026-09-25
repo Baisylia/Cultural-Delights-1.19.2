@@ -17,6 +17,9 @@ public class ModMenuTypes {
     public static final DeferredHolder<MenuType<?>, MenuType<VatMenu>> VAT_MENU =
             registerMenuType(VatMenu::new, "vat_menu");
 
+    public static final DeferredHolder<MenuType<?>, MenuType<OvenMenu>> OVEN_MENU =
+            registerMenuType(OvenMenu::new, "oven_menu");
+
     private static <T extends AbstractContainerMenu> DeferredHolder<MenuType<?>, MenuType<T>> registerMenuType(IContainerFactory<T> factory, String name) {
         return MENUS.register(name, () -> IMenuTypeExtension.create(factory));
     }

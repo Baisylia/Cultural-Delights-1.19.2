@@ -1,5 +1,5 @@
-{
-  "type": "cookscollection:baking",
+﻿{
+  "type": "culturaldelights:baking",
   "cookingtime": 200,
   "experience": 1.0,
   "ingredients": [
@@ -30,3 +30,4 @@
     "count": 1
   }
 }
+

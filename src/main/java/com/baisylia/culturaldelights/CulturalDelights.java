@@ -1,5 +1,6 @@
 package com.baisylia.culturaldelights;
 
+import com.baisylia.culturaldelights.advancement.ModAdvancements;
 import com.baisylia.culturaldelights.block.ModBlocks;
 import com.baisylia.culturaldelights.block.entity.ModBlockEntities;
 import com.baisylia.culturaldelights.block.entity.custom.VatBlockEntity;
@@ -8,9 +9,12 @@ import com.baisylia.culturaldelights.item.ModDataComponents;
 import com.baisylia.culturaldelights.item.ModItems;
 import com.baisylia.culturaldelights.recipes.ModRecipes;
 import com.baisylia.culturaldelights.screens.ModMenuTypes;
+import com.baisylia.culturaldelights.screens.OvenScreen;
 import com.baisylia.culturaldelights.screens.VatScreen;
 import com.baisylia.culturaldelights.sound.ModSounds;
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
@@ -30,6 +34,7 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
@@ -54,6 +59,7 @@ public class CulturalDelights {
         ModBlockEntities.register(eventBus);
         ModMenuTypes.register(eventBus);
         ModRecipes.register(eventBus);
+        ModAdvancements.register(eventBus);
 
         eventBus.addListener(this::setup);
         eventBus.addListener(this::registerCapabilities);
@@ -77,6 +83,11 @@ public class CulturalDelights {
                 Capabilities.ItemHandler.BLOCK,
                 ModBlockEntities.VAT_BLOCK_ENTITY.get(),
                 VatBlockEntity::getItemHandler
+        );
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                ModBlockEntities.OVEN_BLOCK_ENTITY.get(),
+                (be, side) -> be.getItemHandler()
         );
     }
 
@@ -107,6 +118,13 @@ public class CulturalDelights {
         @SubscribeEvent
         public static void registerScreens(RegisterMenuScreensEvent event) {
             event.register(ModMenuTypes.VAT_MENU.get(), VatScreen::new);
+            event.register(ModMenuTypes.OVEN_MENU.get(), OvenScreen::new);
+        }
+
+        @SubscribeEvent
+        public static void onClientSetup(FMLClientSetupEvent event) {
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.LEMON_SAPLING.get(), RenderType.cutoutMipped());
+            ItemBlockRenderTypes.setRenderLayer(ModBlocks.SALT_SPIKE.get(), RenderType.cutout());
         }
 
         @SubscribeEvent

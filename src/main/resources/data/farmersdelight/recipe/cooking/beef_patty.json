@@ -1,0 +1,20 @@
+﻿{
+  "type": "culturaldelights:baking",
+  "ingredients": [
+    {
+      "item": "farmersdelight:minced_beef"
+    },
+    {
+      "item": "farmersdelight:minced_beef"
+    },
+    {
+      "item": "farmersdelight:minced_beef"
+    }
+  ],
+  "result": {
+    "id": "farmersdelight:beef_patty",
+    "count": 3
+  },
+  "cookingtime": 200
+}
+

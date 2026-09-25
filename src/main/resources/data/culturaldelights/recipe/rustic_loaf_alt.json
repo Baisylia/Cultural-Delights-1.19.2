@@ -1,0 +1,21 @@
+﻿{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "culturaldelights:rustic_loaf_slice"
+    },
+    {
+      "item": "culturaldelights:rustic_loaf_slice"
+    },
+    {
+      "item": "culturaldelights:rustic_loaf_slice"
+    },
+    {
+      "item": "culturaldelights:rustic_loaf_slice"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "culturaldelights:rustic_loaf"
+  }
+}

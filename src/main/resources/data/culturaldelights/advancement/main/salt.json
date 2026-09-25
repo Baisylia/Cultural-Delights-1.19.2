@@ -1,0 +1,28 @@
+{
+  "parent": "farmersdelight:main/craft_knife",
+  "display": {
+    "icon": {
+      "id": "culturaldelights:salt_spike"
+    },
+    "title": {
+      "translate": "advancement.culturaldelights.salt.title"
+    },
+    "description": {
+      "translate": "advancement.culturaldelights.salt.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "grow_salt_spike": {
+      "trigger": "culturaldelights:grow_salt_spike"
+    }
+  },
+  "requirements": [
+    [
+      "grow_salt_spike"
+    ]
+  ]
+}

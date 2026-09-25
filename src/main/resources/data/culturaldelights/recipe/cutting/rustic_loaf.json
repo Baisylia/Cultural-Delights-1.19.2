@@ -1,0 +1,19 @@
+﻿{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "culturaldelights:rustic_loaf"
+    }
+  ],
+  "result": [
+    {
+      "item": {
+        "count": 4,
+        "id": "culturaldelights:rustic_loaf_slice"
+      }
+    }
+  ],
+  "tool": {
+    "tag": "c:tools/knife"
+  }
+}

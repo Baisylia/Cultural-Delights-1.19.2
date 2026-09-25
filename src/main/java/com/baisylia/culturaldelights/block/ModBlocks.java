@@ -6,6 +6,7 @@ import com.baisylia.culturaldelights.integration.supplementaries.Supplementaries
 import com.baisylia.culturaldelights.item.ModItems;
 import com.baisylia.culturaldelights.world.feature.tree.AvocadoPitGrower;
 import com.baisylia.culturaldelights.world.feature.tree.AvocadoTreeGrower;
+import com.baisylia.culturaldelights.world.feature.tree.LemonTreeGrower;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.effect.MobEffects;
@@ -29,6 +30,8 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import vectorwing.farmersdelight.common.block.PieBlock;
 import vectorwing.farmersdelight.common.block.WildCropBlock;
+import static vectorwing.farmersdelight.common.registry.ModBlocks.APPLE_PIE;
+import static vectorwing.farmersdelight.common.registry.ModBlocks.CARROT_CRATE;
 
 import javax.annotation.Nullable;
 import java.util.function.Supplier;
@@ -225,6 +228,118 @@ public class ModBlocks {
     public static final @Nullable DeferredBlock<Block> SILT_BRICK_COUNTER = ModList.get().isLoaded("twigs")
             ? registerBlock("silt_brick_counter", () -> new CounterBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS)), false, 0)
             : null;
+
+    public static final DeferredBlock<Block> LEMON_CRATE = registerBlock("lemon_crate",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(CARROT_CRATE.get())), false, 0);
+
+    public static final DeferredBlock<Block> LEMON_SAPLING = registerBlock("lemon_sapling",
+            () -> new SaplingBlock(LemonTreeGrower.LEMON_TREE_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)), true, 100);
+
+    public static final DeferredBlock<Block> LEMON_LOG = registerBlock("lemon_log",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG)) {
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction face) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction face) {
+                    return 60;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction face) {
+                    return 30;
+                }
+
+                @Override
+                public @Nullable BlockState getToolModifiedState(BlockState state, UseOnContext context, ItemAbility itemAbility, boolean simulate) {
+                    if (itemAbility == ItemAbilities.AXE_STRIP) {
+                        return Blocks.STRIPPED_OAK_LOG.defaultBlockState().setValue(AXIS, state.getValue(AXIS));
+                    }
+                    return super.getToolModifiedState(state, context, itemAbility, simulate);
+                }
+            }, true, 300);
+
+    public static final DeferredBlock<Block> LEMON_WOOD = registerBlock("lemon_wood",
+            () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD)) {
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction face) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction face) {
+                    return 60;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction face) {
+                    return 30;
+                }
+
+                @Override
+                public @Nullable BlockState getToolModifiedState(BlockState state, UseOnContext context, ItemAbility itemAbility, boolean simulate) {
+                    if (itemAbility == ItemAbilities.AXE_STRIP) {
+                        return Blocks.STRIPPED_OAK_WOOD.defaultBlockState().setValue(AXIS, state.getValue(AXIS));
+                    }
+                    return super.getToolModifiedState(state, context, itemAbility, simulate);
+                }
+            }, true, 300);
+
+    public static final DeferredBlock<Block> LEMON_LEAVES = registerBlock("lemon_leaves",
+            () -> new LeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)) {
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 60;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 30;
+                }
+            }, false, 0);
+
+    public static final DeferredBlock<Block> FRUITING_LEMON_LEAVES = registerBlock("fruiting_lemon_leaves",
+            () -> new FruitingLeaves(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES), ModItems.LEMON) {
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 60;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter world, BlockPos pos, Direction face) {
+                    return 30;
+                }
+            }, false, 0);
+
+    public static final DeferredBlock<Block> RUSTIC_LOAF = registerBlock("rustic_loaf",
+            () -> new RusticLoafBlock(BlockBehaviour.Properties.ofFullCopy(APPLE_PIE.get()).noOcclusion(),
+                    ModItems.RUSTIC_LOAF_SLICE), false, 0);
+
+    public static final DeferredBlock<Block> SALT_BLOCK = registerBlock("salt_block",
+            () -> new SaltBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DRIPSTONE_BLOCK).randomTicks()), false, 0);
+
+    public static final DeferredBlock<Block> SALT_SPIKE = registerBlock("salt_spike",
+            () -> new SaltSpikeBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.POINTED_DRIPSTONE)
+                    .offsetType(BlockBehaviour.OffsetType.NONE)
+                    .noOcclusion()
+                    .sound(SoundType.POINTED_DRIPSTONE)
+                    .strength(1.5F, 3.0F)
+                    .pushReaction(PushReaction.DESTROY)), false, 0);
+
+    public static final DeferredBlock<Block> OVEN = registerBlock("oven",
+            () -> new OvenBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS)), false, 0);
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block, boolean isFuel, int fuelAmount) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);

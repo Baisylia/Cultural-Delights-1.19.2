@@ -2,6 +2,10 @@
   "replace": false,
   "values": [
     {
+      "id": "culturaldelights:salt",
+      "required": false
+    },
+    {
       "id": "cookscollection:salt",
       "required": false
     }

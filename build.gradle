@@ -125,10 +125,6 @@ dependencies {
     compileOnly "maven.modrinth:farmers-delight:${farmers_delight_version}"
     runtimeOnly "maven.modrinth:farmers-delight:${farmers_delight_version}"
 
-    // Cook's Collection
-    compileOnly "maven.modrinth:cooks-collection:${cooks_collection_version}"
-    runtimeOnly "maven.modrinth:cooks-collection:${cooks_collection_version}"
-
     // Supplementaries
     compileOnly "maven.modrinth:supplementaries:${supplementaries_version}"
     runtimeOnly "maven.modrinth:supplementaries:${supplementaries_version}"
@@ -205,7 +201,6 @@ publishMods {
         server = true
 
         requires("farmers-delight")
-        requires("cooks-collection")
         optional("supplementaries")
         optional("jei")
         optional("emi")
@@ -218,7 +213,6 @@ publishMods {
         minecraftVersions.add("${minecraft_version}")
 
         requires("farmers-delight")
-        requires("cooks-collection")
         optional("supplementaries")
         optional("jei")
         optional("emi")

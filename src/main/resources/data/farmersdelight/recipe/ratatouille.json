@@ -1,6 +1,6 @@
 {
-  "type": "cookscollection:baking",
-  "cooktime": 200,
+  "type": "culturaldelights:baking",
+  "cookingtime": 200,
   "ingredients": [
     {
       "tag": "c:crops/tomato"

@@ -1,0 +1,19 @@
+{
+  "type": "culturaldelights:baking",
+  "ingredients": [
+    {
+      "tag": "c:crops/wheat"
+    },
+    {
+      "tag": "c:crops/wheat"
+    },
+    {
+      "tag": "c:crops/wheat"
+    }
+  ],
+  "result": {
+    "id": "minecraft:bread",
+    "count": 1
+  },
+  "cookingtime": 200
+}

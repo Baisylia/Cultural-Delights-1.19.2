@@ -1,0 +1,33 @@
+﻿{
+  "type": "culturaldelights:baking",
+  "cooktime": 600,
+  "ingredients": [
+    {
+      "tag": "c:foods/pasta"
+    },
+    {
+      "tag": "brewinandchewin:foods/cheese_wedge"
+    },
+	{
+      "item": "farmersdelight:tomato_sauce"
+    },
+	{
+      "tag": "c:crops/beetroot"
+    },
+	{
+      "item": "brewinandchewin:scarlet_cheese_wedge"
+    },
+	{
+      "item": "minecraft:bowl"
+    }
+  ],
+  "result": {
+    "id": "brewinandchewin:horror_lasagna"
+  },
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "brewinandchewin"
+    }
+  ]
+}
