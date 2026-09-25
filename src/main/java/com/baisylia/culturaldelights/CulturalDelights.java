@@ -92,6 +92,8 @@ public class CulturalDelights {
                     PackType.CLIENT_RESOURCES, Component.literal("Pastry Sheet"), PackSource.BUILT_IN, false, Pack.Position.TOP);
             event.addPackFinders(ResourceLocation.fromNamespaceAndPath(MOD_ID, "resourcepacks/apple_juice"),
                     PackType.CLIENT_RESOURCES, Component.literal("Apple Juice"), PackSource.BUILT_IN, false, Pack.Position.TOP);
+            event.addPackFinders(ResourceLocation.fromNamespaceAndPath(MOD_ID, "resourcepacks/retextured_stove"),
+                    PackType.CLIENT_RESOURCES, Component.literal("Retextured Stove"), PackSource.BUILT_IN, false, Pack.Position.TOP);
             if (ModList.get().isLoaded("supplementaries")) {
                 event.addPackFinders(ResourceLocation.fromNamespaceAndPath(MOD_ID, "resourcepacks/supplementaries"),
                         PackType.CLIENT_RESOURCES, Component.literal("Supplementaries Beans"), PackSource.BUILT_IN, true, Pack.Position.TOP);
