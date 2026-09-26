@@ -197,6 +197,12 @@
   "block.culturaldelights.rustic_loaf": "Rustic Loaf",
   "block.culturaldelights.salt_block": "Salt Block",
   "block.culturaldelights.salt_spike": "Salt Spike",
+  "block.culturaldelights.beanstalk": "Beanstalk",
+  "block.culturaldelights.beanstalk_leaf": "Beanstalk Leaf",
+  "block.culturaldelights.magic_beans": "Magic Beans",
+  "item.culturaldelights.beanstalk": "Beanstalk",
+  "item.culturaldelights.beanstalk_leaf": "Beanstalk Leaf",
+  "item.culturaldelights.magic_beans": "Magic Beans",
 
   "container.culturaldelights.oven.heated": "Heated",
   "container.culturaldelights.oven.not_heated": "Needs heat from below",

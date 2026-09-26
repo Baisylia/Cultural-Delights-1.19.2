@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "culturaldelights:block/magic_beans",
+      "x": 180
+    },
+    "facing=up": {
+      "model": "culturaldelights:block/magic_beans"
+    },
+    "facing=north": {
+      "model": "culturaldelights:block/magic_beans",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "culturaldelights:block/magic_beans",
+      "x": 90,
+      "y": 180
+    },
+    "facing=west": {
+      "model": "culturaldelights:block/magic_beans",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east": {
+      "model": "culturaldelights:block/magic_beans",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

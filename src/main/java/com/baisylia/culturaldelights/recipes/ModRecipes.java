@@ -16,7 +16,6 @@ public class ModRecipes {
     public static final DeferredRegister<RecipeSerializer<?>> SERIALIZERS =
             DeferredRegister.create(Registries.RECIPE_SERIALIZER, CulturalDelights.MOD_ID);
 
-    // Cultural Delights recipe types and serializers
     public static final DeferredHolder<RecipeType<?>, RecipeType<VatRecipe>> AGING_TYPE =
             RECIPE_TYPES.register("aging", () -> RecipeType.simple(ResourceLocation.fromNamespaceAndPath(CulturalDelights.MOD_ID, "aging")));
 
@@ -35,7 +34,6 @@ public class ModRecipes {
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<OvenShapedRecipe>> BAKING_SHAPED_SERIALIZER =
             SERIALIZERS.register("baking_shaped", OvenShapedRecipe.Serializer::new);
 
-    // Backwards-compatibility aliases for recipes using "cookscollection" namespace
     public static final DeferredRegister<RecipeType<?>> CC_RECIPE_TYPES =
             DeferredRegister.create(Registries.RECIPE_TYPE, "cookscollection");
 
@@ -43,16 +41,16 @@ public class ModRecipes {
             DeferredRegister.create(Registries.RECIPE_SERIALIZER, "cookscollection");
 
     public static final DeferredHolder<RecipeType<?>, RecipeType<OvenRecipe>> CC_BAKING =
-            CC_RECIPE_TYPES.register("baking", BAKING::get);
+            CC_RECIPE_TYPES.register("baking", () -> RecipeType.simple(ResourceLocation.fromNamespaceAndPath("cookscollection", "baking")));
 
     public static final DeferredHolder<RecipeType<?>, RecipeType<OvenShapedRecipe>> CC_BAKING_SHAPED =
-            CC_RECIPE_TYPES.register("baking_shaped", BAKING_SHAPED::get);
+            CC_RECIPE_TYPES.register("baking_shaped", () -> RecipeType.simple(ResourceLocation.fromNamespaceAndPath("cookscollection", "baking_shaped")));
 
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<OvenRecipe>> CC_BAKING_SERIALIZER =
-            CC_SERIALIZERS.register("baking", BAKING_SERIALIZER::get);
+            CC_SERIALIZERS.register("baking", OvenRecipe.Serializer::new);
 
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<OvenShapedRecipe>> CC_BAKING_SHAPED_SERIALIZER =
-            CC_SERIALIZERS.register("baking_shaped", BAKING_SHAPED_SERIALIZER::get);
+            CC_SERIALIZERS.register("baking_shaped", OvenShapedRecipe.Serializer::new);
 
     public static void register(IEventBus eventBus) {
         RECIPE_TYPES.register(eventBus);

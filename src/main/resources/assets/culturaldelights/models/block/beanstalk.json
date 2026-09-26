@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "top": "culturaldelights:block/beanstalk_top",
+    "bottom": "culturaldelights:block/beanstalk_bottom",
+    "side": "culturaldelights:block/beanstalk_side",
+    "particle": "culturaldelights:block/beanstalk_side"
+  }
+}

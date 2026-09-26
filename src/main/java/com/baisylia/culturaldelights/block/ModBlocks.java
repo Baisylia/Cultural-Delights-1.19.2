@@ -67,6 +67,18 @@ public class ModBlocks {
             () -> new WildCropBlock(MobEffects.ABSORPTION, 6,
                     BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_GRASS)), false, 0);
 
+    public static final DeferredBlock<Block> BEANSTALK = registerBlock("beanstalk",
+            () -> new BeanstalkBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GREEN)
+                    .strength(1.0F).sound(SoundType.STEM).pushReaction(PushReaction.DESTROY)), false, 0);
+
+    public static final DeferredBlock<Block> BEANSTALK_LEAF = registerBlock("beanstalk_leaf",
+            () -> new BeanstalkLeafBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GREEN)
+                    .noOcclusion().strength(0.2F).sound(SoundType.BIG_DRIPLEAF).pushReaction(PushReaction.DESTROY)), false, 0);
+
+    public static final DeferredBlock<Block> MAGIC_BEANS = registerBlock("magic_beans",
+            () -> new MagicBeansBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE)
+                    .noCollission().instabreak().sound(SoundType.CROP).pushReaction(PushReaction.DESTROY)), false, 0);
+
     public static final DeferredBlock<Block> AVOCADO_PIT = registerBlock("avocado_pit",
             () -> new AvocadoPitBlock(AvocadoPitGrower.AVOCADO_PIT_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)), false, 0);
     public static final DeferredBlock<Block> AVOCADO_SAPLING = registerBlock("avocado_sapling",

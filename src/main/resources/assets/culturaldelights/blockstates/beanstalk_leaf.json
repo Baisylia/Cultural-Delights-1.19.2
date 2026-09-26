@@ -1,0 +1,64 @@
+{
+  "variants": {
+    "facing=north,tilt=none": {
+      "model": "culturaldelights:block/beanstalk_leaf"
+    },
+    "facing=north,tilt=unstable": {
+      "model": "culturaldelights:block/beanstalk_leaf"
+    },
+    "facing=north,tilt=partial": {
+      "model": "culturaldelights:block/beanstalk_leaf_partial_tilt"
+    },
+    "facing=north,tilt=full": {
+      "model": "culturaldelights:block/beanstalk_leaf_full_tilt"
+    },
+    "facing=east,tilt=none": {
+      "model": "culturaldelights:block/beanstalk_leaf",
+      "y": 90
+    },
+    "facing=east,tilt=unstable": {
+      "model": "culturaldelights:block/beanstalk_leaf",
+      "y": 90
+    },
+    "facing=east,tilt=partial": {
+      "model": "culturaldelights:block/beanstalk_leaf_partial_tilt",
+      "y": 90
+    },
+    "facing=east,tilt=full": {
+      "model": "culturaldelights:block/beanstalk_leaf_full_tilt",
+      "y": 90
+    },
+    "facing=south,tilt=none": {
+      "model": "culturaldelights:block/beanstalk_leaf",
+      "y": 180
+    },
+    "facing=south,tilt=unstable": {
+      "model": "culturaldelights:block/beanstalk_leaf",
+      "y": 180
+    },
+    "facing=south,tilt=partial": {
+      "model": "culturaldelights:block/beanstalk_leaf_partial_tilt",
+      "y": 180
+    },
+    "facing=south,tilt=full": {
+      "model": "culturaldelights:block/beanstalk_leaf_full_tilt",
+      "y": 180
+    },
+    "facing=west,tilt=none": {
+      "model": "culturaldelights:block/beanstalk_leaf",
+      "y": 270
+    },
+    "facing=west,tilt=unstable": {
+      "model": "culturaldelights:block/beanstalk_leaf",
+      "y": 270
+    },
+    "facing=west,tilt=partial": {
+      "model": "culturaldelights:block/beanstalk_leaf_partial_tilt",
+      "y": 270
+    },
+    "facing=west,tilt=full": {
+      "model": "culturaldelights:block/beanstalk_leaf_full_tilt",
+      "y": 270
+    }
+  }
+}

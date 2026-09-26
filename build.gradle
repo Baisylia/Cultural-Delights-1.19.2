@@ -142,6 +142,9 @@ dependencies {
     // AppleSkin
     compileOnly "maven.modrinth:appleskin:${appleskin_version}"
     runtimeOnly "maven.modrinth:appleskin:${appleskin_version}"
+
+    // Modest Magic
+    compileOnly "maven.modrinth:modest-magic:${modest_magic_version}"
 }
 
 jar {
