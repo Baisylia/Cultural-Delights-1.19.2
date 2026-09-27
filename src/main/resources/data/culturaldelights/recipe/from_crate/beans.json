@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "culturaldelights:bean_bag"
+    }
+  ],
+  "result": {
+    "id": "culturaldelights:beans",
+    "count": 9
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "farmersdelight:block/rice_bag_bottom",
+    "east": "culturaldelights:block/bean_bag_side",
+    "north": "culturaldelights:block/bean_bag_side_tied",
+    "particle": "culturaldelights:block/bean_bag_top",
+    "south": "culturaldelights:block/bean_bag_side_tied",
+    "up": "culturaldelights:block/bean_bag_top",
+    "west": "culturaldelights:block/bean_bag_side"
+  }
+}

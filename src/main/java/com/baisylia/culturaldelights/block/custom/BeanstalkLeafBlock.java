@@ -29,6 +29,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import javax.annotation.Nullable;
@@ -74,7 +75,8 @@ public class BeanstalkLeafBlock extends HorizontalDirectionalBlock implements Si
 
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-        return COLLISION_SHAPES.getOrDefault(state.getValue(TILT), COLLISION_SHAPES.get(Tilt.NONE));
+        VoxelShape shape = COLLISION_SHAPES.getOrDefault(state.getValue(TILT), COLLISION_SHAPES.get(Tilt.NONE));
+        return context.isAbove(shape, pos, true) ? shape : Shapes.empty();
     }
 
     @Override

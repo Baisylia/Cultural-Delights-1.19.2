@@ -217,6 +217,12 @@ public class ModBlocks {
     public static final DeferredBlock<Block> WHITE_EGGPLANT_CRATE = registerBlock("white_eggplant_crate",
             () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)), false, 0);
 
+    public static final DeferredBlock<Block> BEAN_CRATE = registerBlock("bean_crate",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).strength(2.0F, 3.0F).sound(SoundType.WOOD)), false, 0);
+
+    public static final DeferredBlock<Block> BEAN_BAG = registerBlock("bean_bag",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL)), false, 0);
+
     public static final DeferredBlock<Block> EXOTIC_ROLL_MEDLEY = registerBlock("exotic_roll_medley",
             () -> new ExoticRollMedleyBlock(BlockBehaviour.Properties.of().forceSolidOn().strength(0.5F).mapColor(MapColor.WOOD).sound(SoundType.WOOD).pushReaction(PushReaction.DESTROY).noOcclusion()), false, 0);
 

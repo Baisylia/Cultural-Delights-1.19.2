@@ -1,6 +1,5 @@
 package com.baisylia.culturaldelights.block.custom;
 
-import com.baisylia.culturaldelights.block.ModBlocks;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -32,6 +31,9 @@ import javax.annotation.Nullable;
 public class MagicBeansBlock extends DirectionalBlock implements SimpleWaterloggedBlock, BonemealableBlock {
     public static final MapCodec<MagicBeansBlock> CODEC = simpleCodec(MagicBeansBlock::new);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+
+    private static final int MIN_GROW_DELAY = 600;
+    private static final int MAX_GROW_DELAY = 1800;
 
     public static final VoxelShape[] SHAPES = new VoxelShape[]{
             Block.box(0, 15, 0, 16, 16, 16),
@@ -68,7 +70,9 @@ public class MagicBeansBlock extends DirectionalBlock implements SimpleWaterlogg
 
     @Override
     public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean moving) {
-        level.scheduleTick(pos, this, 50);
+        if (!oldState.is(this)) {
+            level.scheduleTick(pos, this, MIN_GROW_DELAY + level.getRandom().nextInt(MAX_GROW_DELAY - MIN_GROW_DELAY + 1));
+        }
     }
 
     @Override
@@ -119,13 +123,9 @@ public class MagicBeansBlock extends DirectionalBlock implements SimpleWaterlogg
     }
 
     private static void growBeanstalk(ServerLevel level, BlockPos origin, Direction direction) {
-        level.setBlockAndUpdate(origin, ModBlocks.BEANSTALK.get().defaultBlockState()
-                .setValue(BeanstalkBlock.FACING, direction)
-                .setValue(BeanstalkBlock.WATERLOGGED, level.getFluidState(origin).getType() == Fluids.WATER));
-
-        BlockPos.MutableBlockPos cursor = origin.mutable();
-        int initialHeight = 6 + level.getRandom().nextInt(4);
-        BeanstalkBlock.growStemSegment(level, level.getRandom(), cursor, direction, initialHeight);
+        RandomSource random = level.getRandom();
+        int initialHeight = 7 + random.nextInt(4);
+        BeanstalkBlock.sprout(level, random, origin, direction, initialHeight);
     }
 
     @Override
