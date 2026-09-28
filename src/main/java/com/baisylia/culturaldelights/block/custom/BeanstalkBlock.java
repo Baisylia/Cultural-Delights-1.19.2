@@ -1,11 +1,13 @@
 package com.baisylia.culturaldelights.block.custom;
 
+import com.baisylia.culturaldelights.advancement.ModAdvancements;
 import com.baisylia.culturaldelights.block.ModBlocks;
 import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
@@ -28,9 +30,11 @@ public class BeanstalkBlock extends DirectionalBlock implements SimpleWaterlogge
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final IntegerProperty SPIRAL = IntegerProperty.create("spiral", 0, 3);
     public static final IntegerProperty COLUMN = IntegerProperty.create("column", 1, 5);
+    public static final BooleanProperty FLOWERING = BooleanProperty.create("flowering");
     public static final MapCodec<BeanstalkBlock> CODEC = simpleCodec(BeanstalkBlock::new);
     private static final int MIN_COLUMN_HEIGHT = 4;
     private static final int MAX_COLUMN_HEIGHT = 5;
+    private static final double HEIGHT_LIMIT_ADVANCEMENT_RANGE = 64.0;
 
     public BeanstalkBlock(Properties properties) {
         super(properties);
@@ -38,6 +42,7 @@ public class BeanstalkBlock extends DirectionalBlock implements SimpleWaterlogge
                 .setValue(FACING, Direction.UP)
                 .setValue(SPIRAL, 0)
                 .setValue(COLUMN, 1)
+                .setValue(FLOWERING, false)
                 .setValue(WATERLOGGED, false));
     }
 
@@ -87,6 +92,7 @@ public class BeanstalkBlock extends DirectionalBlock implements SimpleWaterlogge
                 .setValue(FACING, dir)
                 .setValue(SPIRAL, tip.cell())
                 .setValue(COLUMN, Math.min(tip.height(), MAX_COLUMN_HEIGHT))
+                .setValue(FLOWERING, true)
                 .setValue(WATERLOGGED, level.getFluidState(pos).getType() == Fluids.WATER));
         level.sendParticles(ParticleTypes.HAPPY_VILLAGER, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 4, 0.3, 0.3, 0.3, 0.05);
     }
@@ -143,6 +149,16 @@ public class BeanstalkBlock extends DirectionalBlock implements SimpleWaterlogge
         }
         level.playSound(null, tip.pos(), SoundEvents.BONE_MEAL_USE, SoundSource.BLOCKS, 1.0F, 1.0F);
         level.playSound(null, tip.pos(), SoundEvents.CHORUS_FLOWER_GROW, SoundSource.BLOCKS, 1.0F, 1.2F);
+
+        if (dir == Direction.UP && tip.pos().getY() >= level.getMaxBuildHeight() - 1) {
+            for (ServerPlayer player : level.players()) {
+                double dx = player.getX() - (tip.pos().getX() + 0.5);
+                double dz = player.getZ() - (tip.pos().getZ() + 0.5);
+                if (dx * dx + dz * dz <= HEIGHT_LIMIT_ADVANCEMENT_RANGE * HEIGHT_LIMIT_ADVANCEMENT_RANGE) {
+                    ModAdvancements.GROW_BEANSTALK_TO_HEIGHT_LIMIT.get().trigger(player);
+                }
+            }
+        }
     }
 
     @Override
@@ -154,9 +170,10 @@ public class BeanstalkBlock extends DirectionalBlock implements SimpleWaterlogge
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         Direction facing = context.getClickedFace();
-        return this.defaultBlockState()
+        BlockState state = this.defaultBlockState()
                 .setValue(FACING, facing)
                 .setValue(WATERLOGGED, context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER);
+        return state.setValue(FLOWERING, !hasNext(context.getLevel(), context.getClickedPos(), state));
     }
 
     @Override
@@ -164,7 +181,8 @@ public class BeanstalkBlock extends DirectionalBlock implements SimpleWaterlogge
         if (state.getValue(WATERLOGGED)) {
             level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
         }
-        return super.updateShape(state, direction, neighborState, level, pos, neighborPos);
+        return super.updateShape(state, direction, neighborState, level, pos, neighborPos)
+                .setValue(FLOWERING, !hasNext(level, pos, state));
     }
 
     @Override
@@ -184,7 +202,7 @@ public class BeanstalkBlock extends DirectionalBlock implements SimpleWaterlogge
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, SPIRAL, COLUMN, WATERLOGGED);
+        builder.add(FACING, SPIRAL, COLUMN, FLOWERING, WATERLOGGED);
     }
 
     @Override
@@ -211,6 +229,12 @@ public class BeanstalkBlock extends DirectionalBlock implements SimpleWaterlogge
         BlockState state = level.getBlockState(expected.pos());
         return state.is(this) && state.getValue(FACING) == dir && state.getValue(SPIRAL) == expected.cell()
                 && (expected.height() > 1 || state.getValue(COLUMN) == 1);
+    }
+
+    private boolean hasNext(LevelReader level, BlockPos pos, BlockState state) {
+        Direction dir = state.getValue(FACING);
+        Tip tip = new Tip(pos, state.getValue(SPIRAL), state.getValue(COLUMN));
+        return isStalkAt(level, tip.up(dir), dir) || isStalkAt(level, tip.side(dir), dir);
     }
 
     private Tip findTip(LevelReader level, BlockPos pos, BlockState state) {

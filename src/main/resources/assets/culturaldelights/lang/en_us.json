@@ -210,5 +210,7 @@
   "container.culturaldelights.oven.not_heated": "Needs heat from below",
 
   "advancement.culturaldelights.salt.title": "Why So Salty?!",
-  "advancement.culturaldelights.salt.description": "Set up a renewable Salt Spike farm with Water, a Salt Block, and Pointed Dripstone"
+  "advancement.culturaldelights.salt.description": "Set up a renewable Salt Spike farm with Water, a Salt Block, and Pointed Dripstone",
+  "advancement.culturaldelights.beanstalk.title": "Fee-Fi-Fo-Fum",
+  "advancement.culturaldelights.beanstalk.description": "Grow a Beanstalk all the way to the build height limit"
 }

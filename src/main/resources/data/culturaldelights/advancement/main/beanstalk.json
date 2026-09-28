@@ -1,0 +1,28 @@
+{
+  "parent": "farmersdelight:main/root",
+  "display": {
+    "icon": {
+      "id": "culturaldelights:magic_beans"
+    },
+    "title": {
+      "translate": "advancement.culturaldelights.beanstalk.title"
+    },
+    "description": {
+      "translate": "advancement.culturaldelights.beanstalk.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "grow_beanstalk_to_height_limit": {
+      "trigger": "culturaldelights:grow_beanstalk_to_height_limit"
+    }
+  },
+  "requirements": [
+    [
+      "grow_beanstalk_to_height_limit"
+    ]
+  ]
+}

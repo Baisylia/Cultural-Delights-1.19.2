@@ -2,6 +2,7 @@ package com.baisylia.culturaldelights.advancement;
 
 import com.baisylia.culturaldelights.CulturalDelights;
 import net.minecraft.advancements.CriterionTrigger;
+import net.minecraft.advancements.critereon.PlayerTrigger;
 import net.minecraft.core.registries.Registries;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -13,6 +14,9 @@ public class ModAdvancements {
 
     public static final DeferredHolder<CriterionTrigger<?>, SaltGrowthTrigger> GROW_SALT_SPIKE =
             TRIGGERS.register("grow_salt_spike", SaltGrowthTrigger::new);
+
+    public static final DeferredHolder<CriterionTrigger<?>, PlayerTrigger> GROW_BEANSTALK_TO_HEIGHT_LIMIT =
+            TRIGGERS.register("grow_beanstalk_to_height_limit", PlayerTrigger::new);
 
     public static void register(IEventBus eventBus) {
         TRIGGERS.register(eventBus);
