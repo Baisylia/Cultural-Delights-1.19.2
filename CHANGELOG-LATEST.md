@@ -10,6 +10,9 @@
 - Added EMI and JEI integration for marshmallow cooking recipes.
 - Added an optional Stove retexture ported from Raspberry Flavoured that updates Farmer's Delight stove textures to
   closer match the brick counters.
+- Added growable magic beans and beanstalks, which can be bone mealed (textures by @Ganpan14O).
+- Added a new advancement for growing a beanstalk to height limit.
+- Added a beanstalk woodset (textures by @Ganpan14O).
 
 ### Changed
 

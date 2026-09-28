@@ -1,0 +1,56 @@
+{
+  "variants": {
+    "facing=down,flowering=false": {
+      "model": "culturaldelights:block/stripped_beanstalk",
+      "x": 180
+    },
+    "facing=down,flowering=true": {
+      "model": "culturaldelights:block/stripped_beanstalk_flowering",
+      "x": 180
+    },
+    "facing=up,flowering=false": {
+      "model": "culturaldelights:block/stripped_beanstalk"
+    },
+    "facing=up,flowering=true": {
+      "model": "culturaldelights:block/stripped_beanstalk_flowering"
+    },
+    "facing=north,flowering=false": {
+      "model": "culturaldelights:block/stripped_beanstalk",
+      "x": 90
+    },
+    "facing=north,flowering=true": {
+      "model": "culturaldelights:block/stripped_beanstalk_flowering",
+      "x": 90
+    },
+    "facing=south,flowering=false": {
+      "model": "culturaldelights:block/stripped_beanstalk",
+      "x": 90,
+      "y": 180
+    },
+    "facing=south,flowering=true": {
+      "model": "culturaldelights:block/stripped_beanstalk_flowering",
+      "x": 90,
+      "y": 180
+    },
+    "facing=west,flowering=false": {
+      "model": "culturaldelights:block/stripped_beanstalk",
+      "x": 90,
+      "y": 270
+    },
+    "facing=west,flowering=true": {
+      "model": "culturaldelights:block/stripped_beanstalk_flowering",
+      "x": 90,
+      "y": 270
+    },
+    "facing=east,flowering=false": {
+      "model": "culturaldelights:block/stripped_beanstalk",
+      "x": 90,
+      "y": 90
+    },
+    "facing=east,flowering=true": {
+      "model": "culturaldelights:block/stripped_beanstalk_flowering",
+      "x": 90,
+      "y": 90
+    }
+  }
+}

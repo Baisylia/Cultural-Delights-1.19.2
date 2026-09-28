@@ -128,8 +128,11 @@ dependencies {
     // Supplementaries
     compileOnly "maven.modrinth:supplementaries:${supplementaries_version}"
     runtimeOnly "maven.modrinth:supplementaries:${supplementaries_version}"
-    compileOnly "maven.modrinth:moonlight:uPJlV3eS"
-    runtimeOnly "maven.modrinth:moonlight:uPJlV3eS"
+    compileOnly "maven.modrinth:moonlight:t6iFh4M3"
+    runtimeOnly "maven.modrinth:moonlight:t6iFh4M3"
+
+    // Every Compat
+    runtimeOnly "maven.modrinth:every-compat:yqVEmpxu"
 
     // EMI
     compileOnly "maven.modrinth:emi:${emi_version}+neoforge"

@@ -12,6 +12,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
@@ -23,6 +24,8 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
+import net.neoforged.neoforge.common.ItemAbilities;
+import net.neoforged.neoforge.common.ItemAbility;
 
 import javax.annotation.Nullable;
 
@@ -188,6 +191,18 @@ public class BeanstalkBlock extends DirectionalBlock implements SimpleWaterlogge
     @Override
     public FluidState getFluidState(BlockState state) {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
+    }
+
+    @Nullable
+    @Override
+    public BlockState getToolModifiedState(BlockState state, UseOnContext context, ItemAbility itemAbility, boolean simulate) {
+        if (itemAbility == ItemAbilities.AXE_STRIP) {
+            return ModBlocks.STRIPPED_BEANSTALK.get().defaultBlockState()
+                    .setValue(StrippedBeanstalkBlock.FACING, state.getValue(FACING))
+                    .setValue(StrippedBeanstalkBlock.FLOWERING, state.getValue(FLOWERING))
+                    .setValue(StrippedBeanstalkBlock.WATERLOGGED, state.getValue(WATERLOGGED));
+        }
+        return super.getToolModifiedState(state, context, itemAbility, simulate);
     }
 
     @Override

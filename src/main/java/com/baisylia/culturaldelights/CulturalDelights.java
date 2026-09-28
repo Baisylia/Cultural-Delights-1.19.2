@@ -2,9 +2,12 @@ package com.baisylia.culturaldelights;
 
 import com.baisylia.culturaldelights.advancement.ModAdvancements;
 import com.baisylia.culturaldelights.block.ModBlocks;
+import com.baisylia.culturaldelights.block.ModWoodTypes;
 import com.baisylia.culturaldelights.block.entity.ModBlockEntities;
 import com.baisylia.culturaldelights.block.entity.custom.VatBlockEntity;
 import com.baisylia.culturaldelights.effect.ModEffects;
+import com.baisylia.culturaldelights.integration.moonlight.MoonlightCompat;
+import com.baisylia.culturaldelights.item.ModBoatTypes;
 import com.baisylia.culturaldelights.item.ModDataComponents;
 import com.baisylia.culturaldelights.item.ModItems;
 import com.baisylia.culturaldelights.recipes.ModRecipes;
@@ -15,6 +18,9 @@ import com.baisylia.culturaldelights.sound.ModSounds;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.Sheets;
+import net.minecraft.core.dispenser.BoatDispenseItemBehavior;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
@@ -24,10 +30,15 @@ import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
 import net.minecraft.world.entity.HumanoidArm;
+import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DispenserBlock;
+import net.minecraft.world.level.block.FireBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.api.distmarker.Dist;
+import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -42,8 +53,11 @@ import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientItemExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
+import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.registries.RegisterEvent;
 import org.slf4j.Logger;
+import vectorwing.farmersdelight.common.registry.ModBlockEntityTypes;
 
 @Mod(CulturalDelights.MOD_ID)
 public class CulturalDelights {
@@ -61,8 +75,13 @@ public class CulturalDelights {
         ModRecipes.register(eventBus);
         ModAdvancements.register(eventBus);
 
+        if (ModList.get().isLoaded("moonlight")) {
+            MoonlightCompat.registerWoodTypes();
+        }
+
         eventBus.addListener(this::setup);
         eventBus.addListener(this::registerCapabilities);
+        eventBus.addListener(this::addBlockEntityValidBlocks);
         eventBus.addListener(this::buildCreativeTab);
         eventBus.addListener(this::addPackFinders);
     }
@@ -74,8 +93,35 @@ public class CulturalDelights {
         pot.addPlant(ModBlocks.MINT.getId(), ModBlocks.POTTED_MINT);
     }
 
+    public static void registerFlammables() {
+        FireBlock fire = (FireBlock) Blocks.FIRE;
+        fire.setFlammable(ModBlocks.BEANSTALK.get(), 5, 5);
+        fire.setFlammable(ModBlocks.STRIPPED_BEANSTALK.get(), 5, 5);
+        fire.setFlammable(ModBlocks.BEANSTALK_PLANKS.get(), 5, 20);
+        fire.setFlammable(ModBlocks.BEANSTALK_STAIRS.get(), 5, 20);
+        fire.setFlammable(ModBlocks.BEANSTALK_SLAB.get(), 5, 20);
+        fire.setFlammable(ModBlocks.BEANSTALK_FENCE.get(), 5, 20);
+        fire.setFlammable(ModBlocks.BEANSTALK_FENCE_GATE.get(), 5, 20);
+    }
+
+    public static void registerDispenserBehaviors() {
+        Boat.Type beanstalk = ModBoatTypes.BEANSTALK.getValue();
+        DispenserBlock.registerBehavior(ModItems.BEANSTALK_RAFT.get(), new BoatDispenseItemBehavior(beanstalk));
+        DispenserBlock.registerBehavior(ModItems.BEANSTALK_CHEST_RAFT.get(), new BoatDispenseItemBehavior(beanstalk, true));
+    }
+
     private void setup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(CulturalDelights::registerPottables);
+        event.enqueueWork(() -> {
+            registerPottables();
+            registerFlammables();
+            registerDispenserBehaviors();
+        });
+    }
+
+    private void addBlockEntityValidBlocks(BlockEntityTypeAddBlocksEvent event) {
+        event.modify(BlockEntityType.SIGN, ModBlocks.BEANSTALK_SIGN.get(), ModBlocks.BEANSTALK_WALL_SIGN.get());
+        event.modify(BlockEntityType.HANGING_SIGN, ModBlocks.BEANSTALK_HANGING_SIGN.get(), ModBlocks.BEANSTALK_WALL_HANGING_SIGN.get());
+        event.modify(ModBlockEntityTypes.CABINET.get(), ModBlocks.BEANSTALK_CABINET.get());
     }
 
     private void registerCapabilities(RegisterCapabilitiesEvent event) {
@@ -121,12 +167,20 @@ public class CulturalDelights {
             event.register(ModMenuTypes.OVEN_MENU.get(), OvenScreen::new);
         }
 
+        @SubscribeEvent(priority = EventPriority.LOWEST)
+        public static void afterBlockRegistration(RegisterEvent event) {
+            if (event.getRegistryKey() == Registries.BLOCK && ModList.get().isLoaded("moonlight")) {
+                MoonlightCompat.registerLogTextures();
+            }
+        }
+
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.LEMON_SAPLING.get(), RenderType.cutoutMipped());
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.SALT_SPIKE.get(), RenderType.cutout());
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.BEANSTALK_LEAF.get(), RenderType.cutout());
             ItemBlockRenderTypes.setRenderLayer(ModBlocks.MAGIC_BEANS.get(), RenderType.cutout());
+            event.enqueueWork(() -> Sheets.addWoodType(ModWoodTypes.BEANSTALK));
         }
 
         @SubscribeEvent

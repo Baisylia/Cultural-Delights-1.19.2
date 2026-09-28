@@ -11,6 +11,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.DoubleHighBlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
@@ -19,6 +20,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.bus.api.IEventBus;
@@ -28,12 +30,14 @@ import net.neoforged.neoforge.common.ItemAbility;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import vectorwing.farmersdelight.common.block.CabinetBlock;
 import vectorwing.farmersdelight.common.block.PieBlock;
 import vectorwing.farmersdelight.common.block.WildCropBlock;
 import static vectorwing.farmersdelight.common.registry.ModBlocks.APPLE_PIE;
 import static vectorwing.farmersdelight.common.registry.ModBlocks.CARROT_CRATE;
 
 import javax.annotation.Nullable;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class ModBlocks {
@@ -78,6 +82,46 @@ public class ModBlocks {
     public static final DeferredBlock<Block> MAGIC_BEANS = registerBlock("magic_beans",
             () -> new MagicBeansBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE)
                     .noCollission().instabreak().sound(SoundType.CROP).pushReaction(PushReaction.DESTROY)), false, 0);
+
+    public static final DeferredBlock<Block> STRIPPED_BEANSTALK = registerBlock("stripped_beanstalk",
+            () -> new StrippedBeanstalkBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GREEN)
+                    .instrument(NoteBlockInstrument.BASS).strength(1.0F).sound(SoundType.STEM).ignitedByLava()), false, 0);
+
+    public static final DeferredBlock<Block> BEANSTALK_PLANKS = registerBlock("beanstalk_planks",
+            () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(MapColor.COLOR_LIGHT_GREEN)), false, 0);
+    public static final DeferredBlock<Block> BEANSTALK_STAIRS = registerBlock("beanstalk_stairs",
+            () -> new StairBlock(BEANSTALK_PLANKS.get().defaultBlockState(), BlockBehaviour.Properties.ofFullCopy(BEANSTALK_PLANKS.get())), false, 0);
+    public static final DeferredBlock<Block> BEANSTALK_SLAB = registerBlock("beanstalk_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SLAB).mapColor(MapColor.COLOR_LIGHT_GREEN)), false, 0);
+    public static final DeferredBlock<Block> BEANSTALK_FENCE = registerBlock("beanstalk_fence",
+            () -> new FenceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_FENCE).mapColor(MapColor.COLOR_LIGHT_GREEN)), false, 0);
+    public static final DeferredBlock<Block> BEANSTALK_FENCE_GATE = registerBlock("beanstalk_fence_gate",
+            () -> new FenceGateBlock(ModWoodTypes.BEANSTALK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_FENCE_GATE).mapColor(MapColor.COLOR_LIGHT_GREEN)), false, 0);
+    public static final DeferredBlock<Block> BEANSTALK_DOOR = registerBlock("beanstalk_door",
+            () -> new DoorBlock(ModWoodTypes.BEANSTALK_SET, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_DOOR).mapColor(MapColor.COLOR_LIGHT_GREEN)),
+            block -> new DoubleHighBlockItem(block, new Item.Properties()));
+    public static final DeferredBlock<Block> BEANSTALK_TRAPDOOR = registerBlock("beanstalk_trapdoor",
+            () -> new TrapDoorBlock(ModWoodTypes.BEANSTALK_SET, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_TRAPDOOR).mapColor(MapColor.COLOR_LIGHT_GREEN)), false, 0);
+    public static final DeferredBlock<Block> BEANSTALK_PRESSURE_PLATE = registerBlock("beanstalk_pressure_plate",
+            () -> new PressurePlateBlock(ModWoodTypes.BEANSTALK_SET, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PRESSURE_PLATE).mapColor(MapColor.COLOR_LIGHT_GREEN)), false, 0);
+    public static final DeferredBlock<Block> BEANSTALK_BUTTON = registerBlock("beanstalk_button",
+            () -> new ButtonBlock(ModWoodTypes.BEANSTALK_SET, 30, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_BUTTON)), false, 0);
+
+    public static final DeferredBlock<Block> BEANSTALK_SIGN = registerBlockWithoutBlockItem("beanstalk_sign",
+            () -> new StandingSignBlock(ModWoodTypes.BEANSTALK, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GREEN)
+                    .forceSolidOn().instrument(NoteBlockInstrument.BASS).noCollission().strength(1.0F).ignitedByLava()));
+    public static final DeferredBlock<Block> BEANSTALK_WALL_SIGN = registerBlockWithoutBlockItem("beanstalk_wall_sign",
+            () -> new WallSignBlock(ModWoodTypes.BEANSTALK, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GREEN)
+                    .forceSolidOn().instrument(NoteBlockInstrument.BASS).noCollission().strength(1.0F).dropsLike(BEANSTALK_SIGN.get()).ignitedByLava()));
+    public static final DeferredBlock<Block> BEANSTALK_HANGING_SIGN = registerBlockWithoutBlockItem("beanstalk_hanging_sign",
+            () -> new CeilingHangingSignBlock(ModWoodTypes.BEANSTALK, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GREEN)
+                    .forceSolidOn().instrument(NoteBlockInstrument.BASS).noCollission().strength(1.0F).ignitedByLava()));
+    public static final DeferredBlock<Block> BEANSTALK_WALL_HANGING_SIGN = registerBlockWithoutBlockItem("beanstalk_wall_hanging_sign",
+            () -> new WallHangingSignBlock(ModWoodTypes.BEANSTALK, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GREEN)
+                    .forceSolidOn().instrument(NoteBlockInstrument.BASS).noCollission().strength(1.0F).dropsLike(BEANSTALK_HANGING_SIGN.get()).ignitedByLava()));
+
+    public static final DeferredBlock<Block> BEANSTALK_CABINET = registerBlock("beanstalk_cabinet",
+            () -> new CabinetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BARREL)), false, 0);
 
     public static final DeferredBlock<Block> AVOCADO_PIT = registerBlock("avocado_pit",
             () -> new AvocadoPitBlock(AvocadoPitGrower.AVOCADO_PIT_GROWER, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)), false, 0);
@@ -362,6 +406,12 @@ public class ModBlocks {
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block, boolean isFuel, int fuelAmount) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn, isFuel, fuelAmount);
+        return toReturn;
+    }
+
+    private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block, Function<T, Item> item) {
+        DeferredBlock<T> toReturn = BLOCKS.register(name, block);
+        ModItems.ITEMS.register(name, () -> item.apply(toReturn.get()));
         return toReturn;
     }
 

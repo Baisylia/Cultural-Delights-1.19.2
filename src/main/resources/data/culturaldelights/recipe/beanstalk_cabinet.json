@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "fd_cabinet",
+  "key": {
+    "D": {
+      "item": "culturaldelights:beanstalk_trapdoor"
+    },
+    "_": {
+      "item": "culturaldelights:beanstalk_slab"
+    }
+  },
+  "pattern": [
+    "___",
+    "D D",
+    "___"
+  ],
+  "result": {
+    "count": 1,
+    "id": "culturaldelights:beanstalk_cabinet"
+  }
+}

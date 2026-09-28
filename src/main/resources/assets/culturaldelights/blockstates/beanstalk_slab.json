@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "culturaldelights:block/beanstalk_slab"
+    },
+    "type=double": {
+      "model": "culturaldelights:block/beanstalk_planks"
+    },
+    "type=top": {
+      "model": "culturaldelights:block/beanstalk_slab_top"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "culturaldelights:block/beanstalk_planks",
+    "side": "culturaldelights:block/beanstalk_planks",
+    "top": "culturaldelights:block/beanstalk_planks"
+  }
+}

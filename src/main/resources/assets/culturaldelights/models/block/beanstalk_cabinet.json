@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/orientable",
+  "textures": {
+    "front": "culturaldelights:block/beanstalk_cabinet_front",
+    "side": "culturaldelights:block/beanstalk_cabinet_side",
+    "top": "culturaldelights:block/beanstalk_cabinet_top"
+  }
+}

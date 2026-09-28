@@ -10,6 +10,7 @@ logoFile = "culturaldelights.png"
 credits = "${credits}"
 authors = "${mod_author}"
 description = '''${description}'''
+enumExtensions = "META-INF/enumextensions.json"
 
 [[dependencies.${mod_id}]]
 modId = "neoforge"
@@ -36,6 +37,13 @@ side = "BOTH"
 modId = "supplementaries"
 type = "optional"
 versionRange = "[1.21.1,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "moonlight"
+type = "optional"
+versionRange = "[1.21.1-3.6.3,)"
 ordering = "AFTER"
 side = "BOTH"
 

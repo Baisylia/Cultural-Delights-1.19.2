@@ -4,9 +4,12 @@ import com.baisylia.culturaldelights.CulturalDelights;
 import com.baisylia.culturaldelights.block.ModBlocks;
 import com.baisylia.culturaldelights.item.custom.BucketFoodItem;
 import com.baisylia.culturaldelights.item.custom.MarshmallowOnAStickItem;
+import net.minecraft.world.item.BoatItem;
+import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.SignItem;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -318,6 +321,14 @@ public class ModItems {
     public static final DeferredItem<Item> FISH_AND_CHIPS = ITEMS.register("fish_and_chips",
             () -> new ConsumableItem(bowlFoodItem(ModFoods.FISH_AND_CHIPS), true));
 
+    public static final DeferredItem<Item> BEANSTALK_SIGN = ITEMS.register("beanstalk_sign",
+            () -> new SignItem(new Item.Properties().stacksTo(16), ModBlocks.BEANSTALK_SIGN.get(), ModBlocks.BEANSTALK_WALL_SIGN.get()));
+    public static final DeferredItem<Item> BEANSTALK_HANGING_SIGN = ITEMS.register("beanstalk_hanging_sign",
+            () -> new HangingSignItem(ModBlocks.BEANSTALK_HANGING_SIGN.get(), ModBlocks.BEANSTALK_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16)));
+    public static final DeferredItem<Item> BEANSTALK_RAFT = ITEMS.register("beanstalk_raft",
+            () -> new BoatItem(false, ModBoatTypes.BEANSTALK.getValue(), new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> BEANSTALK_CHEST_RAFT = ITEMS.register("beanstalk_chest_raft",
+            () -> new BoatItem(true, ModBoatTypes.BEANSTALK.getValue(), new Item.Properties().stacksTo(1)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
