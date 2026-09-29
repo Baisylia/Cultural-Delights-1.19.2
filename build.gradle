@@ -211,6 +211,7 @@ publishMods {
         optional("jei")
         optional("emi")
         optional("appleskin")
+        incompatible("cooks-collection")
     }
 
     modrinth {
@@ -223,6 +224,7 @@ publishMods {
         optional("jei")
         optional("emi")
         optional("appleskin")
+        incompatible("cooks-collection")
     }
 }
 
