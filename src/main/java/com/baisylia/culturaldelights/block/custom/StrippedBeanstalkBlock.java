@@ -18,6 +18,7 @@ import javax.annotation.Nullable;
 public class StrippedBeanstalkBlock extends DirectionalBlock implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final BooleanProperty FLOWERING = BeanstalkBlock.FLOWERING;
+    public static final BooleanProperty ROOTING = BeanstalkBlock.ROOTING;
     public static final MapCodec<StrippedBeanstalkBlock> CODEC = simpleCodec(StrippedBeanstalkBlock::new);
 
     public StrippedBeanstalkBlock(Properties properties) {
@@ -25,6 +26,7 @@ public class StrippedBeanstalkBlock extends DirectionalBlock implements SimpleWa
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.UP)
                 .setValue(FLOWERING, false)
+                .setValue(ROOTING, false)
                 .setValue(WATERLOGGED, false));
     }
 
@@ -66,6 +68,6 @@ public class StrippedBeanstalkBlock extends DirectionalBlock implements SimpleWa
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, FLOWERING, WATERLOGGED);
+        builder.add(FACING, FLOWERING, ROOTING, WATERLOGGED);
     }
 }

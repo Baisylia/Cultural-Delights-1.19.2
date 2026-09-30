@@ -34,6 +34,7 @@ public class BeanstalkBlock extends DirectionalBlock implements SimpleWaterlogge
     public static final IntegerProperty SPIRAL = IntegerProperty.create("spiral", 0, 3);
     public static final IntegerProperty COLUMN = IntegerProperty.create("column", 1, 5);
     public static final BooleanProperty FLOWERING = BooleanProperty.create("flowering");
+    public static final BooleanProperty ROOTING = BooleanProperty.create("rooting");
     public static final MapCodec<BeanstalkBlock> CODEC = simpleCodec(BeanstalkBlock::new);
     private static final int MIN_COLUMN_HEIGHT = 4;
     private static final int MAX_COLUMN_HEIGHT = 5;
@@ -46,6 +47,7 @@ public class BeanstalkBlock extends DirectionalBlock implements SimpleWaterlogge
                 .setValue(SPIRAL, 0)
                 .setValue(COLUMN, 1)
                 .setValue(FLOWERING, false)
+                .setValue(ROOTING, false)
                 .setValue(WATERLOGGED, false));
     }
 
@@ -89,13 +91,14 @@ public class BeanstalkBlock extends DirectionalBlock implements SimpleWaterlogge
         return state.canBeReplaced() || state.is(ModBlocks.MAGIC_BEANS.get());
     }
 
-    private static void placeStalk(ServerLevel level, Tip tip, Direction dir) {
+    private static void placeStalk(ServerLevel level, Tip tip, Direction dir, boolean rooting) {
         BlockPos pos = tip.pos();
         level.setBlockAndUpdate(pos, ModBlocks.BEANSTALK.get().defaultBlockState()
                 .setValue(FACING, dir)
                 .setValue(SPIRAL, tip.cell())
                 .setValue(COLUMN, Math.min(tip.height(), MAX_COLUMN_HEIGHT))
                 .setValue(FLOWERING, true)
+                .setValue(ROOTING, rooting)
                 .setValue(WATERLOGGED, level.getFluidState(pos).getType() == Fluids.WATER));
         level.sendParticles(ParticleTypes.HAPPY_VILLAGER, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 4, 0.3, 0.3, 0.3, 0.05);
     }
@@ -114,7 +117,7 @@ public class BeanstalkBlock extends DirectionalBlock implements SimpleWaterlogge
      */
     public static void sprout(ServerLevel level, RandomSource random, BlockPos origin, Direction dir, int amount) {
         Tip start = new Tip(origin, 0, 1);
-        placeStalk(level, start, dir);
+        placeStalk(level, start, dir, true);
         growSpiral(level, random, dir, start, amount);
     }
 
@@ -138,7 +141,7 @@ public class BeanstalkBlock extends DirectionalBlock implements SimpleWaterlogge
             if (!canGrowInto(level, next.pos())) {
                 break;
             }
-            placeStalk(level, next, dir);
+            placeStalk(level, next, dir, false);
             tip = next;
 
             Direction[] outward = outwardDirs(dir, tip.cell());
@@ -176,7 +179,8 @@ public class BeanstalkBlock extends DirectionalBlock implements SimpleWaterlogge
         BlockState state = this.defaultBlockState()
                 .setValue(FACING, facing)
                 .setValue(WATERLOGGED, context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER);
-        return state.setValue(FLOWERING, !hasNext(context.getLevel(), context.getClickedPos(), state));
+        return state.setValue(FLOWERING, !hasNext(context.getLevel(), context.getClickedPos(), state))
+                .setValue(ROOTING, !hasPrevious(context.getLevel(), context.getClickedPos(), state));
     }
 
     @Override
@@ -185,7 +189,8 @@ public class BeanstalkBlock extends DirectionalBlock implements SimpleWaterlogge
             level.scheduleTick(pos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
         }
         return super.updateShape(state, direction, neighborState, level, pos, neighborPos)
-                .setValue(FLOWERING, !hasNext(level, pos, state));
+                .setValue(FLOWERING, !hasNext(level, pos, state))
+                .setValue(ROOTING, !hasPrevious(level, pos, state));
     }
 
     @Override
@@ -200,6 +205,7 @@ public class BeanstalkBlock extends DirectionalBlock implements SimpleWaterlogge
             return ModBlocks.STRIPPED_BEANSTALK.get().defaultBlockState()
                     .setValue(StrippedBeanstalkBlock.FACING, state.getValue(FACING))
                     .setValue(StrippedBeanstalkBlock.FLOWERING, state.getValue(FLOWERING))
+                    .setValue(StrippedBeanstalkBlock.ROOTING, state.getValue(ROOTING))
                     .setValue(StrippedBeanstalkBlock.WATERLOGGED, state.getValue(WATERLOGGED));
         }
         return super.getToolModifiedState(state, context, itemAbility, simulate);
@@ -217,7 +223,7 @@ public class BeanstalkBlock extends DirectionalBlock implements SimpleWaterlogge
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, SPIRAL, COLUMN, FLOWERING, WATERLOGGED);
+        builder.add(FACING, SPIRAL, COLUMN, FLOWERING, ROOTING, WATERLOGGED);
     }
 
     @Override
@@ -250,6 +256,22 @@ public class BeanstalkBlock extends DirectionalBlock implements SimpleWaterlogge
         Direction dir = state.getValue(FACING);
         Tip tip = new Tip(pos, state.getValue(SPIRAL), state.getValue(COLUMN));
         return isStalkAt(level, tip.up(dir), dir) || isStalkAt(level, tip.side(dir), dir);
+    }
+
+    private boolean hasPrevious(LevelReader level, BlockPos pos, BlockState state) {
+        Direction dir = state.getValue(FACING);
+        int cell = state.getValue(SPIRAL);
+        BlockState below = level.getBlockState(pos.relative(dir.getOpposite()));
+        if (below.is(this) && below.getValue(FACING) == dir && below.getValue(SPIRAL) == cell) {
+            return true;
+        }
+        if (state.getValue(COLUMN) != 1) {
+            return false;
+        }
+        int prevCell = (cell + 3) % 4;
+        BlockPos footprintOrigin = pos.subtract(cellPos(BlockPos.ZERO, dir, cell));
+        BlockState prev = level.getBlockState(cellPos(footprintOrigin, dir, prevCell));
+        return prev.is(this) && prev.getValue(FACING) == dir && prev.getValue(SPIRAL) == prevCell;
     }
 
     private Tip findTip(LevelReader level, BlockPos pos, BlockState state) {
