@@ -21,3 +21,4 @@
 ### Fixed
 
 - Fixed suspended bean model being shaded.
+- Cheese is no longer leafy.
