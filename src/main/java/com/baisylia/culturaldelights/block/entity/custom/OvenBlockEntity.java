@@ -192,15 +192,32 @@ public class OvenBlockEntity extends BlockEntity implements MenuProvider {
 
         if (shapedMatch.isPresent()) {
             OvenShapedRecipe recipe = shapedMatch.get().value();
+            if (!canOutput(entity, recipe.getResultItem(level.registryAccess()))) {
+                return false;
+            }
             entity.maxProgress = recipe.getCookTime();
             return true;
         }
         if (recipeMatch.isPresent()) {
             OvenRecipe recipe = recipeMatch.get().value();
+            if (!canOutput(entity, recipe.getResultItem(level.registryAccess()))) {
+                return false;
+            }
             entity.maxProgress = recipe.getCookTime();
             return true;
         }
         return false;
+    }
+
+    private static boolean canOutput(OvenBlockEntity entity, ItemStack result) {
+        ItemStack output = entity.itemHandler.getStackInSlot(9);
+        if (output.isEmpty()) {
+            return true;
+        }
+        if (!ItemStack.isSameItemSameComponents(output, result)) {
+            return false;
+        }
+        return output.getCount() + result.getCount() <= Math.min(output.getMaxStackSize(), entity.itemHandler.getSlotLimit(9));
     }
 
     static boolean isFueled(OvenBlockEntity entity, BlockPos pos, Level level) {
@@ -231,6 +248,19 @@ public class OvenBlockEntity extends BlockEntity implements MenuProvider {
                 .getRecipeFor(ModRecipes.BAKING_SHAPED.get(), new RecipeWrapper(entity.itemHandler), level);
 
         if (recipeMatch.isPresent() || shapedMatch.isPresent()) {
+            ItemStack result;
+            if (shapedMatch.isPresent()) {
+                OvenShapedRecipe recipe = shapedMatch.get().value();
+                result = recipe.getResultItem(level.registryAccess());
+            } else {
+                OvenRecipe recipe = recipeMatch.get().value();
+                result = recipe.getResultItem(level.registryAccess());
+            }
+
+            if (!canOutput(entity, result)) {
+                return;
+            }
+
             for (int i = 0; i < 9; ++i) {
                 ItemStack slotStack = entity.itemHandler.getStackInSlot(i);
                 if (slotStack.hasCraftingRemainingItem()) {
@@ -246,18 +276,7 @@ public class OvenBlockEntity extends BlockEntity implements MenuProvider {
                 entity.itemHandler.extractItem(i, 1, false);
             }
 
-            ItemStack result;
-            if (shapedMatch.isPresent()) {
-                OvenShapedRecipe recipe = shapedMatch.get().value();
-                result = recipe.getResultItem(level.registryAccess());
-            } else {
-                OvenRecipe recipe = recipeMatch.get().value();
-                result = recipe.getResultItem(level.registryAccess());
-            }
-
-            inventory.getItem(9).is(result.getItem());
-
-            entity.itemHandler.setStackInSlot(9, new ItemStack(result.getItem(),
+            entity.itemHandler.setStackInSlot(9, result.copyWithCount(
                     entity.itemHandler.getStackInSlot(9).getCount() + entity.getTheCount(result)));
 
             entity.resetProgress();
