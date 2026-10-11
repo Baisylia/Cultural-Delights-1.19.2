@@ -22,3 +22,4 @@
 
 - Fixed suspended bean model being shaded.
 - Cheese is no longer leafy.
+- Fixed small memory leak.

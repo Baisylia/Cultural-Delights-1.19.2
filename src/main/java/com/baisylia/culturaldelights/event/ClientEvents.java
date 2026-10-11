@@ -12,22 +12,24 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.ViewportEvent;
 
+import java.lang.ref.WeakReference;
+
 @EventBusSubscriber(modid = CulturalDelights.MOD_ID, value = Dist.CLIENT)
 public class ClientEvents {
 
     private static float currentPitch = 0.0F;
     private static float currentYaw = 0.0F;
     private static float currentRoll = 0.0F;
-    private static Entity lastCameraEntity = null;
+    private static WeakReference<Entity> lastCameraEntity = new WeakReference<>(null);
 
     @SubscribeEvent
     public static void onComputeCameraAngles(ViewportEvent.ComputeCameraAngles event) {
         Entity cameraEntity = event.getCamera().getEntity();
-        if (cameraEntity != lastCameraEntity) {
+        if (cameraEntity != lastCameraEntity.get()) {
             currentPitch = 0.0F;
             currentYaw = 0.0F;
             currentRoll = 0.0F;
-            lastCameraEntity = cameraEntity;
+            lastCameraEntity = new WeakReference<>(cameraEntity);
         }
 
         float targetPitch = 0.0F;
