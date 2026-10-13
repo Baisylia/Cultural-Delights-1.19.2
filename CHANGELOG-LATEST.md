@@ -1,3 +1,3 @@
 ### Fixed
 
-- Fixed magic beans recipe with Modest Magic.
+- Fixed crafting duplication glitch with marshmellows.
