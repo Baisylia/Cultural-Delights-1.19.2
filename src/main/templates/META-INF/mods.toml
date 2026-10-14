@@ -1,0 +1,50 @@
+modLoader = "javafml"
+loaderVersion = "[40,)"
+license = "All Rights Reserved"
+#issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/" 
+
+[[mods]]
+modId = "culturaldelights"
+version = "${mod_version}"
+displayName = "Cultural Delights"
+#updateJSONURL="https://change.me.example.invalid/updates.json"
+#displayURL="https://change.me.to.your.mods.homepage.example.invalid/"
+logoFile = "culturaldelights.png"
+credits = "Developer: Baisylia | Contributors: Raspmary, Bagels, Cassian"
+authors = "Baisylia"
+description = "A Farmer's Delight addon that adds food systems from around the world"
+
+[[dependencies.culturaldelights]]
+modId = "forge"
+mandatory = true
+versionRange = "[40,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.culturaldelights]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.19.2,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.culturaldelights]]
+modId = "farmersdelight"
+mandatory = true
+versionRange = "[1.2.0,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.culturaldelights]]
+modId = "cookscollection"
+mandatory = true
+versionRange = "[0.4.12,)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.culturaldelights]]
+modId = "supplementaries"
+mandatory = false
+versionRange = "*"
+ordering = "AFTER"
+side = "BOTH"

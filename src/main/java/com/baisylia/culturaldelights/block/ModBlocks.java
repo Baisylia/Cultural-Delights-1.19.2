@@ -169,7 +169,7 @@ public class ModBlocks {
             , FarmersDelight.CREATIVE_TAB, false, 0);
 
     public static final RegistryObject<Block> CHEESE_WHEEL = registerBlock("cheese_wheel",
-            () -> new SlabBlock(BlockBehaviour.Properties.copy(ModBlocks.CHEESE_BLOCK.get())), CreativeModeTab.TAB_BUILDING_BLOCKS, false, 0);
+            () -> new SlabBlock(BlockBehaviour.Properties.copy(ModBlocks.CHEESE_BLOCK.get())), FarmersDelight.CREATIVE_TAB, false, 0);
 
 
     public static final RegistryObject<Block> BUTTERSCOTCH_CINNAMONN_PIE = registerBlock("butterscotch_cinnamon_pie",
