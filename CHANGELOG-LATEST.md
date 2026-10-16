@@ -1,3 +1,3 @@
 ### Fixed
 
-- Fixed crafting duplication glitch with marshmellows.
+- Fixed bamboo raft texture.
