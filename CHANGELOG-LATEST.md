@@ -1,3 +1,3 @@
 ### Fixed
 
-- Fixed bamboo raft texture.
+- Actually fixed bamboo raft texture.
