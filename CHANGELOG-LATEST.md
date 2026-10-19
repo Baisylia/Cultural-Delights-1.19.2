@@ -1,3 +1,3 @@
 ### Fixed
 
-- Actually fixed bamboo raft texture.
+- The vat now keeps data components on what it makes.

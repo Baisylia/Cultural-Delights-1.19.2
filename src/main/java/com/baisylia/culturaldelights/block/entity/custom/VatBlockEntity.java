@@ -281,8 +281,10 @@ public class VatBlockEntity extends BlockEntity implements MenuProvider, Worldly
         }
 
         // Add result
-        entity.itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(resultItem.getItem(),
-                entity.itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + resultItem.getCount()));
+        ItemStack currentOutput = entity.itemHandler.getStackInSlot(OUTPUT_SLOT);
+        entity.itemHandler.setStackInSlot(OUTPUT_SLOT, currentOutput.isEmpty()
+                ? resultItem
+                : currentOutput.copyWithCount(currentOutput.getCount() + resultItem.getCount()));
 
         entity.resetProgress();
     }
