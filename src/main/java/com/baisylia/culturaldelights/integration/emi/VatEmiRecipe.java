@@ -35,17 +35,17 @@ public class VatEmiRecipe extends AbstractVatRecipe {
     public void addWidgets(WidgetHolder builder) {
         builder.addTexture(AbstractVatRecipe.TEXTURE, 0, 0, 124, 58, 0, 0);
 
-        builder.addSlot(getInputs().get(0), 19, 2);
-        if (getInputs().size() > 1) {
-            builder.addSlot(getInputs().get(1), 37, 2);
-            if (getInputs().size() > 2) {
-                builder.addSlot(getInputs().get(2), 19, 20);
-                if (getInputs().size() > 3) {
-                    builder.addSlot(getInputs().get(3), 37, 20);
-                    if (getInputs().size() > 4) {
-                        builder.addSlot(getInputs().get(4), 19, 38);
-                        if (getInputs().size() > 5) {
-                            builder.addSlot(getInputs().get(5), 37, 38);
+        builder.addSlot(ingredients.get(0), 19, 2);
+        if (ingredients.size() > 1) {
+            builder.addSlot(ingredients.get(1), 37, 2);
+            if (ingredients.size() > 2) {
+                builder.addSlot(ingredients.get(2), 19, 20);
+                if (ingredients.size() > 3) {
+                    builder.addSlot(ingredients.get(3), 37, 20);
+                    if (ingredients.size() > 4) {
+                        builder.addSlot(ingredients.get(4), 19, 38);
+                        if (ingredients.size() > 5) {
+                            builder.addSlot(ingredients.get(5), 37, 38);
                         }
                     }
                 }

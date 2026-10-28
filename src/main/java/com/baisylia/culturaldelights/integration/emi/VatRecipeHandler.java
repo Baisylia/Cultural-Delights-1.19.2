@@ -35,6 +35,21 @@ public class VatRecipeHandler implements StandardRecipeHandler<VatMenu> {
     }
 
     @Override
+    public List<Slot> getCraftingSlots(EmiRecipe recipe, VatMenu handler) {
+        if (!(recipe instanceof AbstractVatRecipe vat)) {
+            return getCraftingSlots(handler);
+        }
+        List<Slot> list = Lists.newArrayList();
+        for (int i = 0; i < vat.ingredients.size(); i++) {
+            list.add(handler.getSlot(36 + i));
+        }
+        if (!vat.container.isEmpty()) {
+            list.add(handler.getSlot(42));
+        }
+        return list;
+    }
+
+    @Override
     public @Nullable Slot getOutputSlot(VatMenu handler) {
         return handler.getSlot(43);
     }

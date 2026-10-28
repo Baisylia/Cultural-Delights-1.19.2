@@ -11,6 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -47,7 +48,12 @@ public abstract class AbstractVatRecipe implements EmiRecipe {
 
     @Override
     public List<EmiIngredient> getInputs() {
-        return ingredients;
+        if (container.isEmpty()) {
+            return ingredients;
+        }
+        List<EmiIngredient> inputs = new ArrayList<>(ingredients);
+        inputs.add(container);
+        return inputs;
     }
 
     @Override
