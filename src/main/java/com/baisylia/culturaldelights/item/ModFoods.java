@@ -152,6 +152,8 @@ public class ModFoods {
             .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 1200, 0), 1.0F).build();
     public static final FoodProperties LEMON_MUFFIN = (new FoodProperties.Builder()).nutrition(5).saturationModifier(0.6F).build();
     public static final FoodProperties CHOCOLATE_MUFFIN = (new FoodProperties.Builder()).nutrition(5).saturationModifier(0.6F).build();
+    public static final FoodProperties WAFER = (new FoodProperties.Builder()).nutrition(1).saturationModifier(0.2F).build();
+    public static final FoodProperties ICE_CREAM = (new FoodProperties.Builder()).nutrition(5).saturationModifier(0.4F).build();
     public static final FoodProperties FRIED_POTATO = (new FoodProperties.Builder()).nutrition(1).saturationModifier(0.3F).build();
     public static final FoodProperties RUSTIC_LOAF_SLICE = (new FoodProperties.Builder()).nutrition(2).saturationModifier(0.3F).build();
     public static final FoodProperties FISH_AND_CHIPS = (new FoodProperties.Builder()).nutrition(16).saturationModifier(1.2F)

@@ -1,0 +1,17 @@
+{
+  "type": "culturaldelights:baking",
+  "cookingtime": 200,
+  "experience": 0.35,
+  "ingredients": [
+    {
+      "tag": "c:foods/dough/wheat"
+    },
+    {
+      "item": "minecraft:sugar"
+    }
+  ],
+  "result": {
+    "id": "culturaldelights:wafer",
+    "count": 2
+  }
+}

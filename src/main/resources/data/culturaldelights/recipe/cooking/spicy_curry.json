@@ -2,7 +2,15 @@
   "type": "farmersdelight:cooking",
   "ingredients": [
     {
-      "item": "minecraft:blaze_powder"
+      "type": "neoforge:compound",
+      "children": [
+        {
+          "item": "minecraft:blaze_powder"
+        },
+        {
+          "tag": "c:crops/ginger"
+        }
+      ]
     },
     {
       "item": "farmersdelight:tomato_sauce"

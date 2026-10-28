@@ -12,7 +12,15 @@
       "item": "culturaldelights:cinnamon"
     },
     {
-      "item": "culturaldelights:cinnamon"
+      "type": "neoforge:compound",
+      "children": [
+        {
+          "item": "culturaldelights:cinnamon"
+        },
+        {
+          "tag": "c:crops/ginger"
+        }
+      ]
     },
     {
       "item": "minecraft:sugar"

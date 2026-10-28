@@ -1,0 +1,37 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:not",
+      "value": {
+        "type": "neoforge:tag_empty",
+        "tag": "c:crops/ginger"
+      }
+    }
+  ],
+  "type": "culturaldelights:aging",
+  "cooktime": 200,
+  "ingredients": [
+    {
+      "tag": "c:buckets/water"
+    },
+    {
+      "tag": "c:crops/ginger"
+    },
+    {
+      "tag": "c:crops/ginger"
+    },
+    {
+      "item": "minecraft:sugar"
+    },
+    {
+      "item": "minecraft:brown_mushroom"
+    }
+  ],
+  "container": {
+    "item": "minecraft:glass_bottle"
+  },
+  "result": {
+    "id": "culturaldelights:ginger_beer",
+    "count": 1
+  }
+}

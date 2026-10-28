@@ -142,6 +142,8 @@ public class ModItems {
             () -> new DrinkableItem(drinkItem().food(ModFoods.WINE).stacksTo(16)));
     public static final DeferredItem<Item> GLOW_WINE = ITEMS.register("glow_wine",
             () -> new DrinkableItem(drinkItem().food(ModFoods.GLOW_WINE).stacksTo(16)));
+    public static final DeferredItem<Item> GINGER_BEER = ITEMS.register("ginger_beer",
+            () -> new DrinkableItem(drinkItem().food(ModFoods.GINGER_BEER).stacksTo(16)));
     public static final DeferredItem<Item> MEAD = ITEMS.register("mead",
             () -> new DrinkableItem(drinkItem().food(ModFoods.MEAD).stacksTo(16)));
     public static final DeferredItem<Item> APPLE_CIDER = ITEMS.register("apple_cider",
@@ -308,6 +310,12 @@ public class ModItems {
 
     public static final DeferredItem<Item> LEMON_MUFFIN = ITEMS.register("lemon_muffin",
             () -> new Item(new Item.Properties().food(ModFoods.LEMON_MUFFIN)));
+
+    public static final DeferredItem<Item> WAFER = ITEMS.register("wafer",
+            () -> new Item(new Item.Properties().food(ModFoods.WAFER)));
+
+    public static final DeferredItem<Item> ICE_CREAM = ITEMS.register("ice_cream",
+            () -> new Item(new Item.Properties().stacksTo(16).food(ModFoods.ICE_CREAM)));
 
     public static final DeferredItem<Item> FRIED_POTATO = ITEMS.register("fried_potato",
             () -> new Item(new Item.Properties().food(ModFoods.FRIED_POTATO)));
